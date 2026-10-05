@@ -417,9 +417,9 @@ function projectLabels() {
     if (!solved) continue;
     const active = entry.classId === state.classId;
     const spots = {
-      fulcrum: { x: solved.fulcrum, y: entry.y - 0.72 },
-      effort: { x: solved.effort, y: entry.y + (effortDirection(entry.classId) < 0 ? 1.05 : -0.95) },
-      load: { x: solved.load, y: entry.y + 1.05 },
+      fulcrum: { x: solved.fulcrum, y: entry.y - 0.5 },
+      effort: { x: solved.effort, y: entry.y + (effortDirection(entry.classId) < 0 ? 0.42 : -0.5) },
+      load: { x: solved.load, y: entry.y + 0.46 },
     };
     if (Math.abs(solved.effort - solved.load) < 0.7) spots.load.y += 0.35;
     for (const part of ['fulcrum', 'effort', 'load']) {

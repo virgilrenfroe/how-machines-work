@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#140818" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23140818'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23f0a05a' stroke-width='2'/%3E%3Cpath d='M16 6.5 l1.2 2.2 -1.2.6 -1.2-.6z M16 25.5 l-1.2-2.2 1.2-.6 1.2.6z M6.5 16 l2.2-1.2.6 1.2-.6 1.2z M25.5 16 l-2.2 1.2-.6-1.2.6-1.2z' fill='%23f0a05a'/%3E%3C/svg%3E" />
+  <meta name="description" content="Shop / engineering: four-bar linkage (crank–rocker). A teaching exhibit of a crank, coupler, and rocker from How Machines Work by Virgil Renfroe." />
+  <title>Shop / engineering: four-bar linkage (crank–rocker) · How Machines Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,520;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --void: #140818;
+      --paper: #f4efe6;
+      --cream: #e7d7c8;
+      --mute: rgba(244, 239, 230, 0.66);
+      --dim: rgba(244, 239, 230, 0.42);
+      --accent: #f0a05a;
+      --accent-ink: #2a1408;
+      --line: rgba(244, 239, 230, 0.16);
+      --display: "Bricolage Grotesque", "Space Grotesk", sans-serif;
+      --body: "Instrument Sans", sans-serif;
+      --mono: "Space Mono", ui-monospace, monospace;
+      --pad: clamp(1.15rem, 3.2vw, 2.6rem);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0;
+      background: var(--void);
+      color: var(--paper);
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    #c {
+      position: fixed; inset: 0; width: 100%; height: 100%;
+      display: block; z-index: 1; pointer-events: none;
+    }
+    .content { position: relative; z-index: 2; pointer-events: none; }
+    .content a, .content button, .content input, .content label,
+    .content .view, .content .chip, .content .toggle { pointer-events: auto; }
+    .skip {
+      position: absolute; left: 12px; top: -48px; z-index: 5;
+      background: var(--accent); color: var(--accent-ink);
+      padding: 8px 12px; pointer-events: auto;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .skip:focus { top: 12px; }
+    .nav {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem;
+      padding: 1.15rem var(--pad) 0;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .nav a { color: var(--paper); text-decoration: none; }
+    .nav-use { margin: 0; color: var(--dim); }
+    .nav-use em { font-style: normal; color: var(--accent); }
+    .exhibit-nav {
+      display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem;
+      padding: 0.7rem var(--pad) 0;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .exhibit-nav a {
+      color: var(--dim); text-decoration: none;
+      border-bottom: 1px solid transparent; padding-bottom: 0.15rem;
+    }
+    .exhibit-nav a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+    .hub-head { padding: clamp(1.4rem, 3.5vh, 2.6rem) var(--pad) 0; }
+    .kicker {
+      margin: 0 0 0.85rem;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+    }
+    h1 {
+      margin: 0;
+      font-family: var(--display); font-weight: 800;
+      font-size: clamp(3.8rem, 8.6vw, 8.2rem);
+      line-height: 0.8; letter-spacing: -0.07em; text-transform: uppercase;
+    }
+    h1 span { display: block; }
+    h1 span:last-child { padding-left: 14vw; }
+    .hub-lead {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.72fr);
+      gap: 2rem 7vw; align-items: end;
+      padding: clamp(1.2rem, 2.5vh, 2rem) var(--pad) clamp(1rem, 2vh, 1.6rem);
+    }
+    .lede {
+      margin: 0; max-width: 36ch;
+      font-size: clamp(1.12rem, 1.55vw, 1.4rem); font-weight: 500; line-height: 1.35; color: var(--mute);
+    }
+    .formula { margin: 0; justify-self: end; text-align: right; max-width: 32ch; }
+    .formula b {
+      display: block; font-family: var(--display); font-weight: 800;
+      font-size: clamp(1.7rem, 2.6vw, 2.4rem); letter-spacing: -0.04em; line-height: 0.95;
+    }
+    .formula small {
+      display: block; margin-top: 0.55rem; margin-left: auto;
+      font-size: 0.98rem; font-weight: 500; color: var(--cream);
+    }
+    .hub-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1.42fr) minmax(260px, 0.58fr);
+      min-height: 78vh; position: relative;
+    }
+    .view-wrap { position: relative; min-height: 78vh; }
+    .view { position: absolute; inset: 0; touch-action: none; cursor: grab; }
+    .view:active { cursor: grabbing; }
+    .view-fallback {
+      position: absolute; left: var(--pad); bottom: 1.1rem; margin: 0;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--dim); pointer-events: none;
+    }
+    .view.is-ready .view-fallback { display: none; }
+    .hud-use {
+      position: absolute; top: 1.1rem; left: var(--pad); z-index: 3; margin: 0;
+      max-width: min(40ch, calc(100% - 2rem));
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--paper); pointer-events: none;
+      text-shadow: 0 0 18px #140818, 0 1px 0 #140818;
+    }
+    .hud-use span { display: block; color: var(--accent); margin-bottom: 0.2rem; }
+    .gear-label {
+      position: absolute; z-index: 3; margin: 0;
+      transform: translate(-50%, -140%);
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--paper); pointer-events: none; white-space: nowrap;
+      text-shadow: 0 0 16px #140818, 0 1px 0 #140818;
+    }
+    .gear-label b { display: block; color: var(--accent); font-weight: 700; letter-spacing: 0.16em; }
+    .view-note {
+      position: absolute; left: var(--pad); bottom: 1rem; z-index: 3; margin: 0;
+      max-width: 36ch;
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--dim); pointer-events: none; text-shadow: 0 0 12px #140818;
+    }
+    .instrument {
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: flex-end; gap: 0.65rem;
+      padding: 1.2rem var(--pad) 1.3rem 1.4rem; background: transparent;
+    }
+    .watermark {
+      position: absolute; right: -0.06em; bottom: -0.12em; margin: 0; z-index: 0;
+      font-family: var(--display); font-weight: 800;
+      font-size: clamp(9rem, 20vw, 16rem); line-height: 0.68; letter-spacing: -0.08em;
+      color: rgba(244, 239, 230, 0.055); pointer-events: none; user-select: none;
+    }
+    .instrument > :not(.watermark) { position: relative; z-index: 1; }
+    .instrument h2 {
+      margin: 0; font-family: var(--mono); font-size: 11px; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+    }
+    .ratio-readout {
+      margin: 0; font-family: var(--display); font-weight: 800;
+      font-size: clamp(4.2rem, 7.4vw, 6.8rem); letter-spacing: -0.07em; line-height: 0.78;
+    }
+    .ratio-readout em { font-style: normal; color: var(--accent); }
+    .rocker-line {
+      margin: 0; font-family: var(--display); font-weight: 700;
+      font-size: clamp(1.6rem, 2.6vw, 2.2rem); letter-spacing: -0.04em;
+    }
+    .rocker-line span { color: var(--dim); font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; }
+    .meters {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem 1.2rem;
+      margin-top: 0.35rem; padding-top: 0.85rem; border-top: 1px solid var(--line);
+    }
+    .meter .name {
+      margin: 0 0 0.2rem; font-family: var(--mono); font-size: 10px;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim);
+    }
+    .meter .val { margin: 0; font-family: var(--mono); font-size: 12px; line-height: 1.45; color: var(--paper); }
+    .meter .val b { color: var(--accent); font-weight: 700; }
+    .live-line { margin: 0; max-width: 42ch; font-size: 1.02rem; color: var(--cream); }
+    .status {
+      margin: 0; min-height: 1.2em; font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
+    }
+    .district { position: relative; padding: 0 var(--pad) clamp(2.2rem, 6vh, 4rem); }
+    .district-top {
+      display: flex; justify-content: space-between; gap: 1rem; align-items: baseline;
+      margin: 0 0 clamp(1.2rem, 3vh, 2.2rem); padding-top: 0.85rem; border-top: 1px solid var(--line);
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim);
+    }
+    .district-top b { color: var(--accent); font-weight: 700; }
+    .district-split {
+      display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 2.5rem 7vw; align-items: end;
+    }
+    .controls h2, .lesson h2, .shop h2 {
+      margin: 0 0 0.7rem; font-family: var(--display); font-weight: 800;
+      letter-spacing: -0.06em; line-height: 0.86; text-transform: uppercase;
+    }
+    .controls h2 { font-size: clamp(3rem, 5.6vw, 5.2rem); max-width: 9ch; }
+    .lesson { padding-top: clamp(1.5rem, 6vh, 4.5rem); }
+    .lesson h2 { font-size: clamp(3.2rem, 6vw, 5.8rem); max-width: 10ch; }
+    .hint, .lesson p, .shop-row li, .shop-row p { color: var(--cream); font-size: 1.05rem; }
+    .hint { margin: 0 0 1.15rem; max-width: 38ch; }
+    .row-actions { display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; }
+    .chip, .toggle {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.35rem 0 0.28rem; border: 0; border-bottom: 1px solid transparent;
+      background: transparent; color: var(--paper); cursor: pointer;
+    }
+    .chip:hover, .toggle:hover, .chip[aria-pressed="true"], .toggle[aria-pressed="true"] {
+      color: var(--accent); border-bottom-color: var(--accent); background: transparent;
+    }
+    .ctrls { display: grid; gap: 0.75rem; margin: 0 0 1.15rem; }
+    .ctrl {
+      display: grid; grid-template-columns: 7.4rem 1fr 3.2rem; gap: 0.65rem; align-items: center;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim);
+    }
+    .ctrl input[type="range"] { width: 100%; accent-color: var(--accent); }
+    .ctrl output { text-align: right; color: var(--paper); }
+    .lesson p { margin: 0 0 0.85rem; max-width: 48ch; }
+    .try { margin-top: 1.2rem; padding-top: 0.85rem; border-top: 1px solid var(--line); max-width: 48ch; }
+    .try strong {
+      display: block; margin-bottom: 0.35rem;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+    }
+    .try p { margin: 0; color: var(--paper); }
+    .shop h2 { font-size: clamp(3.6rem, 8vw, 7.2rem); max-width: 11ch; margin-bottom: clamp(1.2rem, 3vh, 2rem); }
+    .shop h2 span { display: block; padding-left: 12vw; }
+    .shop-lede { margin: -0.2rem 0 1.5rem 12vw; max-width: 38ch; color: var(--mute); font-size: clamp(1.05rem, 1.45vw, 1.28rem); }
+    .shop-row {
+      display: grid; grid-template-columns: 7.5rem minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: 1rem 2rem; align-items: start; padding: 1.15rem 0; border-top: 1px solid var(--line);
+    }
+    .shop-row .idx {
+      margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+    }
+    .shop-row h3 {
+      margin: 0; font-family: var(--display); font-weight: 700;
+      font-size: clamp(1.5rem, 2.2vw, 2rem); letter-spacing: -0.04em; line-height: 0.95; text-transform: uppercase;
+    }
+    .shop-row ul, .shop-row ol { margin: 0; padding-left: 1.15rem; }
+    .shop-row li { margin: 0 0 0.4rem; }
+    .shop-row p { margin: 0; max-width: 52ch; }
+    footer {
+      display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+      margin: 0 var(--pad); padding: 1rem 0 1.6rem; border-top: 1px solid var(--line);
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim);
+    }
+    footer a { color: var(--paper); text-decoration: none; border-bottom: 1px solid var(--accent); }
+    .err {
+      position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 20;
+      background: #3a1218; color: #ffd6d6; padding: 12px 14px; display: none;
+      white-space: pre-wrap; font-family: var(--mono); font-size: 12px; pointer-events: none;
+    }
+    @media (max-width: 900px) {
+      h1 { font-size: clamp(3rem, 14vw, 4.6rem); }
+      h1 span:last-child, .shop h2 span { padding-left: 0; }
+      .shop-lede { margin-left: 0; }
+      .hub-lead, .hub-stage, .district-split, .shop-row { grid-template-columns: 1fr; }
+      .formula { justify-self: start; text-align: left; }
+      .hub-stage, .view-wrap { min-height: 68vh; }
+      .instrument { padding-left: var(--pad); }
+      .lesson { padding-top: 0.4rem; }
+      .watermark { font-size: 8rem; }
+      .view-note { display: none; }
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script>
+    window.addEventListener('error', (event) => {
+      const el = document.getElementById('err');
+      if (!el) return;
+      el.style.display = 'block';
+      el.textContent = String(event.message || event.error || event);
+    });
+    window.addEventListener('unhandledrejection', (event) => {
+      const el = document.getElementById('err');
+      if (!el) return;
+      el.style.display = 'block';
+      el.textContent = String(event.reason && event.reason.message ? event.reason.message : event.reason);
+    });
+  </script>
+</head>
+<body>
+  <canvas id="c" aria-hidden="true"></canvas>
+  <div class="content">
+    <a class="skip" href="#four-bar">Skip to the four-bar</a>
+    <header class="nav">
+      <a href="./">How Machines Work</a>
+      <p class="nav-use">Shop / engineering: <em>four-bar linkage (crank–rocker)</em></p>
+    </header>
+    <nav class="exhibit-nav" aria-label="Exhibits">
+      <a href="./">01 Gear ratio</a>
+      <a href="./four-bar.html" aria-current="page">02 Four-bar</a>
+    </nav>
+
+    <section class="hub" aria-labelledby="hub-title">
+      <div class="hub-head">
+        <p class="kicker">Shop / engineering: four-bar linkage (crank–rocker)</p>
+        <h1 id="hub-title"><span>Four-bar</span><span>crank–rocker.</span></h1>
+      </div>
+      <div class="hub-lead">
+        <p class="lede">Four links. Four pins. The crank spins all the way around. The rocker only swings. That is the shop use of a crank–rocker.</p>
+        <p class="formula">
+          <b>A–B–C–D</b>
+          <small>A and D are fixed. B is the crank pin. C joins the coupler to the rocker.</small>
+        </p>
+      </div>
+
+      <div class="hub-stage" id="four-bar">
+        <div class="view-wrap">
+          <div class="view" id="view" data-scene="four-bar">
+            <p class="view-fallback">Setting the linkage on the bench…</p>
+          </div>
+          <p class="hud-use"><span>HUD</span> Shop / engineering: four-bar linkage (crank–rocker)</p>
+          <p class="gear-label" id="label-a" hidden><b>A</b><span>Ground pivot</span></p>
+          <p class="gear-label" id="label-b" hidden><b>B</b><span>Crank pin</span></p>
+          <p class="gear-label" id="label-c" hidden><b>C</b><span>Coupler joint</span></p>
+          <p class="gear-label" id="label-d" hidden><b>D</b><span>Ground pivot</span></p>
+          <p class="gear-label" id="label-ground" hidden><b>Ground</b><span>Fixed link</span></p>
+          <p class="gear-label" id="label-crank" hidden><b>Crank</b><span>Spins</span></p>
+          <p class="gear-label" id="label-coupler" hidden><b>Coupler</b><span>Floating link</span></p>
+          <p class="gear-label" id="label-rocker" hidden><b>Rocker</b><span>Swings</span></p>
+          <p class="view-note">A four-bar turns spin into a swing. Drag to look around the pins.</p>
+        </div>
+        <aside class="instrument" aria-label="Live four-bar readout">
+          <p class="watermark" aria-hidden="true">02</p>
+          <h2>Shop / engineering: four-bar linkage (crank–rocker)</h2>
+          <p class="ratio-readout" id="crank-readout"><em>—</em>°</p>
+          <p class="rocker-line"><span>Rocker </span><span id="rocker-readout">—</span></p>
+          <div class="meters">
+            <div class="meter">
+              <p class="name">Crank angle</p>
+              <p class="val" id="meter-crank">—</p>
+            </div>
+            <div class="meter">
+              <p class="name">Rocker angle</p>
+              <p class="val" id="meter-rocker">—</p>
+            </div>
+            <div class="meter">
+              <p class="name">Rocker swing</p>
+              <p class="val" id="meter-swing">—</p>
+            </div>
+            <div class="meter">
+              <p class="name">Coupler path</p>
+              <p class="val" id="meter-path">—</p>
+            </div>
+          </div>
+          <p class="live-line" id="live-line"></p>
+          <p class="status" id="status" role="status"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="district" id="bench" aria-label="Linkage setup and lesson">
+      <div class="district-top">
+        <span><b>02</b> Bench</span>
+        <span>Shop / engineering: four-bar linkage (crank–rocker)</span>
+      </div>
+      <div class="district-split">
+        <div class="controls">
+          <h2>Turn the crank.</h2>
+          <p class="hint">The crank is the shortest link, so it can spin all the way around. The rocker is pinned to the ground, so it can only swing.</p>
+          <div class="ctrls">
+            <label class="ctrl">Crank rpm
+              <input id="rpm" type="range" min="2" max="16" step="1" value="8" />
+              <output id="rpm-out" for="rpm">8</output>
+            </label>
+          </div>
+          <div class="row-actions">
+            <button class="toggle" type="button" id="play-toggle" aria-pressed="true">Pause</button>
+            <button class="chip" type="button" id="step-crank">Step 15°</button>
+            <button class="toggle" type="button" id="path-toggle" aria-pressed="true">Coupler path on</button>
+          </div>
+        </div>
+        <div class="lesson">
+          <p class="kicker">What a four-bar is for</p>
+          <h2>Spin becomes a swing</h2>
+          <p id="lesson-mesh">A four-bar is four links pinned in a loop. Ground link A–D does not move. Crank A–B is driven. Coupler B–C floats. Rocker C–D swings.</p>
+          <p id="lesson-use">In shop class this changes a spinning shaft into a back-and-forth motion. A wiper arm, a pump jack, and a small press ram use the same idea.</p>
+          <p id="lesson-path">The brass dot is fixed on the coupler, not on a pin. Its path is the coupler curve. Turn the path off to see only the four links.</p>
+          <div class="try">
+            <strong>Try this</strong>
+            <p>Watch one full turn of the crank. Count how the rocker angle rises, stops, and falls. It never goes all the way around. Then hide the coupler path and name the four links out loud: ground, crank, coupler, rocker.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="district shop" aria-labelledby="teach-title">
+      <div class="district-top">
+        <span><b>03</b> Shop floor</span>
+        <span>Ten minutes at the bench</span>
+      </div>
+      <h2 id="teach-title"><span>Name the</span><span>four links.</span></h2>
+      <p class="shop-lede">Use this page next to a cardboard model or a wiper linkage. The classroom use is the crank–rocker, not a rendering study.</p>
+      <div class="shop-row">
+        <p class="idx">03.1</p>
+        <h3>Learning objectives</h3>
+        <ul>
+          <li>Name ground, crank, coupler, and rocker on a four-bar.</li>
+          <li>Point to joints A, B, C, and D.</li>
+          <li>State that the crank rotates fully and the rocker oscillates.</li>
+          <li>Say what the coupler curve is: the path of a point on the floating link.</li>
+        </ul>
+      </div>
+      <div class="shop-row">
+        <p class="idx">03.2</p>
+        <h3>Classroom loop</h3>
+        <ol>
+          <li>Cover the readout. Students predict: does the long right link spin or swing?</li>
+          <li>Run the crank. Record the rocker angle at the two stops.</li>
+          <li>Turn the coupler path on. Trace the brass dot with a finger for one crank turn.</li>
+          <li>Name one shop machine that needs a swing, not a second spin.</li>
+        </ol>
+      </div>
+      <div class="shop-row">
+        <p class="idx">03.3</p>
+        <h3>Shop examples</h3>
+        <p>Windshield wipers, a beam pump, a treadle, a folding bench latch. This model is a planar crank–rocker. It leaves out friction, joint play, and links that lock.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div>How Machines Work · Virgil Renfroe · Shop / engineering: four-bar linkage (crank–rocker)</div>
+      <a href="./">Exhibit 01 · Gear ratio</a>
+    </footer>
+  </div>
+  <div id="err" class="err" role="alert"></div>
+  <script type="module" src="./fourbar.js"></script>
+</body>
+</html>

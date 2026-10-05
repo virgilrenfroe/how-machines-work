@@ -103,6 +103,26 @@
       font-style: normal;
       color: var(--accent);
     }
+    .exhibit-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.4rem;
+      padding: 0.7rem var(--pad) 0;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .exhibit-nav a {
+      color: var(--dim);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 0.15rem;
+    }
+    .exhibit-nav a[aria-current="page"] {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
 
     .hub-head {
       padding: clamp(1.6rem, 4vh, 3.2rem) var(--pad) 0;
@@ -563,6 +583,10 @@
       <a href="#hub-title">How Machines Work</a>
       <p class="nav-use">Shop / engineering: <em>gear ratio &amp; meshing</em></p>
     </header>
+    <nav class="exhibit-nav" aria-label="Exhibits">
+      <a href="./" aria-current="page">01 Gear ratio</a>
+      <a href="./four-bar.html">02 Four-bar</a>
+    </nav>
 
     <section class="hub" aria-labelledby="hub-title">
       <div class="hub-head">

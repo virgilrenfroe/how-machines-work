@@ -10,10 +10,11 @@ A shop / engineering lab for linkages, gears, and simple machines — by Virgil 
 
 1. **Shop / engineering: gear ratio & meshing.** [Exhibit 01](https://web-production-03e60.up.railway.app/) · Pages: https://virgilrenfroe.github.io/how-machines-work/
 2. **Shop / engineering: four-bar linkage (crank–rocker).** [Exhibit 02](https://web-production-03e60.up.railway.app/four-bar.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/four-bar.html
+3. **Shop / engineering: levers (classes 1–3).** [Exhibit 03](https://web-production-03e60.up.railway.app/lever.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/lever.html
 
 Repo: https://github.com/virgilrenfroe/how-machines-work
 
-Two lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view.
+Three lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view.
 
 ## Exhibit 01 — Simple gear train
 
@@ -34,6 +35,15 @@ Shop / engineering: four-bar linkage (crank–rocker).
 - Live crank angle and rocker angle. The crank turns full circle. The rocker only swings.
 - Optional coupler curve traced by a point fixed on the coupler.
 - Same night chrome as Exhibit 01. Reach it from the exhibit nav on the gear-train page.
+
+## Exhibit 03 — Lever classes
+
+Shop / engineering: levers (classes 1–3).
+
+- First, second, and third class stay on the bench together. Fulcrum, effort, and load are labeled.
+- Live mechanical advantage is effort arm / load arm. A 10 lb load shows the effort force as the arms move.
+- Class 2 stays above 1 : 1. Class 3 stays below 1 : 1. Class 1 can go either way.
+- Same night chrome. The exhibit nav on every lesson reaches gear, four-bar, and levers.
 
 ## Local
 

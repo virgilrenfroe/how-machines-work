@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#140818" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23140818'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23f0a05a' stroke-width='2'/%3E%3Cpath d='M16 6.5 l1.2 2.2 -1.2.6 -1.2-.6z M16 25.5 l-1.2-2.2 1.2-.6 1.2.6z M6.5 16 l2.2-1.2.6 1.2-.6 1.2z M25.5 16 l-2.2 1.2-.6-1.2.6-1.2z' fill='%23f0a05a'/%3E%3C/svg%3E" />
-  <meta name="description" content="Shop / engineering: four-bar linkage (crank–rocker). A teaching exhibit of a crank, coupler, and rocker from How Machines Work by Virgil Renfroe." />
-  <title>Shop / engineering: four-bar linkage (crank–rocker) · How Machines Work</title>
+  <meta name="description" content="Shop / engineering: levers (classes 1–3). A teaching exhibit of first-, second-, and third-class levers from How Machines Work by Virgil Renfroe." />
+  <title>Shop / engineering: levers (classes 1–3) · How Machines Work</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -104,10 +104,27 @@
       display: block; font-family: var(--display); font-weight: 800;
       font-size: clamp(1.7rem, 2.6vw, 2.4rem); letter-spacing: -0.04em; line-height: 0.95;
     }
+    .formula b span {
+      display: block; margin-top: 0.15rem; padding-top: 0.15rem;
+      border-top: 1.5px solid var(--paper);
+    }
     .formula small {
       display: block; margin-top: 0.55rem; margin-left: auto;
       font-size: 0.98rem; font-weight: 500; color: var(--cream);
     }
+    .class-rows { display: grid; margin-top: 0.35rem; border-top: 1px solid var(--line); }
+    .class-rows button {
+      display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+      gap: 0.55rem; align-items: baseline;
+      width: 100%; padding: 0.55rem 0; border: 0; border-bottom: 1px solid var(--line);
+      background: transparent; color: var(--paper); cursor: pointer; text-align: left;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .class-rows button span { color: var(--dim); }
+    .class-rows button b { font-weight: 400; letter-spacing: 0.08em; }
+    .class-rows button em { font-style: normal; color: var(--accent); }
+    .class-rows button[aria-pressed="true"] { color: var(--accent); }
+    .class-rows button[aria-pressed="true"] span { color: var(--accent); }
     .hub-stage {
       display: grid;
       grid-template-columns: minmax(0, 1.55fr) minmax(240px, 0.7fr);
@@ -132,7 +149,7 @@
     .hud-use span { display: block; color: var(--accent); margin-bottom: 0.2rem; }
     .gear-label {
       position: absolute; z-index: 3; margin: 0;
-      transform: translate(-50%, -140%);
+      transform: translate(-50%, -108%);
       font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--paper); pointer-events: none; white-space: nowrap;
       text-shadow: 0 0 16px #140818, 0 1px 0 #140818;
@@ -216,7 +233,7 @@
     }
     .ctrls { display: grid; gap: 0.75rem; margin: 0 0 1.15rem; }
     .ctrl {
-      display: grid; grid-template-columns: 7.4rem 1fr 3.2rem; gap: 0.65rem; align-items: center;
+      display: grid; grid-template-columns: 8.4rem 1fr 3.4rem; gap: 0.65rem; align-items: center;
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim);
     }
     .ctrl input[type="range"] { width: 100%; accent-color: var(--accent); }
@@ -296,68 +313,74 @@
 <body>
   <canvas id="c" aria-hidden="true"></canvas>
   <div class="content">
-    <a class="skip" href="#four-bar">Skip to the four-bar</a>
+    <a class="skip" href="#levers">Skip to the levers</a>
     <header class="nav">
       <a href="./">How Machines Work</a>
-      <p class="nav-use">Shop / engineering: <em>four-bar linkage (crank–rocker)</em></p>
+      <p class="nav-use">Shop / engineering: <em>levers (classes 1–3)</em></p>
     </header>
     <nav class="exhibit-nav" aria-label="Exhibits">
       <a href="./">01 Gear</a>
-      <a href="./four-bar.html" aria-current="page">02 Four-bar</a>
-      <a href="./lever.html">03 Levers</a>
+      <a href="./four-bar.html">02 Four-bar</a>
+      <a href="./lever.html" aria-current="page">03 Levers</a>
     </nav>
 
     <section class="hub" aria-labelledby="hub-title">
       <div class="hub-head">
-        <p class="kicker">Shop / engineering: four-bar linkage (crank–rocker)</p>
-        <h1 id="hub-title"><span>Four-bar</span><span>crank–rocker.</span></h1>
+        <p class="kicker">Shop / engineering: levers (classes 1–3)</p>
+        <h1 id="hub-title"><span>Levers</span><span>classes 1–3.</span></h1>
       </div>
       <div class="hub-lead">
-        <p class="lede">Four links. Four pins. The crank spins all the way around. The rocker only swings. That is the shop use of a crank–rocker.</p>
+        <p class="lede">Three bars. Same parts: fulcrum, effort, and load. The class is which part sits between the other two. Slide the arms and watch the force change.</p>
         <p class="formula">
-          <b>A–B–C–D</b>
-          <small>A and D are fixed. B is the crank pin. C joins the coupler to the rocker.</small>
+          <b>Effort arm<span>Load arm</span></b>
+          <small>Mechanical advantage. A bigger number means less effort for the same load.</small>
         </p>
       </div>
 
-      <div class="hub-stage" id="four-bar">
+      <div class="hub-stage" id="levers">
         <div class="view-wrap">
-          <div class="view" id="view" data-scene="four-bar">
-            <p class="view-fallback">Setting the linkage on the bench…</p>
+          <div class="view" id="view" data-scene="levers">
+            <p class="view-fallback">Setting the levers on the bench…</p>
           </div>
-          <p class="hud-use"><span>Lesson</span> Shop / engineering: four-bar linkage (crank–rocker)</p>
-          <p class="gear-label" id="label-a" hidden><b>A</b><span>Ground pivot</span></p>
-          <p class="gear-label" id="label-b" hidden><b>B</b><span>Crank pin</span></p>
-          <p class="gear-label" id="label-c" hidden><b>C</b><span>Coupler joint</span></p>
-          <p class="gear-label" id="label-d" hidden><b>D</b><span>Ground pivot</span></p>
-          <p class="gear-label" id="label-ground" hidden><b>Ground</b><span>Fixed link</span></p>
-          <p class="gear-label" id="label-crank" hidden><b>Crank</b><span>Spins</span></p>
-          <p class="gear-label" id="label-coupler" hidden><b>Coupler</b><span>Floating link</span></p>
-          <p class="gear-label" id="label-rocker" hidden><b>Rocker</b><span>Swings</span></p>
-          <p class="view-note">A four-bar turns spin into a swing. Drag to look around the pins.</p>
+          <p class="hud-use"><span>Lesson</span> Shop / engineering: levers (classes 1–3)</p>
+          <p class="gear-label" id="label-1-fulcrum" hidden><b>Fulcrum</b><span>Class 1</span></p>
+          <p class="gear-label" id="label-1-effort" hidden><b>Effort</b><span>Push down</span></p>
+          <p class="gear-label" id="label-1-load" hidden><b>Load</b><span>10 lb</span></p>
+          <p class="gear-label" id="label-2-fulcrum" hidden><b>Fulcrum</b><span>Class 2</span></p>
+          <p class="gear-label" id="label-2-effort" hidden><b>Effort</b><span>Lift</span></p>
+          <p class="gear-label" id="label-2-load" hidden><b>Load</b><span>10 lb</span></p>
+          <p class="gear-label" id="label-3-fulcrum" hidden><b>Fulcrum</b><span>Class 3</span></p>
+          <p class="gear-label" id="label-3-effort" hidden><b>Effort</b><span>Lift</span></p>
+          <p class="gear-label" id="label-3-load" hidden><b>Load</b><span>10 lb</span></p>
+          <p class="view-note">All three classes stay on the bench. Click a bar to select it. Drag to look.</p>
         </div>
-        <aside class="instrument" aria-label="Live four-bar readout">
-          <p class="watermark" aria-hidden="true">02</p>
-          <h2>Shop / engineering: four-bar linkage (crank–rocker)</h2>
-          <p class="ratio-readout" id="crank-readout"><em>—</em>°</p>
-          <p class="rocker-line"><span>Rocker </span><span id="rocker-readout">—</span></p>
+        <aside class="instrument" aria-label="Live lever readout">
+          <p class="watermark" aria-hidden="true">03</p>
+          <h2>Shop / engineering: levers (classes 1–3)</h2>
+          <p class="ratio-readout" id="ma-readout"><em>—</em> : 1</p>
+          <p class="rocker-line"><span>MA </span><span id="ma-sub">effort arm / load arm</span></p>
           <div class="meters">
             <div class="meter">
-              <p class="name">Crank angle</p>
-              <p class="val" id="meter-crank">—</p>
+              <p class="name">Effort arm</p>
+              <p class="val" id="meter-effort-arm">—</p>
             </div>
             <div class="meter">
-              <p class="name">Rocker angle</p>
-              <p class="val" id="meter-rocker">—</p>
+              <p class="name">Load arm</p>
+              <p class="val" id="meter-load-arm">—</p>
             </div>
             <div class="meter">
-              <p class="name">Rocker swing</p>
-              <p class="val" id="meter-swing">—</p>
+              <p class="name">Load</p>
+              <p class="val" id="meter-load">—</p>
             </div>
             <div class="meter">
-              <p class="name">Coupler path</p>
-              <p class="val" id="meter-path">—</p>
+              <p class="name">Effort needed</p>
+              <p class="val" id="meter-effort">—</p>
             </div>
+          </div>
+          <div class="class-rows">
+            <button type="button" data-class="1" aria-pressed="true"><span>01</span><b>First class</b><em>—</em></button>
+            <button type="button" data-class="2" aria-pressed="false"><span>02</span><b>Second class</b><em>—</em></button>
+            <button type="button" data-class="3" aria-pressed="false"><span>03</span><b>Third class</b><em>—</em></button>
           </div>
           <p class="live-line" id="live-line"></p>
           <p class="status" id="status" role="status"></p>
@@ -365,36 +388,38 @@
       </div>
     </section>
 
-    <section class="district" id="bench" aria-label="Linkage setup and lesson">
+    <section class="district" id="bench" aria-label="Lever setup and lesson">
       <div class="district-top">
-        <span><b>02</b> Bench</span>
-        <span>Shop / engineering: four-bar linkage (crank–rocker)</span>
+        <span><b>03</b> Bench</span>
+        <span>Shop / engineering: levers (classes 1–3)</span>
       </div>
       <div class="district-split">
         <div class="controls">
-          <h2>Turn the crank.</h2>
-          <p class="hint">The crank is the shortest link, so it can spin all the way around. The rocker is pinned to the ground, so it can only swing.</p>
+          <h2>Move the arms.</h2>
+          <p class="hint">The load stays 10 lb. Slide the effort or the load. Mechanical advantage is the effort arm divided by the load arm.</p>
           <div class="ctrls">
-            <label class="ctrl">Crank rpm
-              <input id="rpm" type="range" min="2" max="16" step="1" value="8" />
-              <output id="rpm-out" for="rpm">8</output>
+            <label class="ctrl">Effort arm
+              <input id="effort" type="range" min="0" max="1000" step="1" value="500" />
+              <output id="effort-out" for="effort">—</output>
+            </label>
+            <label class="ctrl">Load arm
+              <input id="load" type="range" min="0" max="1000" step="1" value="500" />
+              <output id="load-out" for="load">—</output>
             </label>
           </div>
           <div class="row-actions">
             <button class="toggle" type="button" id="play-toggle" aria-pressed="true">Pause</button>
-            <button class="chip" type="button" id="step-crank">Step 15°</button>
-            <button class="toggle" type="button" id="path-toggle" aria-pressed="true">Coupler path on</button>
           </div>
         </div>
         <div class="lesson">
-          <p class="kicker">What a four-bar is for</p>
-          <h2>Spin becomes a swing</h2>
-          <p id="lesson-mesh">A four-bar is four links pinned in a loop. Ground link A–D does not move. Crank A–B is driven. Coupler B–C floats. Rocker C–D swings.</p>
-          <p id="lesson-use">In shop class this changes a spinning shaft into a back-and-forth motion. A wiper arm, a pump jack, and a small press ram use the same idea.</p>
-          <p id="lesson-path">The brass dot is fixed on the coupler, not on a pin. Its path is the coupler curve. Turn the path off to see only the four links.</p>
+          <p class="kicker">What a lever is for</p>
+          <h2>Force or reach</h2>
+          <p id="lesson-order">A lever is a bar on a fulcrum. You apply the effort. The load is what you want to move.</p>
+          <p id="lesson-trade">Class 1 can go either way. Class 2 always multiplies force. Class 3 always multiplies distance.</p>
+          <p>First class: the fulcrum is in the middle. Second class: the load is in the middle. Third class: the effort is in the middle. You do not leave this page to compare them. All three bars stay in the view.</p>
           <div class="try">
             <strong>Try this</strong>
-            <p>Watch one full turn of the crank. Count how the rocker angle rises, stops, and falls. It never goes all the way around. Then hide the coupler path and name the four links out loud: ground, crank, coupler, rocker.</p>
+            <p>On class 1, slide the load toward the fulcrum. The effort force should fall. On class 2, try to make the advantage less than 1. You cannot. On class 3, the effort is always more than 10 lb.</p>
           </div>
         </div>
       </div>
@@ -402,44 +427,44 @@
 
     <section class="district shop" aria-labelledby="teach-title">
       <div class="district-top">
-        <span><b>03</b> Shop floor</span>
+        <span><b>04</b> Shop floor</span>
         <span>Ten minutes at the bench</span>
       </div>
-      <h2 id="teach-title"><span>Name the</span><span>four links.</span></h2>
-      <p class="shop-lede">Use this page next to a cardboard model or a wiper linkage. The classroom use is the crank–rocker, not a rendering study.</p>
+      <h2 id="teach-title"><span>Name the</span><span>three classes.</span></h2>
+      <p class="shop-lede">Use this page next to a meter stick, a pivot, and a weight. The classroom use is the lever class, and the force tradeoff that comes with it.</p>
       <div class="shop-row">
-        <p class="idx">03.1</p>
+        <p class="idx">04.1</p>
         <h3>Learning objectives</h3>
         <ul>
-          <li>Name ground, crank, coupler, and rocker on a four-bar.</li>
-          <li>Point to joints A, B, C, and D.</li>
-          <li>State that the crank rotates fully and the rocker oscillates.</li>
-          <li>Say what the coupler curve is: the path of a point on the floating link.</li>
+          <li>Point to the fulcrum, the effort, and the load.</li>
+          <li>Say which part is between the other two for classes 1, 2, and 3.</li>
+          <li>Compute mechanical advantage as effort arm / load arm.</li>
+          <li>State the tradeoff: more advantage means less effort and less movement at the load.</li>
         </ul>
       </div>
       <div class="shop-row">
-        <p class="idx">03.2</p>
+        <p class="idx">04.2</p>
         <h3>Classroom loop</h3>
         <ol>
-          <li>Cover the readout. Students predict: does the long right link spin or swing?</li>
-          <li>Run the crank. Record the rocker angle at the two stops.</li>
-          <li>Turn the coupler path on. Trace the brass dot with a finger for one crank turn.</li>
-          <li>Name one shop machine that needs a swing, not a second spin.</li>
+          <li>Cover the readout. Students name the middle part on each bar.</li>
+          <li>Class 1: move the load closer to the fulcrum. Record the new effort.</li>
+          <li>Class 2: predict the effort, then check. It stays under 10 lb.</li>
+          <li>Class 3: name a tool that reaches farther than the hand moves.</li>
         </ol>
       </div>
       <div class="shop-row">
-        <p class="idx">03.3</p>
+        <p class="idx">04.3</p>
         <h3>Shop examples</h3>
-        <p>Windshield wipers, a beam pump, a treadle, a folding bench latch. This model is a planar crank–rocker. It leaves out friction, joint play, and links that lock.</p>
+        <p>Class 1: crowbar, seesaw, pliers. Class 2: wheelbarrow, nutcracker, bottle opener. Class 3: tweezers, fishing rod, forearm. This model leaves out friction and the bend of a real bar.</p>
       </div>
     </section>
 
     <footer>
-      <div>How Machines Work · Virgil Renfroe · Shop / engineering: four-bar linkage (crank–rocker)</div>
-      <a href="./">Exhibit 01 · Gear ratio</a>
+      <div>How Machines Work · Virgil Renfroe · Shop / engineering: levers (classes 1–3)</div>
+      <a href="./">Exhibit 01 · Gear</a>
     </footer>
   </div>
   <div id="err" class="err" role="alert"></div>
-  <script type="module" src="./fourbar.js"></script>
+  <script type="module" src="./lever.js"></script>
 </body>
 </html>

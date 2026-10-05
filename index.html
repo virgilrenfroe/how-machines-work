@@ -27,7 +27,7 @@
       --pad: clamp(1.15rem, 3.2vw, 2.6rem);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
     }
@@ -38,7 +38,7 @@
       font-family: var(--body);
       font-size: 17px;
       line-height: 1.45;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
     :focus-visible {
       outline: 2px solid var(--accent);
@@ -106,8 +106,12 @@
     .exhibit-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem 1.4rem;
-      padding: 0.7rem var(--pad) 0;
+      align-items: baseline;
+      gap: 0.45rem 1.35rem;
+      margin: 0.7rem var(--pad) 0;
+      padding: 0.55rem 0 0.5rem;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing: 0.12em;
@@ -117,15 +121,22 @@
       color: var(--dim);
       text-decoration: none;
       border-bottom: 1px solid transparent;
-      padding-bottom: 0.15rem;
+      padding-bottom: 0.1rem;
     }
     .exhibit-nav a[aria-current="page"] {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
+      margin-right: auto;
+      padding-bottom: 0;
+      border-bottom-color: transparent;
+      color: var(--paper);
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(1.45rem, 2.8vw, 2.35rem);
+      letter-spacing: -0.05em;
+      line-height: 0.85;
     }
 
     .hub-head {
-      padding: clamp(1.6rem, 4vh, 3.2rem) var(--pad) 0;
+      padding: clamp(0.75rem, 1.6vh, 1.35rem) var(--pad) 0;
     }
     .kicker {
       margin: 0 0 0.85rem;
@@ -139,19 +150,19 @@
       margin: 0;
       font-family: var(--display);
       font-weight: 800;
-      font-size: clamp(4.6rem, 11.2vw, 10.6rem);
-      line-height: 0.78;
-      letter-spacing: -0.072em;
+      font-size: clamp(4.2rem, 9.6vw, 9.2rem);
+      line-height: 0.76;
+      letter-spacing: -0.074em;
       text-transform: uppercase;
     }
     h1 span { display: block; }
-    h1 span:last-child { padding-left: 18vw; }
+    h1 span:last-child { padding-left: 17vw; }
     .hub-lead {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.7fr);
-      gap: 2rem 8vw;
+      grid-template-columns: minmax(0, 1.28fr) minmax(190px, 0.62fr);
+      gap: 1.4rem 6vw;
       align-items: end;
-      padding: clamp(1.4rem, 3vh, 2.4rem) var(--pad) clamp(1.2rem, 2.5vh, 2rem);
+      padding: clamp(0.75rem, 1.6vh, 1.2rem) var(--pad) clamp(0.45rem, 1vh, 0.75rem);
     }
     .lede {
       margin: 0;
@@ -195,13 +206,14 @@
 
     .hub-stage {
       display: grid;
-      grid-template-columns: minmax(0, 1.42fr) minmax(250px, 0.58fr);
-      min-height: 82vh;
+      grid-template-columns: minmax(0, 1.55fr) minmax(240px, 0.7fr);
+      min-height: clamp(420px, 50vh, 580px);
       position: relative;
     }
     .view-wrap {
       position: relative;
-      min-height: 82vh;
+      min-height: clamp(420px, 50vh, 580px);
+      overflow: hidden;
     }
     .view {
       position: absolute;
@@ -290,15 +302,15 @@
     }
     .watermark {
       position: absolute;
-      right: -0.06em;
-      bottom: -0.12em;
+      right: -0.12em;
+      bottom: -0.18em;
       margin: 0;
       font-family: var(--display);
       font-weight: 800;
-      font-size: clamp(9rem, 20vw, 16rem);
+      font-size: clamp(13rem, 26vw, 22rem);
       line-height: 0.68;
       letter-spacing: -0.08em;
-      color: rgba(244, 239, 230, 0.055);
+      color: rgba(244, 239, 230, 0.06);
       pointer-events: none;
       user-select: none;
       z-index: 0;
@@ -317,7 +329,7 @@
       margin: 0;
       font-family: var(--display);
       font-weight: 800;
-      font-size: clamp(4.4rem, 8vw, 7.4rem);
+      font-size: clamp(3.6rem, 5.8vw, 6rem);
       letter-spacing: -0.07em;
       line-height: 0.78;
       text-transform: uppercase;
@@ -388,7 +400,7 @@
     .district-top b { color: var(--accent); font-weight: 700; }
     .district-split {
       display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
       gap: 2.5rem 7vw;
       align-items: end;
     }
@@ -539,15 +551,16 @@
     }
 
     @media (max-width: 900px) {
-      h1 { font-size: clamp(3.3rem, 16vw, 5.2rem); }
+      h1 { font-size: clamp(2.7rem, 12vw, 4.2rem); }
       h1 span:last-child, .shop h2 span, .shop-lede { padding-left: 0; margin-left: 0; }
       .hub-lead, .hub-stage, .district-split, .shop-row { grid-template-columns: 1fr; }
       .formula { justify-self: start; text-align: left; }
       .formula small { margin-left: 0; }
-      .hub-stage, .view-wrap { min-height: 70vh; }
+      .hub-stage, .view-wrap { min-height: min(64vh, 540px); }
       .instrument { padding-left: var(--pad); min-height: auto; }
       .lesson { padding-top: 0.4rem; }
-      .watermark { font-size: 8rem; }
+      .watermark { font-size: 6.2rem; right: 0.15rem; }
+      .exhibit-nav a[aria-current="page"] { font-size: 1.35rem; margin-right: 0.5rem; }
       .ctrl { grid-template-columns: 6.2rem 1fr 2.8rem; }
       .view-note { display: none; }
     }
@@ -565,13 +578,13 @@
       const el = document.getElementById('err');
       if (!el) return;
       el.style.display = 'block';
-      el.textContent = String(event.message || event.error || event);
+      el.textContent = 'The model paused. It will start again.';
     });
     window.addEventListener('unhandledrejection', (event) => {
       const el = document.getElementById('err');
       if (!el) return;
       el.style.display = 'block';
-      el.textContent = String(event.reason && event.reason.message ? event.reason.message : event.reason);
+      el.textContent = 'The model paused. It will start again.';
     });
   </script>
 </head>
@@ -584,8 +597,9 @@
       <p class="nav-use">Shop / engineering: <em>gear ratio &amp; meshing</em></p>
     </header>
     <nav class="exhibit-nav" aria-label="Exhibits">
-      <a href="./" aria-current="page">01 Gear ratio</a>
+      <a href="./" aria-current="page">01 Gear</a>
       <a href="./four-bar.html">02 Four-bar</a>
+      <a href="./lever.html">03 Levers</a>
     </nav>
 
     <section class="hub" aria-labelledby="hub-title">
@@ -606,7 +620,7 @@
           <div class="view" id="view" data-scene="train">
             <p class="view-fallback">Setting the gear train on the bench…</p>
           </div>
-          <p class="hud-use"><span>HUD</span> Shop / engineering: gear ratio &amp; meshing</p>
+          <p class="hud-use"><span>Lesson</span> Shop / engineering: gear ratio &amp; meshing</p>
           <p class="gear-label" id="label-driver" data-role="driver" hidden><b>Driver</b><span></span></p>
           <p class="gear-label" id="label-idler" data-role="idler" hidden><b>Idler</b><span></span></p>
           <p class="gear-label" id="label-driven" data-role="driven" hidden><b>Driven</b><span></span></p>

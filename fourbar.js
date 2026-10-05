@@ -20,9 +20,9 @@ const statusEl = document.getElementById('status');
 const view = document.getElementById('view');
 const canvas = document.getElementById('c');
 
-function showErr(message) {
+function showErr() {
   errEl.style.display = 'block';
-  errEl.textContent = String(message && message.message ? message.message : message);
+  errEl.textContent = 'The model paused. It will start again.';
 }
 
 function setStatus(message) {
@@ -275,9 +275,9 @@ function syncTransport() {
   const playBtn = document.getElementById('play-toggle');
   if (reducedMotion && !userAllowsMotion) {
     state.paused = true;
-    playBtn.textContent = 'Play motion';
+    playBtn.textContent = 'Play';
     playBtn.setAttribute('aria-pressed', 'false');
-    setStatus('Reduced motion is on. The linkage holds this pose. Step the crank, or play motion if you want it to turn.');
+    setStatus('Paused. Step the crank, or press play to turn it.');
     return;
   }
   playBtn.textContent = state.paused ? 'Play' : 'Pause';
@@ -466,7 +466,7 @@ function onContextLost(event) {
   event.preventDefault();
   contextLost = true;
   if (renderer) renderer.setAnimationLoop(null);
-  setStatus('WebGL context lost. The four-bar will rebuild when the context returns.');
+  setStatus('The model paused. It will start again in a moment.');
 }
 
 function onContextRestored() {
@@ -486,7 +486,7 @@ function onContextRestored() {
       buildRig();
       contextLost = false;
       clock.getDelta();
-      setStatus('WebGL context restored. Crank turning again.');
+      setStatus('Crank turning again.');
       if (!document.hidden) renderer.setAnimationLoop(animate);
     } catch (error) {
       showErr(error);

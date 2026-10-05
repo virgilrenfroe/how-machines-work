@@ -18,9 +18,9 @@ const statusEl = document.getElementById('status');
 const view = document.getElementById('view');
 const canvas = document.getElementById('c');
 
-function showErr(message) {
+function showErr() {
   errEl.style.display = 'block';
-  errEl.textContent = String(message && message.message ? message.message : message);
+  errEl.textContent = 'The model paused. It will start again.';
 }
 
 function setStatus(message) {
@@ -335,9 +335,9 @@ function syncTransport() {
   const playBtn = document.getElementById('play-toggle');
   if (reducedMotion && !userAllowsMotion) {
     state.paused = true;
-    playBtn.textContent = 'Play motion';
+    playBtn.textContent = 'Play';
     playBtn.setAttribute('aria-pressed', 'false');
-    setStatus('Reduced motion is on. The train holds a meshed pose. Step one tooth, or play motion if you want it to turn.');
+    setStatus('Paused. Step one tooth, or press play to turn the gears.');
     return;
   }
   playBtn.textContent = state.paused ? 'Play' : 'Pause';
@@ -413,9 +413,9 @@ function projectLabels() {
     }
     const x = (anchor.x * 0.5 + 0.5) * rect.width;
     const y = (-anchor.y * 0.5 + 0.5) * rect.height;
-    const pad = 8;
-    const clampedX = Math.min(rect.width - pad, Math.max(pad, x));
-    const clampedY = Math.min(rect.height - pad, Math.max(pad + 18, y));
+    const half = Math.min(el.offsetWidth * 0.5, Math.max(8, rect.width * 0.5 - 4));
+    const clampedX = Math.min(rect.width - half - 4, Math.max(half + 4, x));
+    const clampedY = Math.min(rect.height - 8, Math.max(28, y));
     el.style.left = `${clampedX}px`;
     el.style.top = `${clampedY}px`;
   }
@@ -630,7 +630,7 @@ function onContextLost(event) {
   event.preventDefault();
   contextLost = true;
   if (renderer) renderer.setAnimationLoop(null);
-  setStatus('WebGL context lost. The gear train will rebuild when the context returns.');
+  setStatus('The model paused. It will start again in a moment.');
 }
 
 function onContextRestored() {
@@ -647,7 +647,7 @@ function onContextRestored() {
       frameCamera(false);
       contextLost = false;
       clock.getDelta();
-      setStatus('WebGL context restored. Meshing again.');
+      setStatus('Meshing again.');
       if (!document.hidden) renderer.setAnimationLoop(animate);
     } catch (error) {
       showErr(error);

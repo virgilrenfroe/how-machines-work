@@ -342,13 +342,13 @@ function syncTransport() {
     state.paused = true;
     playBtn.textContent = 'Play';
     playBtn.setAttribute('aria-pressed', 'false');
-    setStatus('Paused. Press play to move the lever.');
+    setStatus('Paused. Move the arms, or press play to see the effort arrow breathe.');
     return;
   }
   playBtn.textContent = state.paused ? 'Play' : 'Pause';
   playBtn.setAttribute('aria-pressed', state.paused ? 'false' : 'true');
-  if (!state.paused) setStatus('Slide the arms. A longer effort arm needs less force.');
-  else setStatus('Paused. Press play to move the lever.');
+  if (!state.paused) setStatus('Effort arrow breathing on the selected class.');
+  else setStatus('Paused. Move the effort and the load.');
 }
 
 function formatForce(value) {
@@ -594,7 +594,7 @@ function onContextLost(event) {
   event.preventDefault();
   contextLost = true;
   if (renderer) renderer.setAnimationLoop(null);
-  setStatus('The model paused. It will start again.');
+  setStatus('The model paused. It will start again in a moment.');
 }
 
 function onContextRestored() {
@@ -614,7 +614,7 @@ function onContextRestored() {
       buildRig();
       contextLost = false;
       clock.getDelta();
-      syncTransport();
+      setStatus('');
       if (!document.hidden) renderer.setAnimationLoop(animate);
     } catch (error) {
       showErr(error);

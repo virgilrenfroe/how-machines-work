@@ -337,13 +337,13 @@ function syncTransport() {
     state.paused = true;
     playBtn.textContent = 'Play';
     playBtn.setAttribute('aria-pressed', 'false');
-    setStatus('Paused. Press play to turn the gears.');
+    setStatus('Paused. Step one tooth, or press play to turn the gears.');
     return;
   }
   playBtn.textContent = state.paused ? 'Play' : 'Pause';
   playBtn.setAttribute('aria-pressed', state.paused ? 'false' : 'true');
   if (!state.paused) setStatus('Meshing. Pitch circles stay tangent while the teeth pass.');
-  else setStatus('Paused. Press play to turn the gears.');
+  else setStatus('Paused on a meshed pose.');
 }
 
 function syncHud() {
@@ -580,7 +580,7 @@ function bindUi() {
     state.driverSpin = 0;
     applySpin();
     syncHud();
-    setStatus('Turn counters reset. The teeth are back at the start.');
+    setStatus('Turn counters reset. The mesh phase is back at the start.');
   });
   window.addEventListener('keydown', (event) => {
     if (event.code !== 'Space') return;
@@ -630,7 +630,7 @@ function onContextLost(event) {
   event.preventDefault();
   contextLost = true;
   if (renderer) renderer.setAnimationLoop(null);
-  setStatus('The model paused. It will start again.');
+  setStatus('The model paused. It will start again in a moment.');
 }
 
 function onContextRestored() {
@@ -647,7 +647,7 @@ function onContextRestored() {
       frameCamera(false);
       contextLost = false;
       clock.getDelta();
-      syncTransport();
+      setStatus('Meshing again.');
       if (!document.hidden) renderer.setAnimationLoop(animate);
     } catch (error) {
       showErr(error);

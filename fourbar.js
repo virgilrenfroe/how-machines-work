@@ -277,13 +277,13 @@ function syncTransport() {
     state.paused = true;
     playBtn.textContent = 'Play';
     playBtn.setAttribute('aria-pressed', 'false');
-    setStatus('Paused. Press play to turn the crank.');
+    setStatus('Paused. Step the crank, or press play to turn it.');
     return;
   }
   playBtn.textContent = state.paused ? 'Play' : 'Pause';
   playBtn.setAttribute('aria-pressed', state.paused ? 'false' : 'true');
   if (!state.paused) setStatus('Crank turning. The rocker only swings.');
-  else setStatus('Paused. Press play to turn the crank.');
+  else setStatus('Paused on this pose.');
 }
 
 function rockerPhrase(rocker) {
@@ -466,7 +466,7 @@ function onContextLost(event) {
   event.preventDefault();
   contextLost = true;
   if (renderer) renderer.setAnimationLoop(null);
-  setStatus('The model paused. It will start again.');
+  setStatus('The model paused. It will start again in a moment.');
 }
 
 function onContextRestored() {
@@ -486,7 +486,7 @@ function onContextRestored() {
       buildRig();
       contextLost = false;
       clock.getDelta();
-      syncTransport();
+      setStatus('Crank turning again.');
       if (!document.hidden) renderer.setAnimationLoop(animate);
     } catch (error) {
       showErr(error);

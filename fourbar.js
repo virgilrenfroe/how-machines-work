@@ -343,7 +343,8 @@ function projectLabels() {
     }
     const x = (anchor.x * 0.5 + 0.5) * rect.width;
     const y = (-anchor.y * 0.5 + 0.5) * rect.height;
-    el.style.left = `${Math.min(rect.width - 8, Math.max(8, x))}px`;
+    const half = Math.min(el.offsetWidth * 0.5, Math.max(8, rect.width * 0.5 - 4));
+    el.style.left = `${Math.min(rect.width - half - 4, Math.max(half + 4, x))}px`;
     el.style.top = `${Math.min(rect.height - 8, Math.max(28, y))}px`;
   }
 }

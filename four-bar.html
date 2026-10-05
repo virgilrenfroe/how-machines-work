@@ -27,7 +27,7 @@
       --pad: clamp(1.15rem, 3.2vw, 2.6rem);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     body {
       margin: 0;
@@ -36,7 +36,7 @@
       font-family: var(--body);
       font-size: 17px;
       line-height: 1.45;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     #c {
@@ -71,7 +71,7 @@
       border-bottom: 1px solid transparent; padding-bottom: 0.15rem;
     }
     .exhibit-nav a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
-    .hub-head { padding: clamp(1.4rem, 3.5vh, 2.6rem) var(--pad) 0; }
+    .hub-head { padding: clamp(0.7rem, 1.8vh, 1.4rem) var(--pad) 0; }
     .kicker {
       margin: 0 0 0.85rem;
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
@@ -88,7 +88,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.72fr);
       gap: 2rem 7vw; align-items: end;
-      padding: clamp(1.2rem, 2.5vh, 2rem) var(--pad) clamp(1rem, 2vh, 1.6rem);
+      padding: clamp(0.7rem, 1.6vh, 1.15rem) var(--pad) clamp(0.45rem, 1.2vh, 0.8rem);
     }
     .lede {
       margin: 0; max-width: 36ch;
@@ -106,9 +106,9 @@
     .hub-stage {
       display: grid;
       grid-template-columns: minmax(0, 1.42fr) minmax(260px, 0.58fr);
-      min-height: 78vh; position: relative;
+      min-height: clamp(420px, 58vh, 680px); position: relative;
     }
-    .view-wrap { position: relative; min-height: 78vh; }
+    .view-wrap { position: relative; min-height: clamp(420px, 58vh, 680px); overflow: hidden; }
     .view { position: absolute; inset: 0; touch-action: none; cursor: grab; }
     .view:active { cursor: grabbing; }
     .view-fallback {
@@ -257,10 +257,10 @@
       .shop-lede { margin-left: 0; }
       .hub-lead, .hub-stage, .district-split, .shop-row { grid-template-columns: 1fr; }
       .formula { justify-self: start; text-align: left; }
-      .hub-stage, .view-wrap { min-height: 68vh; }
+      .hub-stage, .view-wrap { min-height: min(68vh, 560px); }
       .instrument { padding-left: var(--pad); }
       .lesson { padding-top: 0.4rem; }
-      .watermark { font-size: 8rem; }
+      .watermark { font-size: 6.4rem; right: 0.2rem; }
       .view-note { display: none; }
     }
   </style>

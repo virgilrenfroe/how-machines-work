@@ -228,9 +228,9 @@ function makeMachine(mode, solved) {
   effortMat.emissive = new THREE.Color(0xff8a3a);
   effortMat.emissiveIntensity = 0.45;
 
-  const rim = new THREE.Mesh(new THREE.TorusGeometry(wheelW, 0.048, 12, 64), rimMat);
-  const spokeLen = Math.max(0.12, wheelW - axleW - 0.14);
-  const spokeGeo = new THREE.CylinderGeometry(0.026, 0.026, spokeLen, 8);
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(wheelW, 0.072, 14, 72), rimMat);
+  const spokeLen = Math.max(0.12, wheelW - axleW - 0.1);
+  const spokeGeo = new THREE.CylinderGeometry(0.04, 0.04, spokeLen, 10);
   for (let i = 0; i < 6; i += 1) {
     const spoke = new THREE.Mesh(spokeGeo, mats.spoke);
     const angle = (i / 6) * Math.PI * 2;
@@ -309,6 +309,7 @@ function makeMachine(mode, solved) {
   effortArrow.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), tangent);
 
   group.add(spin, rope, weight, pad, posts, bearing, radiusLine, effortArrow);
+  group.rotation.y = -0.62;
   tag(group, mode);
 
   return {
@@ -385,7 +386,7 @@ function focusPoint() {
 
 function fitDistance(aspect) {
   const layout = layoutOf();
-  const halfH = layout.stacked ? layout.gap + layout.wheelW + 1.7 : layout.wheelW + 1.85;
+  const halfH = layout.stacked ? layout.gap + layout.wheelW + 2.55 : layout.wheelW + 1.85;
   const halfW = layout.stacked ? layout.wheelW + 0.95 : layout.gap + layout.wheelW + 0.7;
   const vFov = THREE.MathUtils.degToRad(camera.fov);
   const distH = halfH / Math.tan(vFov / 2);
@@ -556,20 +557,21 @@ function projectLabels() {
     const len = arrowLength(force);
     const tangent = new THREE.Vector3(-Math.sin(EFFORT_ANGLE), Math.cos(EFFORT_ANGLE), 0);
     const effortR = machine.mode === 'wheel' ? machine.wheelW : machine.axleW;
+    const labelReach = machine.mode === 'wheel' ? 0.42 : 0.85;
     const spots = {
-      wheel: new THREE.Vector3(0, machine.wheelW + 0.16, 0.1),
-      axle: new THREE.Vector3(0, machine.axleW + 0.2, 0.42),
+      wheel: new THREE.Vector3(-0.42, machine.wheelW + 0.28, 0.12),
+      axle: new THREE.Vector3(-machine.axleW - 0.48, 0.02, 0.2),
       effort: new THREE.Vector3(
-        Math.cos(EFFORT_ANGLE) * effortR + tangent.x * len,
-        Math.sin(EFFORT_ANGLE) * effortR + tangent.y * len,
-        0.5,
+        Math.cos(EFFORT_ANGLE) * (effortR + 0.2) + tangent.x * (len + labelReach),
+        Math.sin(EFFORT_ANGLE) * (effortR + 0.2) + tangent.y * (len + labelReach * 0.35),
+        0.55,
       ),
-      load: new THREE.Vector3(0, -machine.attachR - machine.drop - 0.42, machine.ropeZ),
+      load: new THREE.Vector3(0.15, -machine.attachR - machine.drop - 0.48, machine.ropeZ),
     };
     for (const part of ['wheel', 'axle', 'effort', 'load']) {
       const el = labels[`${machine.mode}-${part}`];
       if (!el) continue;
-      if (narrow && !active) {
+      if (narrow && (!active || part === 'wheel')) {
         el.hidden = true;
         continue;
       }
@@ -581,11 +583,16 @@ function projectLabels() {
         continue;
       }
       el.hidden = false;
-      const x = (anchor.x * 0.5 + 0.5) * rect.width;
-      const y = (-anchor.y * 0.5 + 0.5) * rect.height;
+      const nudge = machine.mode === 'wheel'
+        ? { wheel: [-54, -6], axle: [-8, 6], effort: [62, 26], load: [10, 6] }
+        : { wheel: [8, -6], axle: [-18, 8], effort: [-36, 4], load: [12, 6] };
+      const shift = nudge[part];
+      const x = (anchor.x * 0.5 + 0.5) * rect.width + shift[0];
+      const y = (-anchor.y * 0.5 + 0.5) * rect.height + shift[1];
       const half = Math.min(el.offsetWidth * 0.5, Math.max(8, rect.width * 0.5 - 4));
+      const minTop = narrow ? 96 : 22;
       el.style.left = `${Math.min(rect.width - half - 4, Math.max(half + 4, x))}px`;
-      el.style.top = `${Math.min(rect.height - 8, Math.max(22, y))}px`;
+      el.style.top = `${Math.min(rect.height - 8, Math.max(minTop, y))}px`;
     }
   }
 }

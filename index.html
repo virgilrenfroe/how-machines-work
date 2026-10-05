@@ -578,13 +578,13 @@
       const el = document.getElementById('err');
       if (!el) return;
       el.style.display = 'block';
-      el.textContent = String(event.message || event.error || event);
+      el.textContent = 'The model paused. It will start again.';
     });
     window.addEventListener('unhandledrejection', (event) => {
       const el = document.getElementById('err');
       if (!el) return;
       el.style.display = 'block';
-      el.textContent = String(event.reason && event.reason.message ? event.reason.message : event.reason);
+      el.textContent = 'The model paused. It will start again.';
     });
   </script>
 </head>
@@ -620,7 +620,7 @@
           <div class="view" id="view" data-scene="train">
             <p class="view-fallback">Setting the gear train on the bench…</p>
           </div>
-          <p class="hud-use"><span>HUD</span> Shop / engineering: gear ratio &amp; meshing</p>
+          <p class="hud-use"><span>Lesson</span> Shop / engineering: gear ratio &amp; meshing</p>
           <p class="gear-label" id="label-driver" data-role="driver" hidden><b>Driver</b><span></span></p>
           <p class="gear-label" id="label-idler" data-role="idler" hidden><b>Idler</b><span></span></p>
           <p class="gear-label" id="label-driven" data-role="driven" hidden><b>Driven</b><span></span></p>

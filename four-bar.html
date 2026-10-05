@@ -283,13 +283,13 @@
       const el = document.getElementById('err');
       if (!el) return;
       el.style.display = 'block';
-      el.textContent = String(event.message || event.error || event);
+      el.textContent = 'The model paused. It will start again.';
     });
     window.addEventListener('unhandledrejection', (event) => {
       const el = document.getElementById('err');
       if (!el) return;
       el.style.display = 'block';
-      el.textContent = String(event.reason && event.reason.message ? event.reason.message : event.reason);
+      el.textContent = 'The model paused. It will start again.';
     });
   </script>
 </head>
@@ -325,7 +325,7 @@
           <div class="view" id="view" data-scene="four-bar">
             <p class="view-fallback">Setting the linkage on the bench…</p>
           </div>
-          <p class="hud-use"><span>HUD</span> Shop / engineering: four-bar linkage (crank–rocker)</p>
+          <p class="hud-use"><span>Lesson</span> Shop / engineering: four-bar linkage (crank–rocker)</p>
           <p class="gear-label" id="label-a" hidden><b>A</b><span>Ground pivot</span></p>
           <p class="gear-label" id="label-b" hidden><b>B</b><span>Crank pin</span></p>
           <p class="gear-label" id="label-c" hidden><b>C</b><span>Coupler joint</span></p>

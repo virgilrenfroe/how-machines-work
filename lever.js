@@ -21,9 +21,9 @@ const statusEl = document.getElementById('status');
 const view = document.getElementById('view');
 const canvas = document.getElementById('c');
 
-function showErr(message) {
+function showErr() {
   errEl.style.display = 'block';
-  errEl.textContent = String(message && message.message ? message.message : message);
+  errEl.textContent = 'The model paused. It will start again.';
 }
 
 function setStatus(message) {
@@ -340,15 +340,15 @@ function syncTransport() {
   const playBtn = document.getElementById('play-toggle');
   if (reducedMotion && !userAllowsMotion) {
     state.paused = true;
-    playBtn.textContent = 'Play motion';
+    playBtn.textContent = 'Play';
     playBtn.setAttribute('aria-pressed', 'false');
-    setStatus('Reduced motion is on. The levers hold still. Move the arms, or play motion if you want the effort arrow to breathe.');
+    setStatus('Paused. Press play to move the lever.');
     return;
   }
   playBtn.textContent = state.paused ? 'Play' : 'Pause';
   playBtn.setAttribute('aria-pressed', state.paused ? 'false' : 'true');
-  if (!state.paused) setStatus('Effort arrow breathing on the selected class.');
-  else setStatus('Paused. Move the effort and the load.');
+  if (!state.paused) setStatus('Slide the arms. A longer effort arm needs less force.');
+  else setStatus('Paused. Press play to move the lever.');
 }
 
 function formatForce(value) {
@@ -594,7 +594,7 @@ function onContextLost(event) {
   event.preventDefault();
   contextLost = true;
   if (renderer) renderer.setAnimationLoop(null);
-  setStatus('WebGL context lost. The levers will rebuild when the context returns.');
+  setStatus('The model paused. It will start again.');
 }
 
 function onContextRestored() {
@@ -614,7 +614,7 @@ function onContextRestored() {
       buildRig();
       contextLost = false;
       clock.getDelta();
-      setStatus('WebGL context restored.');
+      syncTransport();
       if (!document.hidden) renderer.setAnimationLoop(animate);
     } catch (error) {
       showErr(error);

@@ -300,13 +300,13 @@
       const el = document.getElementById('err');
       if (!el) return;
       el.style.display = 'block';
-      el.textContent = String(event.message || event.error || event);
+      el.textContent = 'The model paused. It will start again.';
     });
     window.addEventListener('unhandledrejection', (event) => {
       const el = document.getElementById('err');
       if (!el) return;
       el.style.display = 'block';
-      el.textContent = String(event.reason && event.reason.message ? event.reason.message : event.reason);
+      el.textContent = 'The model paused. It will start again.';
     });
   </script>
 </head>
@@ -342,7 +342,7 @@
           <div class="view" id="view" data-scene="levers">
             <p class="view-fallback">Setting the levers on the bench…</p>
           </div>
-          <p class="hud-use"><span>HUD</span> Shop / engineering: levers (classes 1–3)</p>
+          <p class="hud-use"><span>Lesson</span> Shop / engineering: levers (classes 1–3)</p>
           <p class="gear-label" id="label-1-fulcrum" hidden><b>Fulcrum</b><span>Class 1</span></p>
           <p class="gear-label" id="label-1-effort" hidden><b>Effort</b><span>Push down</span></p>
           <p class="gear-label" id="label-1-load" hidden><b>Load</b><span>10 lb</span></p>

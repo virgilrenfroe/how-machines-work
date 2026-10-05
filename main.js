@@ -413,9 +413,9 @@ function projectLabels() {
     }
     const x = (anchor.x * 0.5 + 0.5) * rect.width;
     const y = (-anchor.y * 0.5 + 0.5) * rect.height;
-    const pad = 8;
-    const clampedX = Math.min(rect.width - pad, Math.max(pad, x));
-    const clampedY = Math.min(rect.height - pad, Math.max(pad + 18, y));
+    const half = Math.min(el.offsetWidth * 0.5, Math.max(8, rect.width * 0.5 - 4));
+    const clampedX = Math.min(rect.width - half - 4, Math.max(half + 4, x));
+    const clampedY = Math.min(rect.height - 8, Math.max(28, y));
     el.style.left = `${clampedX}px`;
     el.style.top = `${clampedY}px`;
   }

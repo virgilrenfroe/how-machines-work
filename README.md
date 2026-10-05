@@ -2,15 +2,18 @@
 
 A shop / engineering lab for linkages, gears, and simple machines — by Virgil Renfroe.
 
-**Classroom use:** Shop / engineering: gear ratio & meshing.
-
-**Live preview (Railway):** https://web-production-03e60.up.railway.app/
+**Live preview:** https://web-production-03e60.up.railway.app/
 
 **GitHub Pages:** https://virgilrenfroe.github.io/how-machines-work/
 
+## Classroom list
+
+1. **Shop / engineering: gear ratio & meshing.** [Exhibit 01](https://web-production-03e60.up.railway.app/) · Pages: https://virgilrenfroe.github.io/how-machines-work/
+2. **Shop / engineering: four-bar linkage (crank–rocker).** [Exhibit 02](https://web-production-03e60.up.railway.app/four-bar.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/four-bar.html
+
 Repo: https://github.com/virgilrenfroe/how-machines-work
 
-Single-page three.js exhibit. One shared WebGL context. The gear train is drawn with a scissor/viewport into the bench view.
+Two lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view.
 
 ## Exhibit 01 — Simple gear train
 
@@ -22,6 +25,15 @@ Shop / engineering: gear ratio & meshing.
 - Presets: reducer (16·24·40), even (20·20·20), overdrive (36·18·18). Remove the idler to see one reversal.
 
 The model is kinematic. It does not simulate friction, shaft windup, or chain drives.
+
+## Exhibit 02 — Four-bar linkage
+
+Shop / engineering: four-bar linkage (crank–rocker).
+
+- Labeled ground, crank, coupler, and rocker, with joints A–B–C–D.
+- Live crank angle and rocker angle. The crank turns full circle. The rocker only swings.
+- Optional coupler curve traced by a point fixed on the coupler.
+- Same night chrome as Exhibit 01. Reach it from the exhibit nav on the gear-train page.
 
 ## Local
 

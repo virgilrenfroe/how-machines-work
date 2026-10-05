@@ -4,7 +4,7 @@ A shop / engineering lab for linkages, gears, and simple machines — by Virgil 
 
 **Classroom use:** Shop / engineering: gear ratio & meshing.
 
-**Live preview (Railway):** _URL once the service is deployed._
+**Live preview (Railway):** https://web-production-03e60.up.railway.app/
 
 **GitHub Pages:** https://virgilrenfroe.github.io/how-machines-work/
 

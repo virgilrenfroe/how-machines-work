@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#140818" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23140818'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23f0a05a' stroke-width='2'/%3E%3Cpath d='M16 6.5 l1.2 2.2 -1.2.6 -1.2-.6z M16 25.5 l-1.2-2.2 1.2-.6 1.2.6z M6.5 16 l2.2-1.2.6 1.2-.6 1.2z M25.5 16 l-2.2 1.2-.6-1.2.6-1.2z' fill='%23f0a05a'/%3E%3C/svg%3E" />
-  <meta name="description" content="Shop / engineering: levers (classes 1–3). A teaching exhibit of first-, second-, and third-class levers from How Machines Work by Virgil Renfroe." />
-  <title>Shop / engineering: levers (classes 1–3) · How Machines Work</title>
+  <meta name="description" content="Shop / engineering: wheel and axle. A teaching exhibit of ideal mechanical advantage, R wheel / R axle, from How Machines Work by Virgil Renfroe." />
+  <title>Shop / engineering: wheel and axle · How Machines Work</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -75,6 +75,7 @@
       margin-right: auto; padding-bottom: 0; border-bottom-color: transparent; color: var(--paper);
       font-family: var(--display); font-weight: 800;
       font-size: clamp(1.45rem, 2.8vw, 2.35rem); letter-spacing: -0.05em; line-height: 0.85;
+      white-space: nowrap;
     }
     .hub-head { padding: clamp(0.75rem, 1.6vh, 1.35rem) var(--pad) 0; }
     .kicker {
@@ -112,25 +113,30 @@
       display: block; margin-top: 0.55rem; margin-left: auto;
       font-size: 0.98rem; font-weight: 500; color: var(--cream);
     }
-    .class-rows { display: grid; margin-top: 0.35rem; border-top: 1px solid var(--line); }
-    .class-rows button {
-      display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) auto;
-      gap: 0.55rem; align-items: baseline;
+    .mode-rows { display: grid; margin-top: 0.35rem; border-top: 1px solid var(--line); }
+    .mode-rows button {
+      display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) auto;
+      gap: 0.45rem 0.65rem; align-items: baseline;
       width: 100%; padding: 0.55rem 0; border: 0; border-bottom: 1px solid var(--line);
       background: transparent; color: var(--paper); cursor: pointer; text-align: left;
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
     }
-    .class-rows button span { color: var(--dim); }
-    .class-rows button b { font-weight: 400; letter-spacing: 0.08em; }
-    .class-rows button em { font-style: normal; color: var(--accent); }
-    .class-rows button[aria-pressed="true"] { color: var(--accent); }
-    .class-rows button[aria-pressed="true"] span { color: var(--accent); }
+    .mode-rows button span { color: var(--dim); }
+    .mode-rows button b { font-weight: 400; letter-spacing: 0.08em; }
+    .mode-rows button small {
+      display: block; margin-top: 0.18rem;
+      color: var(--dim); font-weight: 400; letter-spacing: 0.08em;
+    }
+    .mode-rows button em { font-style: normal; color: var(--accent); }
+    .mode-rows button[aria-pressed="true"] { color: var(--accent); }
+    .mode-rows button[aria-pressed="true"] span,
+    .mode-rows button[aria-pressed="true"] small { color: var(--accent); }
     .hub-stage {
       display: grid;
       grid-template-columns: minmax(0, 1.55fr) minmax(240px, 0.7fr);
-      min-height: clamp(420px, 50vh, 580px); position: relative;
+      min-height: clamp(460px, 54vh, 640px); position: relative;
     }
-    .view-wrap { position: relative; min-height: clamp(420px, 50vh, 580px); overflow: hidden; }
+    .view-wrap { position: relative; min-height: clamp(460px, 54vh, 640px); overflow: hidden; }
     .view { position: absolute; inset: 0; touch-action: none; cursor: grab; }
     .view:active { cursor: grabbing; }
     .view-fallback {
@@ -141,7 +147,7 @@
     .view.is-ready .view-fallback { display: none; }
     .hud-use {
       position: absolute; top: 1.1rem; left: var(--pad); z-index: 3; margin: 0;
-      max-width: min(40ch, calc(100% - 2rem));
+      max-width: min(42ch, calc(100% - 2rem));
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--paper); pointer-events: none;
       text-shadow: 0 0 18px #140818, 0 1px 0 #140818;
@@ -157,7 +163,7 @@
     .gear-label b { display: block; color: var(--accent); font-weight: 700; letter-spacing: 0.16em; }
     .view-note {
       position: absolute; left: var(--pad); bottom: 1rem; z-index: 3; margin: 0;
-      max-width: 36ch;
+      max-width: 42ch;
       font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--dim); pointer-events: none; text-shadow: 0 0 12px #140818;
     }
@@ -184,7 +190,7 @@
     .ratio-readout em { font-style: normal; color: var(--accent); }
     .rocker-line {
       margin: 0; font-family: var(--display); font-weight: 700;
-      font-size: clamp(1.6rem, 2.6vw, 2.2rem); letter-spacing: -0.04em;
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem); letter-spacing: -0.04em;
     }
     .rocker-line span { color: var(--dim); font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; }
     .meters {
@@ -222,7 +228,8 @@
     .lesson h2 { font-size: clamp(3.2rem, 6vw, 5.8rem); max-width: 10ch; }
     .hint, .lesson p, .shop-row li, .shop-row p { color: var(--cream); font-size: 1.05rem; }
     .hint { margin: 0 0 1.15rem; max-width: 38ch; }
-    .row-actions { display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; }
+    .chips, .row-actions { display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; }
+    .chips { margin-bottom: 1.15rem; }
     .chip, .toggle {
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
       padding: 0.35rem 0 0.28rem; border: 0; border-bottom: 1px solid transparent;
@@ -280,11 +287,13 @@
       .shop-lede { margin-left: 0; }
       .hub-lead, .hub-stage, .district-split, .shop-row { grid-template-columns: 1fr; }
       .formula { justify-self: start; text-align: left; }
-      .hub-stage, .view-wrap { min-height: min(68vh, 560px); }
+      .formula small { margin-left: 0; }
+      .hub-stage, .view-wrap { min-height: min(72vh, 620px); }
       .instrument { padding-left: var(--pad); }
       .lesson { padding-top: 0.4rem; }
       .watermark { font-size: 6.2rem; right: 0.15rem; }
       .view-note { display: none; }
+      .ctrl { grid-template-columns: 6.4rem 1fr 2.8rem; }
     }
   </style>
   <script type="importmap">
@@ -313,75 +322,73 @@
 <body>
   <canvas id="c" aria-hidden="true"></canvas>
   <div class="content">
-    <a class="skip" href="#levers">Skip to the levers</a>
+    <a class="skip" href="#wheel-axle">Skip to the wheel and axle</a>
     <header class="nav">
       <a href="./">How Machines Work</a>
-      <p class="nav-use">Shop / engineering: <em>levers (classes 1–3)</em></p>
+      <p class="nav-use">Shop / engineering: <em>wheel and axle</em></p>
     </header>
     <nav class="exhibit-nav" aria-label="Exhibits">
       <a href="./">01 Gear</a>
       <a href="./four-bar.html">02 Four-bar</a>
-      <a href="./lever.html" aria-current="page">03 Levers</a>
-      <a href="./wheel-axle.html">05 Wheel &amp; axle</a>
+      <a href="./lever.html">03 Levers</a>
+      <a href="./wheel-axle.html" aria-current="page">05 Wheel &amp; axle</a>
     </nav>
 
     <section class="hub" aria-labelledby="hub-title">
       <div class="hub-head">
-        <p class="kicker">Shop / engineering: levers (classes 1–3)</p>
-        <h1 id="hub-title"><span>Levers</span><span>classes 1–3.</span></h1>
+        <p class="kicker">Shop / engineering: wheel and axle</p>
+        <h1 id="hub-title"><span>Wheel</span><span>&amp; axle.</span></h1>
       </div>
       <div class="hub-lead">
-        <p class="lede">Three bars. Same parts: fulcrum, effort, and load. The class is which part sits between the other two. Slide the arms and watch the force change.</p>
+        <p class="lede">One rigid piece. The handwheel and the shaft turn through the same angle. The radii are different, so the force is different.</p>
         <p class="formula">
-          <b>Effort arm<span>Load arm</span></b>
-          <small>Mechanical advantage. A bigger number means less effort for the same load.</small>
+          <b>R wheel<span>R axle</span></b>
+          <small>Ideal mechanical advantage when you drive the wheel. The load stays 10 lb. Drive the axle and the ratio flips.</small>
         </p>
       </div>
 
-      <div class="hub-stage" id="levers">
+      <div class="hub-stage" id="wheel-axle">
         <div class="view-wrap">
-          <div class="view" id="view" data-scene="levers">
-            <p class="view-fallback">Setting the levers on the bench…</p>
+          <div class="view" id="view" data-scene="wheel-axle">
+            <p class="view-fallback">Setting the wheel and axle on the bench…</p>
           </div>
-          <p class="hud-use"><span>Lesson</span> Shop / engineering: levers (classes 1–3)</p>
-          <p class="gear-label" id="label-1-fulcrum" hidden><b>Fulcrum</b><span>Class 1</span></p>
-          <p class="gear-label" id="label-1-effort" hidden><b>Effort</b><span>Push down</span></p>
-          <p class="gear-label" id="label-1-load" hidden><b>Load</b><span>10 lb</span></p>
-          <p class="gear-label" id="label-2-fulcrum" hidden><b>Fulcrum</b><span>Class 2</span></p>
-          <p class="gear-label" id="label-2-effort" hidden><b>Effort</b><span>Lift</span></p>
-          <p class="gear-label" id="label-2-load" hidden><b>Load</b><span>10 lb</span></p>
-          <p class="gear-label" id="label-3-fulcrum" hidden><b>Fulcrum</b><span>Class 3</span></p>
-          <p class="gear-label" id="label-3-effort" hidden><b>Effort</b><span>Lift</span></p>
-          <p class="gear-label" id="label-3-load" hidden><b>Load</b><span>10 lb</span></p>
-          <p class="view-note">All three classes stay on the bench. Click a bar to select it. Drag to look.</p>
+          <p class="hud-use"><span>Lesson</span> Shop / engineering: wheel and axle</p>
+          <p class="gear-label" id="label-wheel-wheel" hidden><b>Wheel</b><span>R 6.0</span></p>
+          <p class="gear-label" id="label-wheel-axle" hidden><b>Axle</b><span>R 1.5</span></p>
+          <p class="gear-label" id="label-wheel-effort" hidden><b>Effort</b><span>On the rim</span></p>
+          <p class="gear-label" id="label-wheel-load" hidden><b>Load</b><span>10 lb</span></p>
+          <p class="gear-label" id="label-axle-wheel" hidden><b>Wheel</b><span>R 6.0</span></p>
+          <p class="gear-label" id="label-axle-axle" hidden><b>Axle</b><span>R 1.5</span></p>
+          <p class="gear-label" id="label-axle-effort" hidden><b>Effort</b><span>On the axle</span></p>
+          <p class="gear-label" id="label-axle-load" hidden><b>Load</b><span>10 lb</span></p>
+          <p class="view-note">Left: turn the wheel, load on the axle. Right: turn the axle, load on the rim. Drag to look.</p>
         </div>
-        <aside class="instrument" aria-label="Live lever readout">
-          <p class="watermark" aria-hidden="true">03</p>
-          <h2>Shop / engineering: levers (classes 1–3)</h2>
+        <aside class="instrument" aria-label="Live wheel and axle readout">
+          <p class="watermark" aria-hidden="true">05</p>
+          <h2>Shop / engineering: wheel and axle</h2>
           <p class="ratio-readout" id="ma-readout"><em>—</em> : 1</p>
-          <p class="rocker-line"><span>MA </span><span id="ma-sub">effort arm / load arm</span></p>
+          <p class="rocker-line"><span id="ma-sub">R wheel / R axle</span></p>
           <div class="meters">
             <div class="meter">
-              <p class="name">Effort arm</p>
-              <p class="val" id="meter-effort-arm">—</p>
+              <p class="name">R wheel</p>
+              <p class="val" id="meter-wheel">—</p>
             </div>
             <div class="meter">
-              <p class="name">Load arm</p>
-              <p class="val" id="meter-load-arm">—</p>
+              <p class="name">R axle</p>
+              <p class="val" id="meter-axle">—</p>
             </div>
             <div class="meter">
               <p class="name">Load</p>
               <p class="val" id="meter-load">—</p>
             </div>
             <div class="meter">
-              <p class="name">Effort needed</p>
+              <p class="name">Effort</p>
               <p class="val" id="meter-effort">—</p>
             </div>
           </div>
-          <div class="class-rows">
-            <button type="button" data-class="1" aria-pressed="true"><span>01</span><b>First class</b><em>—</em></button>
-            <button type="button" data-class="2" aria-pressed="false"><span>02</span><b>Second class</b><em>—</em></button>
-            <button type="button" data-class="3" aria-pressed="false"><span>03</span><b>Third class</b><em>—</em></button>
+          <div class="mode-rows">
+            <button type="button" data-mode="wheel" aria-pressed="true"><span>01</span><b>Drive the wheel<small>—</small></b><em>—</em></button>
+            <button type="button" data-mode="axle" aria-pressed="false"><span>02</span><b>Drive the axle<small>—</small></b><em>—</em></button>
           </div>
           <p class="live-line" id="live-line"></p>
           <p class="status" id="status" role="status"></p>
@@ -389,23 +396,28 @@
       </div>
     </section>
 
-    <section class="district" id="bench" aria-label="Lever setup and lesson">
+    <section class="district" id="bench" aria-label="Wheel and axle setup and lesson">
       <div class="district-top">
-        <span><b>03</b> Bench</span>
-        <span>Shop / engineering: levers (classes 1–3)</span>
+        <span><b>02</b> Bench</span>
+        <span>Shop / engineering: wheel and axle</span>
       </div>
       <div class="district-split">
         <div class="controls">
-          <h2>Move the arms.</h2>
-          <p class="hint">The load stays 10 lb. Slide the effort or the load. Mechanical advantage is the effort arm divided by the load arm.</p>
+          <h2>Change the radii.</h2>
+          <p class="hint">The load stays 10 lb. Ideal mechanical advantage is the wheel radius divided by the axle radius. The axle stays smaller than the wheel.</p>
+          <div class="chips" role="group" aria-label="Presets">
+            <button class="chip" type="button" data-preset="winch" aria-pressed="true">Winch 6 · 1.5</button>
+            <button class="chip" type="button" data-preset="knob" aria-pressed="false">Knob 2.4 · 0.6</button>
+            <button class="chip" type="button" data-preset="steering" aria-pressed="false">Steering 8 · 0.8</button>
+          </div>
           <div class="ctrls">
-            <label class="ctrl">Effort arm
-              <input id="effort" type="range" min="0" max="1000" step="1" value="500" />
-              <output id="effort-out" for="effort">—</output>
+            <label class="ctrl">R wheel
+              <input id="wheel" type="range" min="20" max="80" step="1" value="60" />
+              <output id="wheel-out" for="wheel">6.0</output>
             </label>
-            <label class="ctrl">Load arm
-              <input id="load" type="range" min="0" max="1000" step="1" value="500" />
-              <output id="load-out" for="load">—</output>
+            <label class="ctrl">R axle
+              <input id="axle" type="range" min="5" max="75" step="1" value="15" />
+              <output id="axle-out" for="axle">1.5</output>
             </label>
           </div>
           <div class="row-actions">
@@ -413,14 +425,14 @@
           </div>
         </div>
         <div class="lesson">
-          <p class="kicker">What a lever is for</p>
+          <p class="kicker">What a wheel and axle is for</p>
           <h2>Force or reach</h2>
-          <p id="lesson-order">A lever is a bar on a fulcrum. You apply the effort. The load is what you want to move.</p>
-          <p id="lesson-trade">Class 1 can go either way. Class 2 always multiplies force. Class 3 always multiplies distance.</p>
-          <p>First class: the fulcrum is in the middle. Second class: the load is in the middle. Third class: the effort is in the middle. You do not leave this page to compare them. All three bars stay in the view.</p>
+          <p id="lesson-order">Drive the wheel. Your effort is on the rim. The load is on the axle. Winch, screwdriver, steering wheel, doorknob.</p>
+          <p id="lesson-trade">The wheel is the long radius, so you use less force. Your hand moves farther than the load. A 10 lb load needs less than 10 lb.</p>
+          <p>The wheel and the axle are one piece. They turn together. A longer rim means a bigger ideal advantage, and a longer path for your hand. This model leaves out friction.</p>
           <div class="try">
             <strong>Try this</strong>
-            <p>On class 1, slide the load toward the fulcrum. The effort force should fall. On class 2, try to make the advantage less than 1. You cannot. On class 3, the effort is always more than 10 lb.</p>
+            <p>Choose Winch. Cover the readout. 6 ÷ 1.5 = 4, so a 10 lb load on the axle needs 2.5 lb at the wheel. Uncover and check. Then read the other effort. The same 10 lb on the rim needs 40 lb at the axle.</p>
           </div>
         </div>
       </div>
@@ -431,41 +443,41 @@
         <span><b>04</b> Shop floor</span>
         <span>Ten minutes at the bench</span>
       </div>
-      <h2 id="teach-title"><span>Name the</span><span>three classes.</span></h2>
-      <p class="shop-lede">Use this page next to a meter stick, a pivot, and a weight. The classroom use is the lever class, and the force tradeoff that comes with it.</p>
+      <h2 id="teach-title"><span>Turn the</span><span>long radius.</span></h2>
+      <p class="shop-lede">Use this page next to a handwheel, a shaft, and a weight. The classroom use is the wheel and axle, and which radius you choose to turn.</p>
       <div class="shop-row">
         <p class="idx">04.1</p>
         <h3>Learning objectives</h3>
         <ul>
-          <li>Point to the fulcrum, the effort, and the load.</li>
-          <li>Say which part is between the other two for classes 1, 2, and 3.</li>
-          <li>Compute mechanical advantage as effort arm / load arm.</li>
-          <li>State the tradeoff: more advantage means less effort and less movement at the load.</li>
+          <li>Point to the wheel and the axle on one rigid body.</li>
+          <li>Compute ideal mechanical advantage as R wheel / R axle.</li>
+          <li>Predict the effort for a 10 lb load when the wheel is driven.</li>
+          <li>State that driving the axle flips the ratio and raises the effort.</li>
         </ul>
       </div>
       <div class="shop-row">
         <p class="idx">04.2</p>
         <h3>Classroom loop</h3>
         <ol>
-          <li>Cover the readout. Students name the middle part on each bar.</li>
-          <li>Class 1: move the load closer to the fulcrum. Record the new effort.</li>
-          <li>Class 2: predict the effort, then check. It stays under 10 lb.</li>
-          <li>Class 3: name a tool that reaches farther than the hand moves.</li>
+          <li>Cover the readout. Students divide the two radii on Winch before looking.</li>
+          <li>Uncover 4.00 : 1. Ask for the effort that lifts 10 lb from the axle.</li>
+          <li>Check 2.50 lb. Then ask what happens if the hand moves to the axle.</li>
+          <li>Uncover 40.0 lb. Name a shop tool that turns the large radius, and one that turns the shaft.</li>
         </ol>
       </div>
       <div class="shop-row">
         <p class="idx">04.3</p>
         <h3>Shop examples</h3>
-        <p>Class 1: crowbar, seesaw, pliers. Class 2: wheelbarrow, nutcracker, bottle opener. Class 3: tweezers, fishing rod, forearm. This model leaves out friction and the bend of a real bar.</p>
+        <p>Drive the wheel: winch, windlass, screwdriver, steering wheel, doorknob. Drive the axle: a fan, or a wheel powered at the hub. This model is ideal. It leaves out friction and the bend of a real shaft.</p>
       </div>
     </section>
 
     <footer>
-      <div>How Machines Work · Virgil Renfroe · Shop / engineering: levers (classes 1–3)</div>
+      <div>How Machines Work · Virgil Renfroe · Shop / engineering: wheel and axle</div>
       <a href="./">Exhibit 01 · Gear</a>
     </footer>
   </div>
   <div id="err" class="err" role="alert"></div>
-  <script type="module" src="./lever.js"></script>
+  <script type="module" src="./wheel-axle.js"></script>
 </body>
 </html>

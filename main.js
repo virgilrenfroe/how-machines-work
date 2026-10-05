@@ -85,15 +85,15 @@ const labels = {
   driven: document.getElementById('label-driven'),
 };
 
-function houseMetal(color) {
+function houseMetal(color, envMapIntensity = 0.22) {
   return new THREE.MeshPhysicalMaterial({
     color,
     metalness: 0.32,
     roughness: 0.45,
     clearcoat: 0.22,
-    clearcoatRoughness: 0.4,
+    clearcoatRoughness: 0.55,
     anisotropy: 0,
-    envMapIntensity: 0.38,
+    envMapIntensity,
   });
 }
 
@@ -121,7 +121,7 @@ function bootRenderer() {
   renderer.setSize(window.innerWidth, window.innerHeight, false);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.08;
+  renderer.toneMappingExposure = 1.02;
   renderer.setClearColor(VOID, 1);
   renderer.autoClear = false;
   renderer.domElement.style.pointerEvents = 'none';
@@ -157,10 +157,11 @@ function buildEnvironment() {
 }
 
 function buildLights() {
-  hemi = new THREE.HemisphereLight(0xffd7b4, 0x1a0a18, 0.72);
+  hemi = new THREE.HemisphereLight(0xffe2c8, 0x120610, 0.62);
   scene.add(hemi);
-  keyLight = new THREE.PointLight(0xffb07a, 90, 0, 2);
-  keyLight.position.set(1.4, 3.2, 5.4);
+  // Warm key, decay 2, placed above-front so tooth flanks separate from the void.
+  keyLight = new THREE.PointLight(0xffb07a, 70, 0, 2);
+  keyLight.position.set(1.6, 2.8, 4.2);
   scene.add(keyLight);
 }
 
@@ -196,9 +197,9 @@ function buildTrain() {
   trainGroup.name = 'gear-train';
 
   const colors = {
-    driver: 0xd2ae74,
-    idler: 0xc49b68,
-    driven: 0xb8926a,
+    driver: 0xe2c08a,
+    idler: 0xd0aa74,
+    driven: 0xc49a68,
   };
   const markColors = {
     driver: [0xffc48a, 0xff8a3a],
@@ -216,7 +217,7 @@ function buildTrain() {
 
     const [markColor, markEmissive] = markColors[role.role];
     const mark = new THREE.Mesh(
-      new THREE.BoxGeometry(MODULE * 0.95, MODULE * 0.2, FACE * 1.08),
+      new THREE.BoxGeometry(MODULE * 1.35, MODULE * 0.28, FACE * 1.2),
       paintMark(markColor, markEmissive),
     );
     mark.position.set(role.pitchR * 0.78, 0, 0);
@@ -260,16 +261,21 @@ function buildTrain() {
     trainGroup.add(axis);
   }
 
-  const plateMat = houseMetal(0x24141e);
-  const plateW = (layout.maxX - layout.minX) + 1.15;
-  const plateH = layout.maxR * 2 + 1.05;
-  const plate = new THREE.Mesh(new THREE.BoxGeometry(plateW, plateH, 0.08), plateMat);
-  plate.position.set(0, -0.05, -0.48);
+  const plateMat = new THREE.MeshStandardMaterial({
+    color: 0x160a1c,
+    metalness: 0.06,
+    roughness: 0.9,
+    envMapIntensity: 0.04,
+  });
+  const plateW = (layout.maxX - layout.minX) + 0.42;
+  const plateH = layout.maxR * 2 + 0.36;
+  const plate = new THREE.Mesh(new THREE.BoxGeometry(plateW, plateH, 0.06), plateMat);
+  plate.position.set(0, -0.02, -0.62);
   trainGroup.add(plate);
 
   const plinth = new THREE.Mesh(
-    new THREE.BoxGeometry(plateW + 0.15, 0.12, 1.5),
-    houseMetal(0x1a0e18),
+    new THREE.BoxGeometry(plateW + 0.2, 0.1, 1.35),
+    plateMat,
   );
   plinth.position.set(0, -layout.maxR - 0.28, 0.12);
   trainGroup.add(plinth);
@@ -281,10 +287,9 @@ function buildTrain() {
 
 function placeKeyLight() {
   if (!layout || !keyLight) return;
-  const span = Math.max(layout.maxX - layout.minX, layout.maxR * 2);
-  keyLight.position.set(span * 0.05, layout.maxR * 0.65 + 1.4, span * 0.42 + 2.2);
-  const distance = keyLight.position.length() + span;
-  keyLight.intensity = 28 * distance * distance * 0.055;
+  const span = Math.max(layout.maxX - layout.minX, layout.maxR * 2, 2.4);
+  keyLight.position.set(span * 0.28, span * 0.42, span * 0.62);
+  keyLight.intensity = 9.5 * span * span;
 }
 
 function applySpin() {
@@ -300,7 +305,7 @@ function frameCamera(reset) {
   const span = Math.max(layout.maxX - layout.minX, layout.maxR * 2.2, 2.4);
   const target = new THREE.Vector3(0, -layout.maxR * 0.02, 0);
   if (reset) {
-    camera.position.set(span * 0.04, span * 0.32, span * 0.86);
+    camera.position.set(span * 0.06, span * 0.36, span * 1.22);
     controls.target.copy(target);
   } else {
     const dx = target.x - controls.target.x;

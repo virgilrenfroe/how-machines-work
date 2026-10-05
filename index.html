@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#140818" />
+  <meta name="description" content="Shop / engineering: gear ratio &amp; meshing. A teaching exhibit of a simple gear train — driver, idler, and driven — from How Machines Work by Virgil Renfroe." />
+  <title>Shop / engineering: gear ratio &amp; meshing · How Machines Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,520;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --void: #140818;
+      --ink: #140818;
+      --paper: #f4efe6;
+      --cream: #e7d7c8;
+      --mute: rgba(244, 239, 230, 0.68);
+      --dim: rgba(244, 239, 230, 0.40);
+      --accent: #f0a05a;
+      --accent-ink: #2a1408;
+      --line: rgba(244, 239, 230, 0.14);
+      --card: #1c1024;
+      --placard: #1a0e22;
+      --mono: "Space Mono", ui-monospace, monospace;
+      --display: "Bricolage Grotesque", sans-serif;
+      --body: "Instrument Sans", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+    body {
+      margin: 0;
+      background: var(--void);
+      color: var(--paper);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    #c {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .content {
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .content a,
+    .content button,
+    .content input,
+    .content label,
+    .content .view,
+    .content .chip,
+    .content .toggle {
+      pointer-events: auto;
+    }
+    .skip {
+      position: absolute;
+      left: 12px;
+      top: -40px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      padding: 8px 12px;
+      z-index: 5;
+      pointer-events: auto;
+    }
+    .skip:focus { top: 12px; }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+      padding: 1rem clamp(1.25rem, 4vw, 3rem) 0;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+    .topbar strong { color: var(--paper); font-weight: 700; }
+    .topbar span { color: var(--accent); }
+
+    .hero {
+      padding: clamp(1.5rem, 4vw, 3.2rem) clamp(1.25rem, 4vw, 3rem) clamp(1.2rem, 3vw, 2rem);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.7fr);
+      gap: clamp(1.25rem, 4vw, 3rem);
+      align-items: end;
+    }
+    .kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.9rem;
+    }
+    h1 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(3.1rem, 8.4vw, 6.6rem);
+      line-height: 0.88;
+      letter-spacing: -0.045em;
+      margin: 0 0 1rem;
+      max-width: 11ch;
+    }
+    .lede {
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      max-width: 38ch;
+      color: var(--mute);
+      margin: 0 0 1.25rem;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem 1.2rem;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin: 0;
+    }
+    .hero-meta b { color: var(--paper); font-weight: 400; }
+    .formula-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(165deg, rgba(240, 160, 90, 0.1), rgba(20, 8, 24, 0.2) 42%, #120614 100%);
+      padding: 1.1rem 1.15rem 1rem;
+    }
+    .formula-card h2 {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.75rem;
+      font-weight: 700;
+    }
+    .frac {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      gap: 0.35rem 0.55rem;
+      align-items: center;
+      font-family: var(--display);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+      margin-bottom: 0.75rem;
+    }
+    .frac .bar {
+      border-top: 1.5px solid var(--paper);
+      padding-top: 0.15rem;
+      margin-top: 0.15rem;
+    }
+    .frac small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      font-weight: 400;
+    }
+    .formula-card p { margin: 0; color: var(--cream); font-size: 14.5px; }
+
+    .exhibit {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.72fr);
+      border-top: 1px solid var(--line);
+      min-height: 74vh;
+    }
+    .view-wrap {
+      position: relative;
+      min-height: 74vh;
+    }
+    .view {
+      position: absolute;
+      inset: 0;
+      touch-action: none;
+      cursor: grab;
+    }
+    .view:active { cursor: grabbing; }
+    .view-fallback {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      margin: 0;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      pointer-events: none;
+    }
+    .view.is-ready .view-fallback { display: none; }
+    .hud-use {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 3;
+      margin: 0;
+      max-width: min(34ch, calc(100% - 28px));
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: rgba(20, 8, 24, 0.78);
+      border: 1px solid rgba(240, 160, 90, 0.55);
+      padding: 8px 10px;
+      pointer-events: none;
+    }
+    .hud-use span { color: var(--accent); }
+    .gear-label {
+      position: absolute;
+      z-index: 3;
+      margin: 0;
+      transform: translate(-50%, -130%);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: rgba(20, 8, 24, 0.8);
+      border: 1px solid var(--line);
+      padding: 6px 8px 5px;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .gear-label b {
+      display: block;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+    }
+    .gear-label[data-role="idler"] b { color: var(--cream); }
+    .view-note {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      z-index: 3;
+      margin: 0;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dim);
+      pointer-events: none;
+      text-align: right;
+      max-width: 28ch;
+    }
+
+    .instrument {
+      background: var(--placard);
+      border-left: 1px solid var(--line);
+      padding: clamp(1.1rem, 2.5vw, 1.6rem);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      justify-content: center;
+    }
+    .instrument h2 {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0;
+    }
+    .ratio-readout {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(3rem, 6vw, 4.4rem);
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+      margin: 0;
+    }
+    .ratio-readout em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .ratio-sub {
+      margin: 0;
+      color: var(--cream);
+      font-size: 15px;
+    }
+    .meters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem;
+    }
+    .meter {
+      border: 1px solid var(--line);
+      padding: 0.65rem 0.7rem 0.6rem;
+      background: rgba(20, 8, 24, 0.35);
+    }
+    .meter .name {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin: 0 0 0.25rem;
+    }
+    .meter .val {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--paper);
+      margin: 0;
+    }
+    .meter .val b { color: var(--accent); font-weight: 700; }
+    .live-line {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--cream);
+    }
+    .status {
+      margin: 0;
+      min-height: 1.2em;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .bench {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      border-top: 1px solid var(--line);
+    }
+    .controls, .lesson {
+      padding: clamp(1.2rem, 3vw, 2rem);
+    }
+    .controls { background: #160a1c; }
+    .lesson {
+      background: var(--card);
+      border-left: 1px solid var(--line);
+    }
+    .controls h2, .lesson h2, .teachers h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      margin: 0 0 0.35rem;
+    }
+    .section-kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.45rem;
+    }
+    .hint { margin: 0 0 1rem; color: var(--mute); font-size: 14.5px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1rem; }
+    .chip, .toggle {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.7rem;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--paper);
+      cursor: pointer;
+    }
+    .chip:hover, .chip[aria-pressed="true"], .toggle[aria-pressed="true"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-ink);
+    }
+    .ctrls { display: grid; gap: 0.7rem; margin-bottom: 1rem; }
+    .ctrl {
+      display: grid;
+      grid-template-columns: 7.2rem 1fr 3.2rem;
+      gap: 0.55rem;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+    .ctrl input[type="range"] { width: 100%; accent-color: var(--accent); }
+    .ctrl output { text-align: right; color: var(--paper); }
+    .row-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+
+    .lesson p { margin: 0 0 0.7rem; color: var(--cream); font-size: 15px; }
+    .lesson p:last-child { margin-bottom: 0; }
+    .try {
+      border: 1px dashed rgba(240, 160, 90, 0.55);
+      background: rgba(240, 160, 90, 0.06);
+      padding: 0.85rem 1rem;
+      margin-top: 0.4rem;
+    }
+    .try strong {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+    .try p { margin: 0; color: var(--paper); }
+
+    .teachers {
+      border-top: 1px solid var(--line);
+      padding: clamp(1.6rem, 4vw, 3rem) clamp(1.25rem, 4vw, 3rem);
+      background: #100612;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: clamp(1.2rem, 3vw, 2.5rem);
+    }
+    .teachers .lede { margin: 0; }
+    .teach-grid { display: grid; gap: 0.75rem; }
+    .teach-card {
+      border: 1px solid var(--line);
+      padding: 0.95rem 1rem;
+      background: var(--card);
+    }
+    .teach-card h3 {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.45rem;
+    }
+    .teach-card ol, .teach-card ul { margin: 0; padding-left: 1.15rem; color: var(--cream); font-size: 14.5px; }
+    .teach-card li { margin: 0 0 0.35rem; }
+    .teach-card p { margin: 0; color: var(--cream); font-size: 14.5px; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.15rem clamp(1.25rem, 4vw, 3rem) 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem 1.4rem;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+    footer a { color: var(--paper); text-decoration: none; border-bottom: 1px solid var(--accent); }
+
+    .err {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 20;
+      background: #3a1218;
+      color: #ffd6d6;
+      padding: 12px 14px;
+      display: none;
+      white-space: pre-wrap;
+      font-family: var(--mono);
+      font-size: 12px;
+      pointer-events: none;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .exhibit, .bench, .teachers { grid-template-columns: 1fr; }
+      .hero { padding-bottom: 1.4rem; }
+      h1 { max-width: none; }
+      .exhibit, .view-wrap { min-height: 68vh; }
+      .instrument, .lesson { border-left: none; border-top: 1px solid var(--line); }
+      .ctrl { grid-template-columns: 6.4rem 1fr 2.8rem; }
+      .view-note { display: none; }
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script>
+    window.addEventListener('error', (event) => {
+      const el = document.getElementById('err');
+      if (!el) return;
+      el.style.display = 'block';
+      el.textContent = String(event.message || event.error || event);
+    });
+    window.addEventListener('unhandledrejection', (event) => {
+      const el = document.getElementById('err');
+      if (!el) return;
+      el.style.display = 'block';
+      el.textContent = String(event.reason && event.reason.message ? event.reason.message : event.reason);
+    });
+  </script>
+</head>
+<body>
+  <canvas id="c" aria-hidden="true"></canvas>
+  <div class="content">
+    <a class="skip" href="#gear-train">Skip to the gear train</a>
+    <header class="topbar">
+      <div>How Machines Work · <strong>Exhibit 01</strong></div>
+      <div>Shop / engineering: <span>gear ratio &amp; meshing</span></div>
+    </header>
+
+    <section class="hero" aria-labelledby="hub-title">
+      <div>
+        <p class="kicker">Shop / engineering: gear ratio &amp; meshing</p>
+        <h1 id="hub-title">Gear ratio &amp; meshing</h1>
+        <p class="lede">A simple gear train for shop and engineering class. Name the driver and the driven, count teeth, and watch one tooth take the next space.</p>
+        <p class="hero-meta">
+          <span>Audience <b>shop / engineering</b></span>
+          <span>Model <b>external spur train</b></span>
+          <span>Readout <b>live ratio</b></span>
+        </p>
+      </div>
+      <aside class="formula-card" aria-label="Gear ratio formula">
+        <h2>The ratio you are here to read</h2>
+        <div class="frac">
+          <span>gear ratio</span>
+          <span>=</span>
+          <span>
+            <small>N driven</small>
+            <span class="bar"><small>N driver</small></span>
+          </span>
+        </div>
+        <p>Bigger driven gear, slower output, more torque. The idler changes direction and drops out of the ratio.</p>
+      </aside>
+    </section>
+
+    <section class="exhibit" id="gear-train" aria-label="Gear train model">
+      <div class="view-wrap">
+        <div class="view" id="view" data-scene="train">
+          <p class="view-fallback">Setting the gear train on the bench…</p>
+        </div>
+        <p class="hud-use"><span>HUD</span> · Shop / engineering: gear ratio &amp; meshing</p>
+        <p class="gear-label" id="label-driver" data-role="driver" hidden><b>Driver</b><span></span></p>
+        <p class="gear-label" id="label-idler" data-role="idler" hidden><b>Idler</b><span></span></p>
+        <p class="gear-label" id="label-driven" data-role="driven" hidden><b>Driven</b><span></span></p>
+        <p class="view-note">Drag to look around the mesh. Brass marks track one tooth on each gear.</p>
+      </div>
+      <aside class="instrument" aria-label="Live gear ratio readout">
+        <h2>Shop / engineering: gear ratio &amp; meshing</h2>
+        <p class="ratio-readout" id="ratio-readout"><em>—</em></p>
+        <p class="ratio-sub" id="ratio-sub">N driven / N driver</p>
+        <div class="meters">
+          <div class="meter">
+            <p class="name">Driver</p>
+            <p class="val" id="meter-driver">—</p>
+          </div>
+          <div class="meter">
+            <p class="name">Driven</p>
+            <p class="val" id="meter-driven">—</p>
+          </div>
+          <div class="meter">
+            <p class="name">Idler</p>
+            <p class="val" id="meter-idler">—</p>
+          </div>
+          <div class="meter">
+            <p class="name">Turns</p>
+            <p class="val" id="meter-turns">—</p>
+          </div>
+        </div>
+        <p class="live-line" id="live-line"></p>
+        <p class="status" id="status" role="status"></p>
+      </aside>
+    </section>
+
+    <section class="bench" aria-label="Train setup and lesson">
+      <div class="controls">
+        <p class="section-kicker">Set the train</p>
+        <h2>Tooth counts</h2>
+        <p class="hint">Same module on every gear, so a larger count is a larger pitch circle. Only the end gears set the ratio.</p>
+        <div class="chips" role="group" aria-label="Presets">
+          <button class="chip" type="button" data-preset="reducer" aria-pressed="true">Reducer 16·24·40</button>
+          <button class="chip" type="button" data-preset="even" aria-pressed="false">Even 20·20·20</button>
+          <button class="chip" type="button" data-preset="overdrive" aria-pressed="false">Overdrive 36·18·18</button>
+        </div>
+        <div class="ctrls">
+          <label class="ctrl">Driver
+            <input id="teeth-driver" type="range" min="8" max="48" step="1" value="16" />
+            <output id="teeth-driver-out" for="teeth-driver">16 T</output>
+          </label>
+          <label class="ctrl">Idler
+            <input id="teeth-idler" type="range" min="8" max="48" step="1" value="24" />
+            <output id="teeth-idler-out" for="teeth-idler">24 T</output>
+          </label>
+          <label class="ctrl">Driven
+            <input id="teeth-driven" type="range" min="8" max="48" step="1" value="40" />
+            <output id="teeth-driven-out" for="teeth-driven">40 T</output>
+          </label>
+          <label class="ctrl">Driver rpm
+            <input id="rpm" type="range" min="2" max="16" step="0.5" value="7" />
+            <output id="rpm-out" for="rpm">7</output>
+          </label>
+        </div>
+        <div class="row-actions">
+          <button class="toggle" type="button" id="idler-toggle" aria-pressed="true">Idler in the train</button>
+          <button class="toggle" type="button" id="pitch-toggle" aria-pressed="true">Pitch circles</button>
+          <button class="toggle" type="button" id="play-toggle" aria-pressed="true">Pause</button>
+          <button class="chip" type="button" id="step-tooth">Step one tooth</button>
+          <button class="chip" type="button" id="reset-turns">Reset turns</button>
+        </div>
+      </div>
+      <div class="lesson">
+        <p class="section-kicker">What to notice</p>
+        <h2>Teeth in mesh</h2>
+        <p id="lesson-mesh">Each mesh is external: a tooth enters a space and the next gear turns the other way. Pitch circles stay tangent. The small gap is backlash so the teeth do not bind.</p>
+        <p id="lesson-idler">The idler reverses direction and cancels out of the ratio. Driver and driven turn the same way. Gear ratio still uses only N driven / N driver.</p>
+        <p id="lesson-speed"></p>
+        <div class="try">
+          <strong>Try this</strong>
+          <p>Pause on Reducer. Predict the driven turn count after the driver mark goes around once (0.40). Reset turns, play, and check the counter. Then change only the idler. The ratio should sit still. Turn the idler off and watch the driven mark reverse.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="teachers" aria-labelledby="teach-title">
+      <div>
+        <p class="section-kicker">For the shop</p>
+        <h2 id="teach-title">Ten minutes at the bench</h2>
+        <p class="lede">Use this page as the model next to a real pinion and gear. The classroom use is gear ratio and meshing, not a rendering study.</p>
+      </div>
+      <div class="teach-grid">
+        <article class="teach-card">
+          <h3>Learning objectives</h3>
+          <ul>
+            <li>Compute gear ratio as N driven ÷ N driver.</li>
+            <li>Predict output speed and whether torque rises or falls.</li>
+            <li>Explain that equal module is what lets unlike gears mesh.</li>
+            <li>State that an idler changes direction and not the ratio.</li>
+          </ul>
+        </article>
+        <article class="teach-card">
+          <h3>Classroom loop</h3>
+          <ol>
+            <li>Hand out the Reducer tooth counts. Students compute 40 ÷ 16 before looking at the readout.</li>
+            <li>Uncover 2.50 : 1. Ask how far the driven gear turns after one driver turn.</li>
+            <li>Run the train. Stop near one driver turn and compare the counter.</li>
+            <li>Move only the idler. Ratio stays. Then remove the idler and name the new direction.</li>
+          </ol>
+        </article>
+        <article class="teach-card">
+          <h3>Shop examples</h3>
+          <p>Lathe change gears, a drill-press reduction, a clock train. This exhibit is spur gears in external mesh. It leaves out friction, shaft windup, and chain drives such as a bicycle.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <div>How Machines Work · Virgil Renfroe · Shop / engineering: gear ratio &amp; meshing</div>
+      <div>
+        <a href="#hub-title">Back to top</a>
+      </div>
+    </footer>
+  </div>
+  <div id="err" class="err" role="alert"></div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

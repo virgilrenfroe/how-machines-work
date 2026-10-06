@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#140818" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23140818'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23f0a05a' stroke-width='2'/%3E%3Cpath d='M16 6.5 l1.2 2.2 -1.2.6 -1.2-.6z M16 25.5 l-1.2-2.2 1.2-.6 1.2.6z M6.5 16 l2.2-1.2.6 1.2-.6 1.2z M25.5 16 l-2.2 1.2-.6-1.2.6-1.2z' fill='%23f0a05a'/%3E%3C/svg%3E" />
-  <meta name="description" content="Shop / engineering: levers (classes 1–3). A teaching exhibit of first-, second-, and third-class levers from How Machines Work by Virgil Renfroe." />
-  <title>Shop / engineering: levers (classes 1–3) · How Machines Work</title>
+  <meta name="description" content="Shop / engineering: inclined plane (length ÷ height). A teaching exhibit of ideal mechanical advantage on a ramp — slope length divided by height — from How Machines Work by Virgil Renfroe." />
+  <title>Shop / engineering: inclined plane (length ÷ height) · How Machines Work</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -112,19 +112,6 @@
       display: block; margin-top: 0.55rem; margin-left: auto;
       font-size: 0.98rem; font-weight: 500; color: var(--cream);
     }
-    .class-rows { display: grid; margin-top: 0.35rem; border-top: 1px solid var(--line); }
-    .class-rows button {
-      display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) auto;
-      gap: 0.55rem; align-items: baseline;
-      width: 100%; padding: 0.55rem 0; border: 0; border-bottom: 1px solid var(--line);
-      background: transparent; color: var(--paper); cursor: pointer; text-align: left;
-      font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-    }
-    .class-rows button span { color: var(--dim); }
-    .class-rows button b { font-weight: 400; letter-spacing: 0.08em; }
-    .class-rows button em { font-style: normal; color: var(--accent); }
-    .class-rows button[aria-pressed="true"] { color: var(--accent); }
-    .class-rows button[aria-pressed="true"] span { color: var(--accent); }
     .hub-stage {
       display: grid;
       grid-template-columns: minmax(0, 1.55fr) minmax(240px, 0.7fr);
@@ -141,7 +128,7 @@
     .view.is-ready .view-fallback { display: none; }
     .hud-use {
       position: absolute; top: 1.1rem; left: var(--pad); z-index: 3; margin: 0;
-      max-width: min(40ch, calc(100% - 2rem));
+      max-width: min(42ch, calc(100% - 2rem));
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--paper); pointer-events: none;
       text-shadow: 0 0 18px #140818, 0 1px 0 #140818;
@@ -155,9 +142,10 @@
       text-shadow: 0 0 16px #140818, 0 1px 0 #140818;
     }
     .gear-label b { display: block; color: var(--accent); font-weight: 700; letter-spacing: 0.16em; }
+    .gear-label.below { transform: translate(-50%, 8%); }
     .view-note {
       position: absolute; left: var(--pad); bottom: 1rem; z-index: 3; margin: 0;
-      max-width: 36ch;
+      max-width: 38ch;
       font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--dim); pointer-events: none; text-shadow: 0 0 12px #140818;
     }
@@ -182,11 +170,20 @@
       font-size: clamp(3.6rem, 5.8vw, 6rem); letter-spacing: -0.07em; line-height: 0.78;
     }
     .ratio-readout em { font-style: normal; color: var(--accent); }
+    .force-line {
+      margin: 0; font-family: var(--display); font-weight: 700;
+      font-size: clamp(1.45rem, 2.4vw, 2rem); letter-spacing: -0.04em; line-height: 1.05;
+    }
+    .force-line b { color: var(--accent); font-weight: 800; }
+    .force-line span, .rocker-line span {
+      color: var(--dim); font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400;
+    }
     .rocker-line {
       margin: 0; font-family: var(--display); font-weight: 700;
-      font-size: clamp(1.6rem, 2.6vw, 2.2rem); letter-spacing: -0.04em;
+      font-size: clamp(1.15rem, 1.8vw, 1.4rem); letter-spacing: -0.03em; line-height: 1.25;
+      color: var(--cream);
     }
-    .rocker-line span { color: var(--dim); font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; }
     .meters {
       display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem 1.2rem;
       margin-top: 0.35rem; padding-top: 0.85rem; border-top: 1px solid var(--line);
@@ -222,7 +219,8 @@
     .lesson h2 { font-size: clamp(3.2rem, 6vw, 5.8rem); max-width: 10ch; }
     .hint, .lesson p, .shop-row li, .shop-row p { color: var(--cream); font-size: 1.05rem; }
     .hint { margin: 0 0 1.15rem; max-width: 38ch; }
-    .row-actions { display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; }
+    .chips, .row-actions { display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; }
+    .chips { margin-bottom: 1.15rem; }
     .chip, .toggle {
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
       padding: 0.35rem 0 0.28rem; border: 0; border-bottom: 1px solid transparent;
@@ -233,7 +231,7 @@
     }
     .ctrls { display: grid; gap: 0.75rem; margin: 0 0 1.15rem; }
     .ctrl {
-      display: grid; grid-template-columns: 8.4rem 1fr 3.4rem; gap: 0.65rem; align-items: center;
+      display: grid; grid-template-columns: 8.6rem 1fr 5.1rem; gap: 0.65rem; align-items: center;
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim);
     }
     .ctrl input[type="range"] { width: 100%; accent-color: var(--accent); }
@@ -285,6 +283,7 @@
       .lesson { padding-top: 0.4rem; }
       .watermark { font-size: 6.2rem; right: 0.15rem; }
       .view-note { display: none; }
+      .ctrl { grid-template-columns: 6.6rem 1fr 4.6rem; }
     }
   </style>
   <script type="importmap">
@@ -313,75 +312,68 @@
 <body>
   <canvas id="c" aria-hidden="true"></canvas>
   <div class="content">
-    <a class="skip" href="#levers">Skip to the levers</a>
+    <a class="skip" href="#inclined-plane">Skip to the ramp</a>
     <header class="nav">
       <a href="./">How Machines Work</a>
-      <p class="nav-use">Shop / engineering: <em>levers (classes 1–3)</em></p>
+      <p class="nav-use">Shop / engineering: <em>inclined plane (length ÷ height)</em></p>
     </header>
     <nav class="exhibit-nav" aria-label="Exhibits">
       <a href="./">01 Gear</a>
       <a href="./four-bar.html">02 Four-bar</a>
-      <a href="./lever.html" aria-current="page">03 Levers</a>
-      <a href="./inclined-plane.html">06 Inclined plane</a>
+      <a href="./lever.html">03 Levers</a>
+      <a href="./inclined-plane.html" aria-current="page">06 Inclined plane</a>
     </nav>
 
     <section class="hub" aria-labelledby="hub-title">
       <div class="hub-head">
-        <p class="kicker">Shop / engineering: levers (classes 1–3)</p>
-        <h1 id="hub-title"><span>Levers</span><span>classes 1–3.</span></h1>
+        <p class="kicker">Shop / engineering: inclined plane (length ÷ height)</p>
+        <h1 id="hub-title"><span>Inclined</span><span>plane.</span></h1>
       </div>
       <div class="hub-lead">
-        <p class="lede">Three bars. Same parts: fulcrum, effort, and load. The class is which part sits between the other two. Slide the arms and watch the force change.</p>
+        <p class="lede">A ramp for shop and engineering class. The load stays 10 lb. Change the angle or the length of the slope and read the effort.</p>
         <p class="formula">
-          <b>Effort arm<span>Load arm</span></b>
-          <small>Mechanical advantage. A bigger number means less effort for the same load.</small>
+          <b>Slope length<span>Height</span></b>
+          <small>Ideal mechanical advantage. The same number is 1 / sin θ. A longer ramp for the same rise needs less push.</small>
         </p>
       </div>
 
-      <div class="hub-stage" id="levers">
+      <div class="hub-stage" id="inclined-plane">
         <div class="view-wrap">
-          <div class="view" id="view" data-scene="levers">
-            <p class="view-fallback">Setting the levers on the bench…</p>
+          <div class="view" id="view" data-scene="inclined-plane">
+            <p class="view-fallback">Setting the ramp on the bench…</p>
           </div>
-          <p class="hud-use"><span>Lesson</span> Shop / engineering: levers (classes 1–3)</p>
-          <p class="gear-label" id="label-1-fulcrum" hidden><b>Fulcrum</b><span>Class 1</span></p>
-          <p class="gear-label" id="label-1-effort" hidden><b>Effort</b><span>Push down</span></p>
-          <p class="gear-label" id="label-1-load" hidden><b>Load</b><span>10 lb</span></p>
-          <p class="gear-label" id="label-2-fulcrum" hidden><b>Fulcrum</b><span>Class 2</span></p>
-          <p class="gear-label" id="label-2-effort" hidden><b>Effort</b><span>Lift</span></p>
-          <p class="gear-label" id="label-2-load" hidden><b>Load</b><span>10 lb</span></p>
-          <p class="gear-label" id="label-3-fulcrum" hidden><b>Fulcrum</b><span>Class 3</span></p>
-          <p class="gear-label" id="label-3-effort" hidden><b>Effort</b><span>Lift</span></p>
-          <p class="gear-label" id="label-3-load" hidden><b>Load</b><span>10 lb</span></p>
-          <p class="view-note">All three classes stay on the bench. Click a bar to select it. Drag to look.</p>
+          <p class="hud-use"><span>Lesson</span> Shop / engineering: inclined plane (length ÷ height)</p>
+          <p class="gear-label" id="label-load" hidden><b>Load</b><span>10 lb</span></p>
+          <p class="gear-label" id="label-effort" hidden><b>Effort</b><span>—</span></p>
+          <p class="gear-label" id="label-angle" hidden><b>Angle</b><span>—</span></p>
+          <p class="gear-label" id="label-slope" hidden><b>Slope</b><span>—</span></p>
+          <p class="gear-label" id="label-height" hidden><b>Height</b><span>—</span></p>
+          <p class="gear-label below" id="label-run" hidden><b>Run</b><span>—</span></p>
+          <p class="view-note">Drag to look around the ramp. The arrow along the slope is the effort. The arrow straight down is the 10 lb load.</p>
         </div>
-        <aside class="instrument" aria-label="Live lever readout">
-          <p class="watermark" aria-hidden="true">03</p>
-          <h2>Shop / engineering: levers (classes 1–3)</h2>
+        <aside class="instrument" aria-label="Live inclined plane readout">
+          <p class="watermark" aria-hidden="true">06</p>
+          <h2>Shop / engineering: inclined plane (length ÷ height)</h2>
           <p class="ratio-readout" id="ma-readout"><em>—</em> : 1</p>
-          <p class="rocker-line"><span>MA </span><span id="ma-sub">effort arm / load arm</span></p>
+          <p class="force-line" id="force-line"><b>—</b> <span>effort</span> · 10 lb <span>load</span></p>
+          <p class="rocker-line"><span id="ma-sub">slope length / height</span></p>
           <div class="meters">
             <div class="meter">
-              <p class="name">Effort arm</p>
-              <p class="val" id="meter-effort-arm">—</p>
+              <p class="name">Slope length</p>
+              <p class="val" id="meter-slope">—</p>
             </div>
             <div class="meter">
-              <p class="name">Load arm</p>
-              <p class="val" id="meter-load-arm">—</p>
+              <p class="name">Height</p>
+              <p class="val" id="meter-height">—</p>
             </div>
             <div class="meter">
-              <p class="name">Load</p>
-              <p class="val" id="meter-load">—</p>
+              <p class="name">Angle</p>
+              <p class="val" id="meter-angle">—</p>
             </div>
             <div class="meter">
-              <p class="name">Effort needed</p>
+              <p class="name">Effort for 10 lb</p>
               <p class="val" id="meter-effort">—</p>
             </div>
-          </div>
-          <div class="class-rows">
-            <button type="button" data-class="1" aria-pressed="true"><span>01</span><b>First class</b><em>—</em></button>
-            <button type="button" data-class="2" aria-pressed="false"><span>02</span><b>Second class</b><em>—</em></button>
-            <button type="button" data-class="3" aria-pressed="false"><span>03</span><b>Third class</b><em>—</em></button>
           </div>
           <p class="live-line" id="live-line"></p>
           <p class="status" id="status" role="status"></p>
@@ -389,23 +381,33 @@
       </div>
     </section>
 
-    <section class="district" id="bench" aria-label="Lever setup and lesson">
+    <section class="district" id="bench" aria-label="Ramp setup and lesson">
       <div class="district-top">
-        <span><b>03</b> Bench</span>
-        <span>Shop / engineering: levers (classes 1–3)</span>
+        <span><b>06</b> Bench</span>
+        <span>Shop / engineering: inclined plane (length ÷ height)</span>
       </div>
       <div class="district-split">
         <div class="controls">
-          <h2>Move the arms.</h2>
-          <p class="hint">The load stays 10 lb. Slide the effort or the load. Mechanical advantage is the effort arm divided by the load arm.</p>
+          <h2>Change the ramp.</h2>
+          <p class="hint">The load stays 10 lb. Move the angle or the slope length. Ideal mechanical advantage is slope length divided by height. The angle stays between 8° and 60°.</p>
+          <div class="chips" role="group" aria-label="Presets">
+            <button class="chip" type="button" data-preset="gentle" aria-pressed="false">Gentle 10°</button>
+            <button class="chip" type="button" data-preset="dock" aria-pressed="true">Dock 8 ft</button>
+            <button class="chip" type="button" data-preset="thirty" aria-pressed="false">30°</button>
+            <button class="chip" type="button" data-preset="fortyfive" aria-pressed="false">45°</button>
+          </div>
           <div class="ctrls">
-            <label class="ctrl">Effort arm
-              <input id="effort" type="range" min="0" max="1000" step="1" value="500" />
-              <output id="effort-out" for="effort">—</output>
+            <label class="ctrl">Angle
+              <input id="angle" type="range" min="8" max="60" step="0.1" value="14.5" />
+              <output id="angle-out" for="angle">14.5°</output>
             </label>
-            <label class="ctrl">Load arm
-              <input id="load" type="range" min="0" max="1000" step="1" value="500" />
-              <output id="load-out" for="load">—</output>
+            <label class="ctrl">Ramp length
+              <input id="length" type="range" min="2.2" max="14" step="0.01" value="8" />
+              <output id="length-out" for="length">8.00 ft</output>
+            </label>
+            <label class="ctrl">Height
+              <input id="height" type="range" min="1" max="5" step="0.01" value="2" />
+              <output id="height-out" for="height">2.00 ft</output>
             </label>
           </div>
           <div class="row-actions">
@@ -413,14 +415,14 @@
           </div>
         </div>
         <div class="lesson">
-          <p class="kicker">What a lever is for</p>
-          <h2>Force or reach</h2>
-          <p id="lesson-order">A lever is a bar on a fulcrum. You apply the effort. The load is what you want to move.</p>
-          <p id="lesson-trade">Class 1 can go either way. Class 2 always multiplies force. Class 3 always multiplies distance.</p>
-          <p>First class: the fulcrum is in the middle. Second class: the load is in the middle. Third class: the effort is in the middle. You do not leave this page to compare them. All three bars stay in the view.</p>
+          <p class="kicker">What a ramp is for</p>
+          <h2>Less force, longer push</h2>
+          <p id="lesson-ideal">Ideal mechanical advantage is the length of the slope divided by the height. The same number is 1 / sin θ. Use the slope, not the flat run.</p>
+          <p id="lesson-trade">A gentler ramp needs less effort and a longer push. A steeper ramp needs more effort over a shorter slope.</p>
+          <p id="lesson-work">You push 2.50 lb along 8.00 ft. The load rises 2.00 ft. Ideal work matches either way: 20.0 ft·lb.</p>
           <div class="try">
             <strong>Try this</strong>
-            <p>On class 1, slide the load toward the fulcrum. The effort force should fall. On class 2, try to make the advantage less than 1. You cannot. On class 3, the effort is always more than 10 lb.</p>
+            <p>Set the height to 2 ft and the angle to 30°. Predict the effort before you look: half of 10 lb, because sin 30° is 1/2. Then stretch the slope to 8 ft and leave the height at 2 ft. The advantage should read 4.00 and the effort 2.50 lb. Stretch it again to 12 ft: 12 ÷ 2 = 6, so the effort falls to 1.67 lb.</p>
           </div>
         </div>
       </div>
@@ -428,44 +430,44 @@
 
     <section class="district shop" aria-labelledby="teach-title">
       <div class="district-top">
-        <span><b>04</b> Shop floor</span>
+        <span><b>06</b> Shop floor</span>
         <span>Ten minutes at the bench</span>
       </div>
-      <h2 id="teach-title"><span>Name the</span><span>three classes.</span></h2>
-      <p class="shop-lede">Use this page next to a meter stick, a pivot, and a weight. The classroom use is the lever class, and the force tradeoff that comes with it.</p>
+      <h2 id="teach-title"><span>Length</span><span>over height.</span></h2>
+      <p class="shop-lede">Use this page next to a board, a stack of blocks, and a 10 lb weight. The classroom use is ideal mechanical advantage: slope length divided by height.</p>
       <div class="shop-row">
-        <p class="idx">04.1</p>
+        <p class="idx">06.1</p>
         <h3>Learning objectives</h3>
         <ul>
-          <li>Point to the fulcrum, the effort, and the load.</li>
-          <li>Say which part is between the other two for classes 1, 2, and 3.</li>
-          <li>Compute mechanical advantage as effort arm / load arm.</li>
-          <li>State the tradeoff: more advantage means less effort and less movement at the load.</li>
+          <li>Compute ideal mechanical advantage as slope length ÷ height.</li>
+          <li>Compute the same advantage as 1 / sin θ.</li>
+          <li>Find the effort for a 10 lb load: effort = load ÷ advantage.</li>
+          <li>State the tradeoff: less effort means a longer push along the slope.</li>
         </ul>
       </div>
       <div class="shop-row">
-        <p class="idx">04.2</p>
+        <p class="idx">06.2</p>
         <h3>Classroom loop</h3>
         <ol>
-          <li>Cover the readout. Students name the middle part on each bar.</li>
-          <li>Class 1: move the load closer to the fulcrum. Record the new effort.</li>
-          <li>Class 2: predict the effort, then check. It stays under 10 lb.</li>
-          <li>Class 3: name a tool that reaches farther than the hand moves.</li>
+          <li>Cover the readout. Height 2 ft, slope 4 ft. Students compute 4 ÷ 2 and the effort for 10 lb.</li>
+          <li>Uncover 2.00 : 1 and 5.00 lb. Check that the angle is 30° and that sin 30° is 1/2.</li>
+          <li>Lengthen the slope to 8 ft and keep the height at 2 ft. Students predict 4.00 and 2.50 lb.</li>
+          <li>Raise the angle toward 60°. The effort climbs toward the load. A steep ramp barely helps.</li>
         </ol>
       </div>
       <div class="shop-row">
-        <p class="idx">04.3</p>
+        <p class="idx">06.3</p>
         <h3>Shop examples</h3>
-        <p>Class 1: crowbar, seesaw, pliers. Class 2: wheelbarrow, nutcracker, bottle opener. Class 3: tweezers, fishing rod, forearm. This model leaves out friction and the bend of a real bar.</p>
+        <p>A loading ramp, a wheelchair ramp, a switchback trail, a screw (an inclined plane wrapped around a cylinder). This model leaves out friction. On a real ramp you also push against friction, so the effort is higher than the ideal.</p>
       </div>
     </section>
 
     <footer>
-      <div>How Machines Work · Virgil Renfroe · Shop / engineering: levers (classes 1–3)</div>
+      <div>How Machines Work · Virgil Renfroe · Shop / engineering: inclined plane (length ÷ height)</div>
       <a href="./">Exhibit 01 · Gear</a>
     </footer>
   </div>
   <div id="err" class="err" role="alert"></div>
-  <script type="module" src="./lever.js"></script>
+  <script type="module" src="./inclined-plane.js"></script>
 </body>
 </html>

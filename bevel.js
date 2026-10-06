@@ -138,13 +138,13 @@ function frameCamera(force) {
   const solved = state.solved;
   const span = Math.max(solved.cone * 1.15, solved.pitchDriver, solved.pitchDriven) + 1.35;
   const contact = placeOnCone('driver', solved.cone * 0.86, solved.deltaDriver, 0);
-  const target = new THREE.Vector3(contact.x * 0.35, contact.y * 0.35, 0);
+  const target = new THREE.Vector3(contact.x * 0.35, contact.y * 0.35 - span * 0.28, 0);
   const fit = span * 1.05;
   controls.minDistance = fit * 0.55;
   controls.maxDistance = fit * 2.4;
   if (force || !state.orbited) {
     controls.target.copy(target);
-    camera.position.set(target.x + span * 0.22, target.y + span * 0.42, target.z + span * 1.18);
+    camera.position.set(target.x + span * 0.42, target.y + span * 0.62, target.z + span * 1.55);
     controls.update();
     return;
   }
@@ -290,7 +290,7 @@ function makeArrow(direction, material) {
 function addGear(pivot, role, profile, materials) {
   const gear = new THREE.Mesh(createBevelGeometry(role, profile), materials.gear);
 
-  const rootRadial = profile.outer * Math.sin(profile.rootCone);
+  const rootRadial = profile.outer * Math.sin(profile.rootCone) * 0.48;
   const heelAxial = profile.outer * Math.cos(profile.rootCone);
   const hubRadius = Math.max(0.16, rootRadial * 0.58);
   const hubLen = Math.max(0.16, profile.outer * 0.12);
@@ -310,7 +310,7 @@ function addGear(pivot, role, profile, materials) {
     shaft.rotation.z = Math.PI / 2;
     heel.rotation.z = Math.PI / 2;
     const heelX = -heelAxial;
-    heel.position.x = heelX - 0.03;
+    heel.position.x = heelX - 0.08;
     hub.position.x = heelX - hubLen * 0.5 - 0.02;
     shaft.position.x = heelX - hubLen - shaftLen * 0.5;
     const wheelR = Math.min(0.52, Math.max(0.3, profile.outer * Math.sin(profile.pitch) * 0.62));
@@ -326,7 +326,7 @@ function addGear(pivot, role, profile, materials) {
     }
   } else {
     const heelY = heelAxial;
-    heel.position.y = heelY + 0.03;
+    heel.position.y = heelY + 0.08;
     hub.position.y = heelY + hubLen * 0.5 + 0.02;
     shaft.position.y = heelY + hubLen + shaftLen * 0.5;
     const flangeR = Math.min(0.48, Math.max(0.26, rootRadial * 0.72));
@@ -360,6 +360,10 @@ function buildRig() {
 
   const driverMat = houseMetal(0xf0a05a, 0.28);
   const drivenMat = houseMetal(0xd7b184, 0.26);
+  driverMat.flatShading = true;
+  drivenMat.flatShading = true;
+  driverMat.side = THREE.DoubleSide;
+  drivenMat.side = THREE.DoubleSide;
   const hubMat = houseMetal(0xc9b59a, 0.2);
   const shaftMat = houseMetal(0xb9a48c, 0.18);
   const standMat = houseMetal(0x3a2a34, 0.14);

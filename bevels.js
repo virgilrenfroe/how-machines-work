@@ -94,19 +94,19 @@ export function gearProfile(solved, role) {
   const step = TAU / teeth;
   const backlash = 0.2;
   const pitchHalf = (step / 4) * (1 - backlash);
-  const addendum = Math.atan((0.9 * solved.module) / solved.cone);
-  const dedendum = Math.atan((1.15 * solved.module) / solved.cone);
+  const addendum = Math.atan((2.2 * solved.module) / solved.cone);
+  const dedendum = Math.atan((2.5 * solved.module) / solved.cone);
   return {
     teeth,
     pitch,
     step,
     pitchHalf,
-    tipHalf: pitchHalf * 0.64,
-    rootHalf: Math.min(step * 0.4, pitchHalf * 1.02),
+    tipHalf: pitchHalf * 0.6,
+    rootHalf: Math.min(step * 0.4, pitchHalf * 1.05),
     tipCone: pitch + addendum,
-    rootCone: Math.max(0.06, pitch - dedendum),
+    rootCone: Math.max(0.08, pitch - dedendum),
     outer: solved.cone,
-    inner: solved.cone * 0.72,
+    inner: solved.cone * 0.62,
     module: solved.module,
   };
 }

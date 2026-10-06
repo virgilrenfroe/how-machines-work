@@ -79,7 +79,7 @@ let visible = !document.hidden;
 const labelNames = ['cam', 'follower', 'mark'];
 const labels = Object.fromEntries(labelNames.map((name) => [name, document.getElementById(`label-${name}`)]));
 const anchors = {
-  cam: new THREE.Vector3(1.65, -0.15, 0.45),
+  cam: new THREE.Vector3(1.85, 0.35, 0.4),
   follower: new THREE.Vector3(),
   mark: new THREE.Vector3(),
 };
@@ -135,17 +135,17 @@ function frameCamera(force) {
   const rect = view.getBoundingClientRect();
   const aspect = rect.width > 2 && rect.height > 2 ? rect.width / rect.height : 1.35;
   const vFov = THREE.MathUtils.degToRad(camera.fov);
-  const halfH = 2.85;
-  const halfW = 2.55;
+  const halfH = 2.35;
+  const halfW = 1.85;
   const distH = halfH / Math.tan(vFov / 2);
   const hFov = 2 * Math.atan(Math.tan(vFov / 2) * Math.max(0.4, aspect));
   const distW = halfW / Math.tan(hFov / 2);
-  const dist = Math.max(distH, distW) * 1.02;
-  controls.minDistance = dist * 0.72;
-  controls.maxDistance = dist * 1.7;
-  controls.target.set(0.05, 0.42, 0);
+  const dist = Math.max(distH, distW) * 0.96;
+  controls.minDistance = dist * 0.7;
+  controls.maxDistance = dist * 1.85;
+  controls.target.set(0, 0.08, 0);
   if (force || !state.orbited) {
-    camera.position.set(1.85, 1.35, dist);
+    camera.position.set(0.72, 0.85, dist);
     controls.update();
   }
 }
@@ -242,9 +242,9 @@ function buildCam(presetId) {
   for (const point of points) {
     if (point.y > top.y) top = point;
   }
-  markLocal.set(top.x * 0.62, top.y * 0.62, PLATE / 2 + 0.05);
+  markLocal.set(top.x * 0.78, top.y * 0.78, PLATE / 2 + 0.06);
   const mark = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.075, 0.075, 0.08, 16),
+    new THREE.CylinderGeometry(0.11, 0.11, 0.07, 18),
     houseMetal(0xf4efe6, 0.24),
   );
   mark.material.emissive = new THREE.Color(0xf0a05a);
@@ -296,10 +296,10 @@ function buildRig() {
   rollerMesh.rotation.order = 'YXZ';
   rollerMesh.rotation.x = Math.PI / 2;
   const stem = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.055, 0.055, 2.35, 16),
+    new THREE.CylinderGeometry(0.07, 0.07, 1.9, 16),
     houseMetal(0xe7d7c8, 0.18),
   );
-  stem.position.y = 0.16 + 1.175;
+  stem.position.y = 0.16 + 0.95;
   const yoke = new THREE.Mesh(
     new THREE.BoxGeometry(0.16, 0.14, 0.46),
     houseMetal(0xc4844c, 0.24),
@@ -310,15 +310,15 @@ function buildRig() {
   const guideMat = houseMetal(0x8a5a32, 0.18);
   const cheekL = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.55, 0.36), guideMat);
   const cheekR = cheekL.clone();
-  cheekL.position.set(-0.22, 3.22, 0);
-  cheekR.position.set(0.22, 3.22, 0);
-  const cap = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.12, 0.36), guideMat);
-  cap.position.set(0, 3.52, 0);
+  cheekL.position.set(-0.24, 2.68, 0);
+  cheekR.position.set(0.24, 2.68, 0);
+  const cap = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.12, 0.36), guideMat);
+  cap.position.set(0, 2.96, 0);
   const arm = new THREE.Mesh(
     new THREE.BoxGeometry(0.22, 0.22, 0.78),
     houseMetal(0x3a241c, 0.12),
   );
-  arm.position.set(0, 3.22, -0.42);
+  arm.position.set(0, 2.68, -0.42);
 
   rig.add(floor, back, bearing, follower, cheekL, cheekR, cap, arm);
   scene.add(rig);
@@ -469,12 +469,16 @@ function projectLabels() {
       el.hidden = true;
       continue;
     }
-    el.hidden = false;
     const x = (anchor.x * 0.5 + 0.5) * rect.width;
     const y = (-anchor.y * 0.5 + 0.5) * rect.height;
+    if (y < 28 || y > rect.height - 12) {
+      el.hidden = true;
+      continue;
+    }
+    el.hidden = false;
     const half = Math.min(el.offsetWidth * 0.5, Math.max(8, rect.width * 0.5 - 4));
     el.style.left = `${Math.min(rect.width - half - 4, Math.max(half + 4, x))}px`;
-    el.style.top = `${Math.min(rect.height - 8, Math.max(22, y))}px`;
+    el.style.top = `${y}px`;
   }
 }
 

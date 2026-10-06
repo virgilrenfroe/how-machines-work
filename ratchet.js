@@ -29,7 +29,7 @@ const STEP_TIME = 0.56;
 const BLOCK_TIME = 0.7;
 const SEAT_TIME = 0.28;
 const FREE_RATE = 0.95;
-const BOW = -0.2;
+const BOW = 0.08;
 
 const errEl = document.getElementById('err');
 const statusEl = document.getElementById('status');
@@ -136,7 +136,7 @@ function bootRenderer() {
   controls.enablePan = false;
   controls.minPolarAngle = 0.45;
   controls.maxPolarAngle = Math.PI / 2.02;
-  controls.target.set(0.02, 0.12, 0);
+  controls.target.set(0.04, 0.28, 0);
   controls.addEventListener('start', () => {
     state.orbited = true;
   });
@@ -149,8 +149,8 @@ function bootRenderer() {
 function frameCamera(force) {
   const rect = view.getBoundingClientRect();
   const aspect = rect.width > 2 && rect.height > 2 ? rect.width / rect.height : 1.35;
-  const halfW = 1.85;
-  const halfH = 1.7;
+  const halfW = 1.75;
+  const halfH = 2.15;
   const vFov = THREE.MathUtils.degToRad(camera.fov);
   const distH = halfH / Math.tan(vFov / 2);
   const hFov = 2 * Math.atan(Math.tan(vFov / 2) * Math.max(0.35, aspect));
@@ -158,9 +158,9 @@ function frameCamera(force) {
   const dist = Math.max(distH, distW) * 1.02;
   controls.minDistance = dist * 0.72;
   controls.maxDistance = dist * 1.7;
-  controls.target.set(0.02, 0.12, 0);
+  controls.target.set(0.04, 0.28, 0);
   if (force || !state.orbited) {
-    camera.position.set(0.72, 0.95, dist);
+    camera.position.set(0.42, 0.85, dist);
     controls.update();
   }
 }
@@ -291,10 +291,11 @@ function buildRig() {
   const foot = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.12, 0.7), standMat);
   foot.position.set(0.15, -1.64, -0.42);
 
-  const post = new THREE.Mesh(new THREE.BoxGeometry(0.16, 3.22, 0.16), standMat);
-  post.position.set(1.08, -0.06, -0.58);
-  const bridge = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.12, 0.14), standMat);
-  bridge.position.set((1.08 + PAWL.pivotX) / 2, PAWL.pivotY, -0.28);
+  const post = new THREE.Mesh(new THREE.BoxGeometry(0.14, 3.62, 0.14), standMat);
+  post.position.set(0.92, 0.12, -0.62);
+  const bridgeSpan = Math.abs(0.92 - PAWL.pivotX);
+  const bridge = new THREE.Mesh(new THREE.BoxGeometry(Math.max(0.2, bridgeSpan), 0.1, 0.12), standMat);
+  bridge.position.set((0.92 + PAWL.pivotX) / 2, PAWL.pivotY, -0.32);
   const pin = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.86, 16), shaftMat);
   pin.rotation.x = Math.PI / 2;
   pin.position.set(PAWL.pivotX, PAWL.pivotY, -0.16);
@@ -318,7 +319,7 @@ function buildRig() {
 
   const pawl = new THREE.Group();
   pawl.position.set(PAWL.pivotX, PAWL.pivotY, 0.02);
-  const arm = new THREE.Mesh(new THREE.TubeGeometry(pawlCurve(), 28, 0.03, 8, false), pawlMat);
+  const arm = new THREE.Mesh(new THREE.TubeGeometry(pawlCurve(), 32, 0.026, 8, false), pawlMat);
   const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.1, 16), pawlMat);
   collar.rotation.x = Math.PI / 2;
   const tail = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.22, 0.05), pawlMat);

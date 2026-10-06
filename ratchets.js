@@ -13,11 +13,11 @@ export const RAMP_END = 0.88;
 export const TIP_RADIUS = 1.08;
 
 export const PAWL = {
-  pivotX: 0.78,
-  pivotY: 1.46,
-  length: 0.92,
-  clearance: 0.045,
-  liftClear: 0.5,
+  pivotX: 0.326,
+  pivotY: 1.851,
+  length: 1.015,
+  clearance: 0.04,
+  liftClear: 0.42,
 };
 
 export const PRESETS = {
@@ -38,10 +38,10 @@ export function stepRadians(teeth) {
   return (Math.PI * 2) / teeth;
 }
 
-/** Radial tooth depth. Coarse wheels cut deeper so each click still reads. */
+/** Radial tooth depth. Valleys stay deep enough for the pawl to sit in a notch. */
 export function toothDepth(teeth) {
   const step = stepRadians(teeth);
-  return Math.min(0.32, Math.max(0.11, step * 0.46));
+  return Math.min(0.36, Math.max(0.24, step * 0.5));
 }
 
 export function radii(teeth) {
@@ -211,18 +211,37 @@ function clearanceAt(alpha, driveAngle, teeth, pawl = PAWL) {
   return radius - surface;
 }
 
-/** Pawl angle whose tip rests just outside the tooth, swinging in from the lifted side. */
+/** World angle of the tooth notch (phase 0) for this drive angle. */
+export function notchAngle(driveAngle) {
+  return CONTACT - driveAngle;
+}
+
+/** Pawl angle that sets the tip in the notch, just clear of the tooth. */
 export function seatedAlpha(driveAngle, teeth, pawl = PAWL) {
-  const clear = liftedAlpha(teeth, pawl);
-  let lo = clear;
-  let hi = clear + 1.15;
-  if (clearanceAt(hi, driveAngle, teeth, pawl) > pawl.clearance) hi = clear + 1.8;
-  for (let i = 0; i < 20; i += 1) {
-    const mid = (lo + hi) / 2;
-    if (clearanceAt(mid, driveAngle, teeth, pawl) > pawl.clearance) lo = mid;
-    else hi = mid;
+  const { root } = radii(teeth);
+  const world = notchAngle(driveAngle);
+  const goalR = root + pawl.clearance;
+  const goal = {
+    x: Math.cos(world) * goalR,
+    y: Math.sin(world) * goalR,
+  };
+  let best = liftedAlpha(teeth, pawl);
+  let bestScore = Infinity;
+  const start = best - 0.4;
+  const end = best + 2.4;
+  for (let i = 0; i <= 96; i += 1) {
+    const alpha = start + ((end - start) * i) / 96;
+    const gap = clearanceAt(alpha, driveAngle, teeth, pawl);
+    if (gap < 0.02) continue;
+    const tip = pawlTip(alpha, pawl);
+    const miss = Math.hypot(tip.x - goal.x, tip.y - goal.y);
+    const score = miss + Math.max(0, gap - 0.12) * 0.35;
+    if (score < bestScore) {
+      bestScore = score;
+      best = alpha;
+    }
   }
-  return lo;
+  return best;
 }
 
 export function liftedAlpha(teeth, pawl = PAWL) {

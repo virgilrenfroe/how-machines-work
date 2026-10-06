@@ -24,8 +24,8 @@ import {
 const VOID = 0x140818;
 const SCALE = 0.26;
 const TAU = Math.PI * 2;
-const BELT_WIDTH = 0.16;
-const BELT_THICK = 0.04;
+const BELT_WIDTH = 0.3;
+const BELT_THICK = 0.075;
 
 const errEl = document.getElementById('err');
 const statusEl = document.getElementById('status');
@@ -156,18 +156,18 @@ function frameCamera(force) {
   const center = CENTER_IN * SCALE;
   const targetX = center * 0.48;
   const targetY = 0.02;
-  const halfW = center * 0.5 + Math.max(r1, r2) + 0.7;
-  const halfH = Math.max(r1, r2) + 1.25;
+  const halfW = center * 0.5 + Math.max(r1, r2) + 0.55;
+  const halfH = Math.max(r1, r2) + 0.95;
   const vFov = THREE.MathUtils.degToRad(camera.fov);
   const distH = halfH / Math.tan(vFov / 2);
   const hFov = 2 * Math.atan(Math.tan(vFov / 2) * Math.max(0.35, aspect));
   const distW = halfW / Math.tan(hFov / 2);
-  const dist = Math.max(distH, distW) * 1.05;
+  const dist = Math.max(distH, distW) * 0.98;
   controls.minDistance = dist * 0.7;
   controls.maxDistance = dist * 1.85;
   controls.target.set(targetX, targetY, 0);
   if (force || !state.orbited) {
-    camera.position.set(targetX + 0.05, targetY + 1.15, dist);
+    camera.position.set(targetX + dist * 0.36, targetY + dist * 0.2, dist * 0.68);
     controls.update();
   }
 }
@@ -393,13 +393,13 @@ function buildRig() {
     emissiveIntensity: 0.55,
   });
   const beltMat = new THREE.MeshPhysicalMaterial({
-    color: 0x24160f,
-    metalness: 0.04,
-    roughness: 0.68,
+    color: 0x6a3c24,
+    metalness: 0.06,
+    roughness: 0.62,
     clearcoat: 0.08,
-    clearcoatRoughness: 0.6,
+    clearcoatRoughness: 0.55,
     anisotropy: 0,
-    envMapIntensity: 0.08,
+    envMapIntensity: 0.12,
     side: THREE.DoubleSide,
   });
   const arrowMat = houseMetal(0xf0a05a, 0.3);

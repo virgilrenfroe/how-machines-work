@@ -15,9 +15,11 @@ A shop / engineering lab for linkages, gears, and simple machines — by Virgil 
 5. **Shop / engineering: wheel and axle.** [Exhibit 05](https://web-production-03e60.up.railway.app/wheel-axle.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/wheel-axle.html
 6. **Shop / engineering: inclined plane (length ÷ height).** [Exhibit 06](https://web-production-03e60.up.railway.app/inclined-plane.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/inclined-plane.html
 
+**12.** **Shop / engineering: bevel gears (turn the shaft 90°).** [Exhibit 12](https://web-production-03e60.up.railway.app/bevel.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/bevel.html
+
 Repo: https://github.com/virgilrenfroe/how-machines-work
 
-Six lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view. The exhibit index is a plate: 01 Gear, 02 Four-bar, 03 Levers, 04 Pulley, 05 Wheel & axle, 06 Inclined plane.
+Seven lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view. The exhibit index is a plate: 01 Gear, 02 Four-bar, 03 Levers, 04 Pulley, 05 Wheel & axle, 06 Inclined plane, 12 Bevel.
 
 ## Exhibit 01 — Simple gear train
 
@@ -46,7 +48,7 @@ Shop / engineering: levers (classes 1–3).
 - First, second, and third class stay on the bench together. Fulcrum, effort, and load are labeled.
 - Live mechanical advantage is effort arm / load arm. A 10 lb load shows the effort force as the arms move.
 - Class 2 stays above 1 : 1. Class 3 stays below 1 : 1. Class 1 can go either way.
-- Same night chrome. The exhibit index on every lesson reaches gear, four-bar, levers, pulley, wheel and axle, and the inclined plane.
+- Same night chrome. The exhibit index on every lesson reaches gear, four-bar, levers, pulley, wheel and axle, the inclined plane, and the bevel pair.
 
 ## Exhibit 04 — Pulley and block-and-tackle
 
@@ -76,22 +78,36 @@ Shop / engineering: inclined plane (length ÷ height).
 - Ideal mechanical advantage is the slope length divided by the height. The same number is 1 / sin θ.
 - The load stays 10 lb. Change the angle or the ramp length and the effort updates. Height stays in the readout because it is the other half of the ratio.
 - Ideal work matches: effort × slope length equals load × height. Friction is left out.
-- Same night chrome. Reach it from the exhibit index with gear, four-bar, levers, pulley, and wheel and axle.
+- Same night chrome. Reach it from the exhibit index with gear, four-bar, levers, pulley, wheel and axle, and the bevel pair.
 
 The ramp is one extruded right triangle plus a deck plate, drawn with the page's single WebGL context through a scissor and viewport (three.js 0.170.0). Satin `MeshPhysicalMaterial` uses metalness 0.32, roughness 0.45, clearcoat 0.22, anisotropy off. Bloom is off. On a narrow viewport the pixel ratio is capped at 1.5. The model is kinematic and ideal: no friction, and no normal-force arrow. The image copies every `*.html` and `*.js` into `/srv`, so a new lesson page is not left out of the Caddy root.
 
+## Exhibit 12 — Bevel gears
+
+Shop / engineering: bevel gears (turn the shaft 90°).
+
+- Two bevel gears mesh so the driven shaft sits at a right angle to the driver. The shafts are not parallel.
+- Ideal speed ratio is N driven / N driver, the same rule as the spur gear lesson.
+- Live readout: tooth counts, speed ratio, and an output direction note (90° turn).
+- Presets: miter (20·20, equal teeth, 1 : 1), reducer (16·40), and overdrive (36·18).
+- Students see the direction change at the corner and the ratio from the tooth counts. The model is kinematic: continuous meshing, no friction and no backlash simulation.
+- On the job, under the bench: a differential and driveline technician on a vehicle bevel or ring-and-pinion pair, a millwright on a right-angle gearbox for a conveyor or a mixer, and a power-tool technician on a drill or grinder bevel set. Tooth count sets the speed. Bevels are the pair when the shafts must meet at a corner.
+- Same night chrome. The exhibit index on every lesson includes the bevel pair with gear, four-bar, levers, pulley, wheel and axle, and the inclined plane.
+
+The pair is drawn with the page's single WebGL context through a scissor and viewport (three.js 0.170.0). Satin `MeshPhysicalMaterial` uses metalness 0.32, roughness 0.45, clearcoat 0.22, anisotropy off. Bloom is off. The pixel ratio is capped at 1.5. `COPY *.html *.js README.md .nojekyll /srv/` picks up `bevel.html`, `bevel.js`, and `bevels.js`.
+
 ## Design notes
 
-The lesson pages speak to students and teachers. They name the machine, the radii, the load, and the effort. They do not describe type, materials, or rendering.
+The lesson pages speak to students and teachers. They name the machine, the radii, the load, and the effort. The bevel page names the tooth counts, the speed ratio, and the 90° turn. They do not describe type, materials, or rendering.
 
-The chrome is a shop bench at night, in the same family as the gear, four-bar, lever, pulley, wheel and axle, and inclined plane pages. References for that family are shop and machine pages: Bearplus, tiltoootilt’s weight studies, nexstudio’s type and energy, and rubenmarcus. The lab does not use a SaaS dashboard, a dark-and-cream marketing shell, or penguin and city-shell layouts.
+The chrome is a shop bench at night, in the same family as the gear, four-bar, lever, pulley, wheel and axle, inclined plane, and bevel pages. References for that family are shop and machine pages: Bearplus, tiltoootilt’s weight studies, nexstudio’s type and energy, and rubenmarcus. The lab does not use a SaaS dashboard, a dark-and-cream marketing shell, or penguin and city-shell layouts.
 
 - Type: Bricolage Grotesque, Instrument Sans, Space Mono
 - Void `#140818`, brass accent `#f0a05a`, paper `#f4efe6`
 - Satin `MeshPhysicalMaterial`: metalness 0.32, roughness 0.45, clearcoat 0.22
 - Anisotropy off, bloom off
 - One WebGL context per page
-- Device pixel ratio on the wheel-and-axle page capped at 1.5
+- Device pixel ratio on the wheel-and-axle page and the bevel page capped at 1.5
 - three.js `0.170.0`
 
 ## Local

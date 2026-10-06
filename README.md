@@ -54,6 +54,7 @@ Shop / engineering: screw (helical incline — pitch vs effort).
 - Ideal mechanical advantage is mean circumference ÷ pitch. The clamp stays 10 lb. Effort is that load divided by the advantage, tangent to the thread.
 - Pitch slider and presets sit on the readout. Fine is 0.100 in, Vise is 0.200 in, Coarse is 0.400 in, on a 1.00 in mean diameter. Doubling the pitch halves the advantage and doubles the effort.
 - One turn advances the jaw by exactly one pitch. A finer pitch creeps; a coarser pitch travels farther and takes more tangential effort.
+- On the job, below the bench: a mechanic on a bottle jack, a millwright on screw jacks, and a bottle cap. Pitch is why the handle feels light or heavy, and why the load creeps or jumps.
 - Same night chrome. Reach it from the exhibit nav on gear, four-bar, and levers.
 
 The model leaves out friction and any wrench longer than the thread. A real vise handle is a second lever on top of this screw.

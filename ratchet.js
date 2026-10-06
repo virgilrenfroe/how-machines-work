@@ -73,6 +73,7 @@ const state = {
   from: 0,
   to: 0,
   blocking: false,
+  blockNoted: 0,
   orbited: false,
   blend: 0,
 };
@@ -411,6 +412,7 @@ function beginBlock() {
   state.mode = 'block';
   state.modeT = 0;
   state.blocking = true;
+  state.blockNoted = performance.now() + 2600;
   state.playing = false;
   setStatus('Reverse blocked. The pawl is holding.');
   syncTransport();
@@ -446,8 +448,11 @@ function syncTransport() {
   playBtn.textContent = state.paused || !state.playing ? 'Play' : 'Pause';
   playBtn.setAttribute('aria-pressed', state.paused || !state.playing ? 'false' : 'true');
   if (state.blocking) return;
-  if (state.paused || !state.playing) setStatus('Paused. Drive one step, or try reverse.');
-  else if (state.solved.lifted) {
+  if (state.paused || !state.playing) {
+    setStatus(state.solved.lifted
+      ? 'Paused. The pawl is lifted, so the wheel can turn either way.'
+      : 'The pawl is holding. Reverse is blocked.');
+  } else if (state.solved.lifted) {
     setStatus(state.freeSign < 0
       ? 'Pawl lifted. The wheel turns the other way.'
       : 'Pawl lifted. The wheel turns freely.');
@@ -457,8 +462,9 @@ function syncTransport() {
 function syncHud() {
   const solved = state.solved;
   document.getElementById('step-readout').innerHTML = `<em>${formatStep(solved.stepDeg)}</em>`;
-  const dir = state.blocking ? 'Reverse blocked' : directionLabel(solved);
-  const dirNote = solved.lifted ? 'freewheel' : (state.blocking ? 'pawl holding' : 'drive allowed');
+  const showBlock = !solved.lifted && (state.blocking || performance.now() < state.blockNoted);
+  const dir = showBlock ? 'Reverse blocked' : directionLabel(solved);
+  const dirNote = solved.lifted ? 'freewheel' : (showBlock ? 'pawl holding' : 'drive allowed');
   document.getElementById('dir-line').innerHTML = `<b>${dir}</b> <span>${dirNote}</span>`;
   document.getElementById('pawl-line').textContent = `${solved.teeth} steps per turn · pawl ${pawlLabel(solved).toLowerCase()}`;
   document.getElementById('meter-teeth').innerHTML = `<b>${formatTeeth(solved.teeth)}</b>`;
@@ -658,6 +664,7 @@ function bindUi() {
     state.playing = false;
     state.freeSign = 1;
     state.blocking = false;
+    state.blockNoted = 0;
     if (state.mode !== 'step') {
       state.mode = 'step';
       state.modeT = 0;
@@ -699,6 +706,7 @@ function bindUi() {
       if (state.solved.lifted) beginFree(state.freeSign || 1);
     }
     state.blocking = false;
+    if (state.playing) state.blockNoted = 0;
     syncTransport();
   });
   document.getElementById('reset-turns').addEventListener('click', () => {

@@ -15,9 +15,11 @@ A shop / engineering lab for linkages, gears, and simple machines — by Virgil 
 5. **Shop / engineering: wheel and axle.** [Exhibit 05](https://web-production-03e60.up.railway.app/wheel-axle.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/wheel-axle.html
 6. **Shop / engineering: inclined plane (length ÷ height).** [Exhibit 06](https://web-production-03e60.up.railway.app/inclined-plane.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/inclined-plane.html
 
+**10.** **Shop / engineering: belt drive (speed ratio from pulley diameters).** [Exhibit 10](https://web-production-03e60.up.railway.app/belt.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/belt.html
+
 Repo: https://github.com/virgilrenfroe/how-machines-work
 
-Six lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view. The exhibit index is a plate: 01 Gear, 02 Four-bar, 03 Levers, 04 Pulley, 05 Wheel & axle, 06 Inclined plane.
+Seven lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view. The exhibit index is a plate: 01 Gear, 02 Four-bar, 03 Levers, 04 Pulley, 05 Wheel & axle, 06 Inclined plane, 10 Belt.
 
 ## Exhibit 01 — Simple gear train
 
@@ -46,7 +48,7 @@ Shop / engineering: levers (classes 1–3).
 - First, second, and third class stay on the bench together. Fulcrum, effort, and load are labeled.
 - Live mechanical advantage is effort arm / load arm. A 10 lb load shows the effort force as the arms move.
 - Class 2 stays above 1 : 1. Class 3 stays below 1 : 1. Class 1 can go either way.
-- Same night chrome. The exhibit index on every lesson reaches gear, four-bar, levers, pulley, wheel and axle, and the inclined plane.
+- Same night chrome. The exhibit index on every lesson reaches gear, four-bar, levers, pulley, wheel and axle, the inclined plane, and the belt.
 
 ## Exhibit 04 — Pulley and block-and-tackle
 
@@ -76,22 +78,35 @@ Shop / engineering: inclined plane (length ÷ height).
 - Ideal mechanical advantage is the slope length divided by the height. The same number is 1 / sin θ.
 - The load stays 10 lb. Change the angle or the ramp length and the effort updates. Height stays in the readout because it is the other half of the ratio.
 - Ideal work matches: effort × slope length equals load × height. Friction is left out.
-- Same night chrome. Reach it from the exhibit index with gear, four-bar, levers, pulley, and wheel and axle.
+- Same night chrome. Reach it from the exhibit index with gear, four-bar, levers, pulley, wheel and axle, and the belt.
 
 The ramp is one extruded right triangle plus a deck plate, drawn with the page's single WebGL context through a scissor and viewport (three.js 0.170.0). Satin `MeshPhysicalMaterial` uses metalness 0.32, roughness 0.45, clearcoat 0.22, anisotropy off. Bloom is off. On a narrow viewport the pixel ratio is capped at 1.5. The model is kinematic and ideal: no friction, and no normal-force arrow. The image copies every `*.html` and `*.js` into `/srv`, so a new lesson page is not left out of the Caddy root.
 
+## Exhibit 10 — Belt drive
+
+Shop / engineering: belt drive (speed ratio from pulley diameters).
+
+- Two pulleys linked by a belt. Ideal speed ratio is driven diameter / driver diameter. Counting turns gives the same number: driver turns for one turn of the driven pulley.
+- Live diameters, speed ratio, driven rpm when the driver is set to a shop rpm, and belt speed in ft/min. Both pulleys share one belt speed.
+- Presets: reducer (4 in driving 8 in, 2.00 : 1), 1:1 (6 in and 6 in), overdrive (8 in driving 4 in, 0.50 : 1). At 1750 rpm those read 875, 1750, and 3500 rpm.
+- An open belt keeps the same rotation sense. A crossed belt reverses the driven pulley and leaves the speed ratio alone.
+- On the job, under the bench: an HVAC technician matching a blower belt and pulley sizes, a farm mechanic reading a PTO or combine belt drive, and a millwright aligning sheaves on a conveyor or a fan. The diameter ratio sets the speed. A belt or pulley of the wrong size overheats or slips.
+- Same night chrome. The exhibit index on every lesson includes the belt with gear, four-bar, levers, pulley, wheel and axle, and the inclined plane.
+
+The two sheaves and the belt are drawn with the page's single WebGL context through a scissor and viewport (three.js 0.170.0). Satin `MeshPhysicalMaterial` uses metalness 0.32, roughness 0.45, clearcoat 0.22, anisotropy off. Bloom is off. The pixel ratio is capped at 1.5. The model is kinematic: no slip, no stretch, and no friction losses. `COPY *.html *.js README.md .nojekyll /srv/` picks up `belt.html`, `belt.js`, and `belts.js`.
+
 ## Design notes
 
-The lesson pages speak to students and teachers. They name the machine, the radii, the load, and the effort. They do not describe type, materials, or rendering.
+The lesson pages speak to students and teachers. They name the machine, the radii, the load, and the effort. The belt page names the diameters, the speed ratio, and the rpm. They do not describe type, materials, or rendering. On the job, under the bench, is classroom copy in that same voice.
 
-The chrome is a shop bench at night, in the same family as the gear, four-bar, lever, pulley, wheel and axle, and inclined plane pages. References for that family are shop and machine pages: Bearplus, tiltoootilt’s weight studies, nexstudio’s type and energy, and rubenmarcus. The lab does not use a SaaS dashboard, a dark-and-cream marketing shell, or penguin and city-shell layouts.
+The chrome is a shop bench at night, in the same family as the gear, four-bar, lever, pulley, wheel and axle, inclined plane, and belt pages. References for that family are shop and machine pages: Bearplus, tiltoootilt’s weight studies, nexstudio’s type and energy, and rubenmarcus. The lab does not use a SaaS dashboard, a dark-and-cream marketing shell, or penguin and city-shell layouts.
 
 - Type: Bricolage Grotesque, Instrument Sans, Space Mono
 - Void `#140818`, brass accent `#f0a05a`, paper `#f4efe6`
 - Satin `MeshPhysicalMaterial`: metalness 0.32, roughness 0.45, clearcoat 0.22
 - Anisotropy off, bloom off
 - One WebGL context per page
-- Device pixel ratio on the wheel-and-axle page capped at 1.5
+- Device pixel ratio on the wheel-and-axle page and the belt page capped at 1.5
 - three.js `0.170.0`
 
 ## Local

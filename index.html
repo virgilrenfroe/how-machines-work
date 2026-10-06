@@ -106,34 +106,59 @@
     .exhibit-nav {
       display: flex;
       flex-wrap: wrap;
-      align-items: baseline;
-      gap: 0.45rem 1.35rem;
-      margin: 0.7rem var(--pad) 0;
-      padding: 0.55rem 0 0.5rem;
+      align-items: center;
+      gap: 0.65rem 1.7rem;
+      margin: 0.85rem var(--pad) 0;
+      padding: 0.7rem 0 0.62rem;
       border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      border-bottom: 2px solid var(--accent);
       font-family: var(--mono);
       font-size: 11px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+    }
+    .datum {
+      width: 13px;
+      height: 13px;
+      flex: none;
+      position: relative;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+    }
+    .datum::before,
+    .datum::after {
+      content: "";
+      position: absolute;
+      background: var(--accent);
+    }
+    .datum::before {
+      left: 50%;
+      top: -3px;
+      bottom: -3px;
+      width: 1px;
+      transform: translateX(-50%);
+    }
+    .datum::after {
+      top: 50%;
+      left: -3px;
+      right: -3px;
+      height: 1px;
+      transform: translateY(-50%);
     }
     .exhibit-nav a {
       color: var(--dim);
       text-decoration: none;
-      border-bottom: 1px solid transparent;
-      padding-bottom: 0.1rem;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.42rem;
     }
-    .exhibit-nav a[aria-current="page"] {
-      margin-right: auto;
-      padding-bottom: 0;
-      border-bottom-color: transparent;
-      color: var(--paper);
-      font-family: var(--display);
-      font-weight: 800;
-      font-size: clamp(1.45rem, 2.8vw, 2.35rem);
-      letter-spacing: -0.05em;
-      line-height: 0.85;
+    .exhibit-nav a b {
+      font-weight: 700;
+      color: var(--dim);
+      letter-spacing: 0.06em;
     }
+    .exhibit-nav a[aria-current="page"] { color: var(--paper); }
+    .exhibit-nav a[aria-current="page"] b { color: var(--accent); }
 
     .hub-head {
       padding: clamp(0.75rem, 1.6vh, 1.35rem) var(--pad) 0;
@@ -560,7 +585,7 @@
       .instrument { padding-left: var(--pad); min-height: auto; }
       .lesson { padding-top: 0.4rem; }
       .watermark { font-size: 6.2rem; right: 0.15rem; }
-      .exhibit-nav a[aria-current="page"] { font-size: 1.35rem; margin-right: 0.5rem; }
+      .exhibit-nav { gap: 0.45rem 1rem; }
       .ctrl { grid-template-columns: 6.2rem 1fr 2.8rem; }
       .view-note { display: none; }
     }
@@ -597,10 +622,12 @@
       <p class="nav-use">Shop / engineering: <em>gear ratio &amp; meshing</em></p>
     </header>
     <nav class="exhibit-nav" aria-label="Exhibits">
-      <a href="./" aria-current="page">01 Gear</a>
-      <a href="./four-bar.html">02 Four-bar</a>
-      <a href="./lever.html">03 Levers</a>
-      <a href="./wheel-axle.html">05 Wheel &amp; axle</a>
+      <span class="datum" aria-hidden="true"></span>
+      <a href="./" aria-current="page"><b>01</b> Gear</a>
+      <a href="./four-bar.html"><b>02</b> Four-bar</a>
+      <a href="./lever.html"><b>03</b> Levers</a>
+      <a href="./pulley.html"><b>04</b> Pulley</a>
+      <a href="./wheel-axle.html"><b>05</b> Wheel &amp; axle</a>
     </nav>
 
     <section class="hub" aria-labelledby="hub-title">

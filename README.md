@@ -19,6 +19,8 @@ Repo: https://github.com/virgilrenfroe/how-machines-work
 
 Six lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view. The exhibit index is a plate: 01 Gear, 02 Four-bar, 03 Levers, 04 Pulley, 05 Wheel & axle, 06 Inclined plane.
 
+Each lesson includes a short real-world section on the shop floor, under the bench. It names the jobs that use the machine and says why the idea matters in that work.
+
 ## Exhibit 01 — Simple gear train
 
 Shop / engineering: gear ratio & meshing.
@@ -82,7 +84,7 @@ The ramp is one extruded right triangle plus a deck plate, drawn with the page's
 
 ## Design notes
 
-The lesson pages speak to students and teachers. They name the machine, the radii, the load, and the effort. They do not describe type, materials, or rendering.
+The lesson pages speak to students and teachers. They name the machine, the radii, the load, and the effort. They do not describe type, materials, or rendering. The real-world section is classroom copy in that same voice. It stays on the shop floor so the model keeps the stage.
 
 The chrome is a shop bench at night, in the same family as the gear, four-bar, lever, pulley, wheel and axle, and inclined plane pages. References for that family are shop and machine pages: Bearplus, tiltoootilt’s weight studies, nexstudio’s type and energy, and rubenmarcus. The lab does not use a SaaS dashboard, a dark-and-cream marketing shell, or penguin and city-shell layouts.
 

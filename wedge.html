@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#140818" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23140818'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23f0a05a' stroke-width='2'/%3E%3Cpath d='M16 6.5 l1.2 2.2 -1.2.6 -1.2-.6z M16 25.5 l-1.2-2.2 1.2-.6 1.2.6z M6.5 16 l2.2-1.2.6 1.2-.6 1.2z M25.5 16 l-2.2 1.2-.6-1.2.6-1.2z' fill='%23f0a05a'/%3E%3C/svg%3E" />
-  <meta name="description" content="Shop / engineering: wheel and axle. A teaching exhibit of ideal mechanical advantage, R wheel / R axle, from How Machines Work by Virgil Renfroe." />
-  <title>Shop / engineering: wheel and axle · How Machines Work</title>
+  <meta name="description" content="Shop / engineering: wedge (splitting force — length ÷ thickness). A teaching exhibit of ideal mechanical advantage — slope length divided by thickness — from How Machines Work by Virgil Renfroe." />
+  <title>Shop / engineering: wedge (splitting force — length ÷ thickness) · How Machines Work</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -117,30 +117,14 @@
       display: block; margin-top: 0.55rem; margin-left: auto;
       font-size: 0.98rem; font-weight: 500; color: var(--cream);
     }
-    .mode-rows { display: grid; margin-top: 0.35rem; border-top: 1px solid var(--line); }
-    .mode-rows button {
-      display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) auto;
-      gap: 0.45rem 0.65rem; align-items: baseline;
-      width: 100%; padding: 0.55rem 0; border: 0; border-bottom: 1px solid var(--line);
-      background: transparent; color: var(--paper); cursor: pointer; text-align: left;
-      font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-    }
-    .mode-rows button span { color: var(--dim); }
-    .mode-rows button b { font-weight: 400; letter-spacing: 0.08em; }
-    .mode-rows button small {
-      display: block; margin-top: 0.18rem;
-      color: var(--dim); font-weight: 400; letter-spacing: 0.08em;
-    }
-    .mode-rows button em { font-style: normal; color: var(--accent); }
-    .mode-rows button[aria-pressed="true"] { color: var(--accent); }
-    .mode-rows button[aria-pressed="true"] span,
-    .mode-rows button[aria-pressed="true"] small { color: var(--accent); }
     .hub-stage {
       display: grid;
-      grid-template-columns: minmax(0, 1.55fr) minmax(240px, 0.7fr);
-      min-height: clamp(460px, 54vh, 640px); position: relative;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.78fr);
+      height: min(84vh, 860px);
+      min-height: 560px;
+      position: relative;
     }
-    .view-wrap { position: relative; min-height: clamp(460px, 54vh, 640px); overflow: hidden; }
+    .view-wrap { position: relative; min-height: 0; height: 100%; overflow: hidden; }
     .view { position: absolute; inset: 0; touch-action: none; cursor: grab; }
     .view:active { cursor: grabbing; }
     .view-fallback {
@@ -151,7 +135,7 @@
     .view.is-ready .view-fallback { display: none; }
     .hud-use {
       position: absolute; top: 1.1rem; left: var(--pad); z-index: 3; margin: 0;
-      max-width: min(42ch, calc(100% - 2rem));
+      max-width: min(46ch, calc(100% - 2rem));
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--paper); pointer-events: none;
       text-shadow: 0 0 18px #140818, 0 1px 0 #140818;
@@ -165,6 +149,7 @@
       text-shadow: 0 0 16px #140818, 0 1px 0 #140818;
     }
     .gear-label b { display: block; color: var(--accent); font-weight: 700; letter-spacing: 0.16em; }
+    .gear-label.below { transform: translate(-50%, 8%); }
     .view-note {
       position: absolute; left: var(--pad); bottom: 1rem; z-index: 3; margin: 0;
       max-width: 42ch;
@@ -172,10 +157,14 @@
       color: var(--dim); pointer-events: none; text-shadow: 0 0 12px #140818;
     }
     .instrument {
-      position: relative; overflow: hidden;
-      display: flex; flex-direction: column; justify-content: flex-end; gap: 0.65rem;
-      padding: 1.2rem var(--pad) 1.3rem 1.4rem; background: transparent;
+      position: relative; overflow-x: hidden; overflow-y: auto;
+      display: flex; flex-direction: column; justify-content: flex-start; gap: 0.55rem;
+      min-height: 0;
+      padding: 1rem var(--pad) 1.15rem 1.2rem; background: transparent;
     }
+    .instrument .chips { margin-bottom: 0.15rem; }
+    .instrument .ctrls { margin-bottom: 0.15rem; }
+    .instrument .ctrl { grid-template-columns: 7.2rem minmax(0, 1fr) 4.8rem; }
     .watermark {
       position: absolute; right: -0.12em; bottom: -0.18em; margin: 0; z-index: 0;
       font-family: var(--display); font-weight: 800;
@@ -192,11 +181,20 @@
       font-size: clamp(3.6rem, 5.8vw, 6rem); letter-spacing: -0.07em; line-height: 0.78;
     }
     .ratio-readout em { font-style: normal; color: var(--accent); }
+    .force-line {
+      margin: 0; font-family: var(--display); font-weight: 700;
+      font-size: clamp(1.45rem, 2.4vw, 2rem); letter-spacing: -0.04em; line-height: 1.05;
+    }
+    .force-line b { color: var(--accent); font-weight: 800; }
+    .force-line span, .rocker-line span {
+      color: var(--dim); font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400;
+    }
     .rocker-line {
       margin: 0; font-family: var(--display); font-weight: 700;
-      font-size: clamp(1.35rem, 2.2vw, 1.85rem); letter-spacing: -0.04em;
+      font-size: clamp(1.15rem, 1.8vw, 1.4rem); letter-spacing: -0.03em; line-height: 1.25;
+      color: var(--cream);
     }
-    .rocker-line span { color: var(--dim); font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; }
     .meters {
       display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem 1.2rem;
       margin-top: 0.35rem; padding-top: 0.85rem; border-top: 1px solid var(--line);
@@ -244,7 +242,7 @@
     }
     .ctrls { display: grid; gap: 0.75rem; margin: 0 0 1.15rem; }
     .ctrl {
-      display: grid; grid-template-columns: 8.4rem 1fr 3.4rem; gap: 0.65rem; align-items: center;
+      display: grid; grid-template-columns: 8.6rem 1fr 5.1rem; gap: 0.65rem; align-items: center;
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim);
     }
     .ctrl input[type="range"] { width: 100%; accent-color: var(--accent); }
@@ -258,7 +256,7 @@
     .try p { margin: 0; color: var(--paper); }
     .shop h2 { font-size: clamp(4rem, 8.6vw, 8.4rem); max-width: 10ch; margin-bottom: clamp(1.2rem, 3vh, 2rem); }
     .shop h2 span { display: block; padding-left: 12vw; }
-    .shop-lede { margin: -0.2rem 0 1.5rem 12vw; max-width: 38ch; color: var(--mute); font-size: clamp(1.05rem, 1.45vw, 1.28rem); }
+    .shop-lede { margin: -0.2rem 0 1.5rem 12vw; max-width: 42ch; color: var(--mute); font-size: clamp(1.05rem, 1.45vw, 1.28rem); }
     .shop-row {
       display: grid; grid-template-columns: 7.5rem minmax(0, 0.8fr) minmax(0, 1.2fr);
       gap: 1rem 2rem; align-items: start; padding: 1.15rem 0; border-top: 1px solid var(--line);
@@ -273,6 +271,7 @@
     .shop-row ul, .shop-row ol { margin: 0; padding-left: 1.15rem; }
     .shop-row li { margin: 0 0 0.4rem; }
     .shop-row p { margin: 0; max-width: 52ch; }
+    .shop-row div p + p { margin-top: 0.85rem; }
     footer {
       display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
       margin: 0 var(--pad); padding: 1rem 0 1.6rem; border-top: 1px solid var(--line);
@@ -291,13 +290,13 @@
       .shop-lede { margin-left: 0; }
       .hub-lead, .hub-stage, .district-split, .shop-row { grid-template-columns: 1fr; }
       .formula { justify-self: start; text-align: left; }
-      .formula small { margin-left: 0; }
-      .hub-stage, .view-wrap { min-height: min(72vh, 620px); }
-      .instrument { padding-left: var(--pad); }
+      .hub-stage { height: auto; min-height: 0; }
+      .view-wrap { height: auto; min-height: min(68vh, 560px); }
+      .instrument { overflow: visible; padding-left: var(--pad); }
       .lesson { padding-top: 0.4rem; }
       .watermark { font-size: 6.2rem; right: 0.15rem; }
       .view-note { display: none; }
-      .ctrl { grid-template-columns: 6.4rem 1fr 2.8rem; }
+      .ctrl { grid-template-columns: 6.6rem 1fr 4.6rem; }
     }
   </style>
   <script type="importmap">
@@ -326,10 +325,10 @@
 <body>
   <canvas id="c" aria-hidden="true"></canvas>
   <div class="content">
-    <a class="skip" href="#wheel-axle">Skip to the wheel and axle</a>
+    <a class="skip" href="#wedge">Skip to the wedge</a>
     <header class="nav">
       <a href="./">How Machines Work</a>
-      <p class="nav-use">Shop / engineering: <em>wheel and axle</em></p>
+      <p class="nav-use">Shop / engineering: <em>wedge (splitting force — length ÷ thickness)</em></p>
     </header>
     <nav class="exhibit-nav" aria-label="Exhibits">
       <span class="datum" aria-hidden="true"></span>
@@ -337,66 +336,78 @@
       <a href="./four-bar.html"><b>02</b> Four-bar</a>
       <a href="./lever.html"><b>03</b> Levers</a>
       <a href="./pulley.html"><b>04</b> Pulley</a>
-      <a href="./wheel-axle.html" aria-current="page"><b>05</b> Wheel &amp; axle</a>
+      <a href="./wheel-axle.html"><b>05</b> Wheel &amp; axle</a>
       <a href="./inclined-plane.html"><b>06</b> Inclined plane</a>
-      <a href="./wedge.html" title="Shop / engineering: wedge (splitting force — length ÷ thickness)"><b>08</b> Wedge</a>
+      <a href="./wedge.html" aria-current="page"><b>08</b> Wedge</a>
     </nav>
 
     <section class="hub" aria-labelledby="hub-title">
       <div class="hub-head">
-        <p class="kicker">Shop / engineering: wheel and axle</p>
-        <h1 id="hub-title"><span>Wheel</span><span>&amp; axle.</span></h1>
+        <p class="kicker">Shop / engineering: wedge (splitting force — length ÷ thickness)</p>
+        <h1 id="hub-title"><span>Wedge</span><span>split force.</span></h1>
       </div>
       <div class="hub-lead">
-        <p class="lede">One rigid piece. The handwheel and the shaft turn through the same angle. The radii are different, so the force is different.</p>
+        <p class="lede">A wedge for shop and engineering class. The split stays 10 lb. Change the slope length or the thickness and read the effort.</p>
         <p class="formula">
-          <b>R wheel<span>R axle</span></b>
-          <small>Ideal mechanical advantage when you drive the wheel. The load stays 10 lb. Drive the axle and the ratio flips.</small>
+          <b>Slope length<span>Thickness</span></b>
+          <small>Ideal mechanical advantage. The same idea as length ÷ height on the ramp. A longer, thinner wedge needs less push.</small>
         </p>
       </div>
 
-      <div class="hub-stage" id="wheel-axle">
+      <div class="hub-stage" id="wedge">
         <div class="view-wrap">
-          <div class="view" id="view" data-scene="wheel-axle">
-            <p class="view-fallback">Setting the wheel and axle on the bench…</p>
+          <div class="view" id="view" data-scene="wedge">
+            <p class="view-fallback">Setting the wedge on the bench…</p>
           </div>
-          <p class="hud-use"><span>Lesson</span> Shop / engineering: wheel and axle</p>
-          <p class="gear-label" id="label-wheel-wheel" hidden><b>Wheel</b><span>R 6.0</span></p>
-          <p class="gear-label" id="label-wheel-axle" hidden><b>Axle</b><span>R 1.5</span></p>
-          <p class="gear-label" id="label-wheel-effort" hidden><b>Effort</b><span>On the rim</span></p>
-          <p class="gear-label" id="label-wheel-load" hidden><b>Load</b><span>10 lb</span></p>
-          <p class="gear-label" id="label-axle-wheel" hidden><b>Wheel</b><span>R 6.0</span></p>
-          <p class="gear-label" id="label-axle-axle" hidden><b>Axle</b><span>R 1.5</span></p>
-          <p class="gear-label" id="label-axle-effort" hidden><b>Effort</b><span>On the axle</span></p>
-          <p class="gear-label" id="label-axle-load" hidden><b>Load</b><span>10 lb</span></p>
-          <p class="view-note">Left: turn the wheel, load on the axle. Right: turn the axle, load on the rim. Drag to look.</p>
+          <p class="hud-use"><span>Lesson</span> Shop / engineering: wedge (splitting force — length ÷ thickness)</p>
+          <p class="gear-label" id="label-load" hidden><b>Load</b><span>10 lb</span></p>
+          <p class="gear-label" id="label-effort" hidden><b>Effort</b><span>—</span></p>
+          <p class="gear-label" id="label-length" hidden><b>Slope</b><span>—</span></p>
+          <p class="gear-label below" id="label-thickness" hidden><b>Thick</b><span>—</span></p>
+          <p class="view-note">Drag to look around the wedge. The arrow on the thick end is the effort. The arrow on the stock is the 10 lb split.</p>
         </div>
-        <aside class="instrument" aria-label="Live wheel and axle readout">
-          <p class="watermark" aria-hidden="true">05</p>
-          <h2>Shop / engineering: wheel and axle</h2>
+        <aside class="instrument" aria-label="Live wedge readout">
+          <p class="watermark" aria-hidden="true">08</p>
+          <h2>Shop / engineering: wedge (splitting force — length ÷ thickness)</h2>
           <p class="ratio-readout" id="ma-readout"><em>—</em> : 1</p>
-          <p class="rocker-line"><span id="ma-sub">R wheel / R axle</span></p>
+          <p class="force-line" id="force-line"><b>—</b> <span>effort</span> · 10 lb <span>split</span></p>
+          <p class="rocker-line"><span id="ma-sub">slope length / thickness</span></p>
           <div class="meters">
             <div class="meter">
-              <p class="name">R wheel</p>
-              <p class="val" id="meter-wheel">—</p>
+              <p class="name">Slope length</p>
+              <p class="val" id="meter-length">—</p>
             </div>
             <div class="meter">
-              <p class="name">R axle</p>
-              <p class="val" id="meter-axle">—</p>
+              <p class="name">Thickness</p>
+              <p class="val" id="meter-thickness">—</p>
             </div>
             <div class="meter">
-              <p class="name">Load</p>
-              <p class="val" id="meter-load">—</p>
+              <p class="name">Included angle</p>
+              <p class="val" id="meter-angle">—</p>
             </div>
             <div class="meter">
-              <p class="name">Effort</p>
+              <p class="name">Effort for 10 lb</p>
               <p class="val" id="meter-effort">—</p>
             </div>
           </div>
-          <div class="mode-rows">
-            <button type="button" data-mode="wheel" aria-pressed="true"><span>01</span><b>Drive the wheel<small>—</small></b><em>—</em></button>
-            <button type="button" data-mode="axle" aria-pressed="false"><span>02</span><b>Drive the axle<small>—</small></b><em>—</em></button>
+          <div class="chips" role="group" aria-label="Presets">
+            <button class="chip" type="button" data-preset="chisel" aria-pressed="true">Chisel</button>
+            <button class="chip" type="button" data-preset="axe" aria-pressed="false">Axe</button>
+            <button class="chip" type="button" data-preset="doorstop" aria-pressed="false">Doorstop</button>
+            <button class="chip" type="button" data-preset="split" aria-pressed="false">Split</button>
+          </div>
+          <div class="ctrls">
+            <label class="ctrl">Length
+              <input id="length" type="range" min="1.5" max="8" step="0.01" value="4" />
+              <output id="length-out" for="length">4.00 in</output>
+            </label>
+            <label class="ctrl">Thickness
+              <input id="thickness" type="range" min="0.25" max="2.5" step="0.01" value="0.5" />
+              <output id="thickness-out" for="thickness">0.50 in</output>
+            </label>
+          </div>
+          <div class="row-actions">
+            <button class="toggle" type="button" id="play-toggle" aria-pressed="true">Pause</button>
           </div>
           <p class="live-line" id="live-line"></p>
           <p class="status" id="status" role="status"></p>
@@ -404,88 +415,74 @@
       </div>
     </section>
 
-    <section class="district" id="bench" aria-label="Wheel and axle setup and lesson">
+    <section class="district" id="bench" aria-label="Wedge setup and lesson">
       <div class="district-top">
-        <span><b>02</b> Bench</span>
-        <span>Shop / engineering: wheel and axle</span>
+        <span><b>08</b> Bench</span>
+        <span>Shop / engineering: wedge (splitting force — length ÷ thickness)</span>
       </div>
       <div class="district-split">
         <div class="controls">
-          <h2>Change the radii.</h2>
-          <p class="hint">The load stays 10 lb. Ideal mechanical advantage is the wheel radius divided by the axle radius. The axle stays smaller than the wheel.</p>
-          <div class="chips" role="group" aria-label="Presets">
-            <button class="chip" type="button" data-preset="winch" aria-pressed="true">Winch 6 · 1.5</button>
-            <button class="chip" type="button" data-preset="knob" aria-pressed="false">Knob 2.4 · 0.6</button>
-            <button class="chip" type="button" data-preset="steering" aria-pressed="false">Steering 8 · 0.8</button>
-          </div>
-          <div class="ctrls">
-            <label class="ctrl">R wheel
-              <input id="wheel" type="range" min="20" max="80" step="1" value="60" />
-              <output id="wheel-out" for="wheel">6.0</output>
-            </label>
-            <label class="ctrl">R axle
-              <input id="axle" type="range" min="5" max="75" step="1" value="15" />
-              <output id="axle-out" for="axle">1.5</output>
-            </label>
-          </div>
-          <div class="row-actions">
-            <button class="toggle" type="button" id="play-toggle" aria-pressed="true">Pause</button>
-          </div>
+          <h2>Change the wedge.</h2>
+          <p class="hint">The split stays 10 lb. Move the slope length or the thickness beside the wedge. Ideal mechanical advantage is slope length divided by thickness.</p>
         </div>
         <div class="lesson">
-          <p class="kicker">What a wheel and axle is for</p>
-          <h2>Force or reach</h2>
-          <p id="lesson-order">Drive the wheel. Your effort is on the rim. The load is on the axle. Winch, screwdriver, steering wheel, doorknob.</p>
-          <p id="lesson-trade">The wheel is the long radius, so you use less force. Your hand moves farther than the load. A 10 lb load needs less than 10 lb.</p>
-          <p>The wheel and the axle are one piece. They turn together. A longer rim means a bigger ideal advantage, and a longer path for your hand. This model leaves out friction.</p>
+          <p class="kicker">What a wedge is for</p>
+          <h2>Less force, longer drive</h2>
+          <p id="lesson-ideal">A wedge is two inclined planes set back to back. One face can also sit against a stop. Ideal mechanical advantage is the slope length along the face divided by the thickness. Thickness is the width of the thick end.</p>
+          <p id="lesson-trade">The wedge is long and thin, so the push is a small share of the split. You drive it a long way to open a narrow gap.</p>
+          <p id="lesson-work">You push 1.25 lb along 4.00 in. The split opens 0.50 in. Ideal work matches either way: 5.0 in·lb.</p>
+          <p>The load stays 10 lb. This model leaves out friction. On a real wedge, friction makes the push harder.</p>
           <div class="try">
             <strong>Try this</strong>
-            <p>Choose Winch. Cover the readout. 6 ÷ 1.5 = 4, so a 10 lb load on the axle needs 2.5 lb at the wheel. Uncover and check. Then read the other effort. The same 10 lb on the rim needs 40 lb at the axle.</p>
+            <p>Select Chisel. Cover the readout. Slope length is 4.00 in and thickness is 0.50 in. Compute 4 ÷ 0.5, then divide 10 lb by that advantage. Uncover 8.00 : 1 and 1.25 lb. Select Axe. Length 2.00 in and thickness 1.00 in give 2.00 : 1 and 5.00 lb. The short thick head takes four times the push of the long thin chisel.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="district shop" aria-labelledby="teach-title">
+    <section class="district shop" id="shop-floor" aria-labelledby="teach-title">
       <div class="district-top">
-        <span><b>04</b> Shop floor</span>
-        <span>Ten minutes at the bench</span>
+        <span><b>08</b> Shop floor</span>
+        <span>Shop / engineering: wedge (splitting force — length ÷ thickness)</span>
       </div>
-      <h2 id="teach-title"><span>Turn the</span><span>long radius.</span></h2>
-      <p class="shop-lede">Use this page next to a handwheel, a shaft, and a weight. The classroom use is the wheel and axle, and which radius you choose to turn.</p>
+      <h2 id="teach-title"><span>Length</span><span>over thickness.</span></h2>
+      <p class="shop-lede">Use this page next to a chisel, a doorstop, or a splitting wedge. The classroom use is Shop / engineering: wedge (splitting force — length ÷ thickness).</p>
       <div class="shop-row">
-        <p class="idx">04.1</p>
+        <p class="idx">08.1</p>
         <h3>Learning objectives</h3>
         <ul>
-          <li>Point to the wheel and the axle on one rigid body.</li>
-          <li>Compute ideal mechanical advantage as R wheel / R axle.</li>
-          <li>Predict the effort for a 10 lb load when the wheel is driven.</li>
-          <li>State that driving the axle flips the ratio and raises the effort.</li>
+          <li>Say that a wedge is two inclined planes back to back, or one face against a stop.</li>
+          <li>Compute ideal mechanical advantage as slope length ÷ thickness.</li>
+          <li>Find the effort for a 10 lb split: effort = load ÷ advantage.</li>
+          <li>Compare a long thin chisel with a short thick axe head.</li>
         </ul>
       </div>
       <div class="shop-row">
-        <p class="idx">04.2</p>
+        <p class="idx">08.2</p>
         <h3>Classroom loop</h3>
         <ol>
-          <li>Cover the readout. Students divide the two radii on Winch before looking.</li>
-          <li>Uncover 4.00 : 1. Ask for the effort that lifts 10 lb from the axle.</li>
-          <li>Check 2.50 lb. Then ask what happens if the hand moves to the axle.</li>
-          <li>Uncover 40.0 lb. Name a shop tool that turns the large radius, and one that turns the shaft.</li>
+          <li>Cover the readout. Select Chisel. Students compute 4.00 ÷ 0.50 and the effort for a 10 lb split.</li>
+          <li>Uncover 8.00 : 1 and 1.25 lb.</li>
+          <li>Select Axe. Students predict 2.00 ÷ 1.00 and 5.00 lb. The push is four times the chisel.</li>
+          <li>Try Doorstop, then the splitting wedge. Length ÷ thickness still sets the effort. A longer face or a thinner end makes the push lighter.</li>
         </ol>
       </div>
-      <div class="shop-row">
-        <p class="idx">04.3</p>
-        <h3>Shop examples</h3>
-        <p>Drive the wheel: winch, windlass, screwdriver, steering wheel, doorknob. Drive the axle: a fan, or a wheel powered at the hub. This model is ideal. It leaves out friction and the bend of a real shaft.</p>
+      <div class="shop-row" id="on-the-job">
+        <p class="idx">08.3</p>
+        <h3>On the job</h3>
+        <div>
+          <p>A carpenter drives a doorstop under a door. The same carpenter drives a wood-splitting wedge into a log. A mason or a stoneworker sets a chisel in stone, or sets plug-and-feathers in a line of holes. A millwright or a mechanic slides a flat bar into a gap. The thin end of the bar works as a wedge.</p>
+          <p>The split force stays the same. Length and thickness change how hard you push. A long thin wedge has a higher mechanical advantage, so the push is lighter and the gap opens slowly. A short thick wedge has a lower mechanical advantage, so the push is harder and the gap opens more for each inch you drive. A chisel eases into wood. An axe head needs a heavy blow.</p>
+        </div>
       </div>
     </section>
 
     <footer>
-      <div>How Machines Work · Virgil Renfroe · Shop / engineering: wheel and axle</div>
+      <div>How Machines Work · Virgil Renfroe · Shop / engineering: wedge (splitting force — length ÷ thickness)</div>
       <a href="./">Exhibit 01 · Gear</a>
     </footer>
   </div>
   <div id="err" class="err" role="alert"></div>
-  <script type="module" src="./wheel-axle.js"></script>
+  <script type="module" src="./wedge.js"></script>
 </body>
 </html>

@@ -114,10 +114,12 @@
     }
     .hub-stage {
       display: grid;
-      grid-template-columns: minmax(0, 1.55fr) minmax(240px, 0.7fr);
-      min-height: clamp(420px, 50vh, 580px); position: relative;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.78fr);
+      height: min(84vh, 860px);
+      min-height: 560px;
+      position: relative;
     }
-    .view-wrap { position: relative; min-height: clamp(420px, 50vh, 580px); overflow: hidden; }
+    .view-wrap { position: relative; min-height: 0; height: 100%; overflow: hidden; }
     .view { position: absolute; inset: 0; touch-action: none; cursor: grab; }
     .view:active { cursor: grabbing; }
     .view-fallback {
@@ -150,10 +152,14 @@
       color: var(--dim); pointer-events: none; text-shadow: 0 0 12px #140818;
     }
     .instrument {
-      position: relative; overflow: hidden;
-      display: flex; flex-direction: column; justify-content: flex-end; gap: 0.65rem;
-      padding: 1.2rem var(--pad) 1.3rem 1.4rem; background: transparent;
+      position: relative; overflow-x: hidden; overflow-y: auto;
+      display: flex; flex-direction: column; justify-content: flex-start; gap: 0.55rem;
+      min-height: 0;
+      padding: 1rem var(--pad) 1.15rem 1.2rem; background: transparent;
     }
+    .instrument .chips { margin-bottom: 0.15rem; }
+    .instrument .ctrls { margin-bottom: 0.15rem; }
+    .instrument .ctrl { grid-template-columns: 6.4rem minmax(0, 1fr) 4.6rem; }
     .watermark {
       position: absolute; right: -0.12em; bottom: -0.18em; margin: 0; z-index: 0;
       font-family: var(--display); font-weight: 800;
@@ -278,8 +284,9 @@
       .shop-lede { margin-left: 0; }
       .hub-lead, .hub-stage, .district-split, .shop-row { grid-template-columns: 1fr; }
       .formula { justify-self: start; text-align: left; }
-      .hub-stage, .view-wrap { min-height: min(68vh, 560px); }
-      .instrument { padding-left: var(--pad); }
+      .hub-stage { height: auto; min-height: 0; }
+      .view-wrap { height: auto; min-height: min(68vh, 560px); }
+      .instrument { overflow: visible; padding-left: var(--pad); }
       .lesson { padding-top: 0.4rem; }
       .watermark { font-size: 6.2rem; right: 0.15rem; }
       .view-note { display: none; }
@@ -375,21 +382,6 @@
               <p class="val" id="meter-effort">—</p>
             </div>
           </div>
-          <p class="live-line" id="live-line"></p>
-          <p class="status" id="status" role="status"></p>
-        </aside>
-      </div>
-    </section>
-
-    <section class="district" id="bench" aria-label="Ramp setup and lesson">
-      <div class="district-top">
-        <span><b>06</b> Bench</span>
-        <span>Shop / engineering: inclined plane (length ÷ height)</span>
-      </div>
-      <div class="district-split">
-        <div class="controls">
-          <h2>Change the ramp.</h2>
-          <p class="hint">The load stays 10 lb. Move the angle or the slope length. Ideal mechanical advantage is slope length divided by height. The angle stays between 8° and 60°.</p>
           <div class="chips" role="group" aria-label="Presets">
             <button class="chip" type="button" data-preset="gentle" aria-pressed="false">Gentle 10°</button>
             <button class="chip" type="button" data-preset="dock" aria-pressed="true">Dock 8 ft</button>
@@ -413,6 +405,21 @@
           <div class="row-actions">
             <button class="toggle" type="button" id="play-toggle" aria-pressed="true">Pause</button>
           </div>
+          <p class="live-line" id="live-line"></p>
+          <p class="status" id="status" role="status"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="district" id="bench" aria-label="Ramp setup and lesson">
+      <div class="district-top">
+        <span><b>06</b> Bench</span>
+        <span>Shop / engineering: inclined plane (length ÷ height)</span>
+      </div>
+      <div class="district-split">
+        <div class="controls">
+          <h2>Change the ramp.</h2>
+          <p class="hint">The load stays 10 lb. Move the angle or the slope length beside the ramp. Ideal mechanical advantage is slope length divided by height. The angle stays between 8° and 60°.</p>
         </div>
         <div class="lesson">
           <p class="kicker">What a ramp is for</p>

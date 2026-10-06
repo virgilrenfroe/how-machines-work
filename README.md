@@ -11,10 +11,11 @@ A shop / engineering lab for linkages, gears, and simple machines — by Virgil 
 1. **Shop / engineering: gear ratio & meshing.** [Exhibit 01](https://web-production-03e60.up.railway.app/) · Pages: https://virgilrenfroe.github.io/how-machines-work/
 2. **Shop / engineering: four-bar linkage (crank–rocker).** [Exhibit 02](https://web-production-03e60.up.railway.app/four-bar.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/four-bar.html
 3. **Shop / engineering: levers (classes 1–3).** [Exhibit 03](https://web-production-03e60.up.railway.app/lever.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/lever.html
+4. **Shop / engineering: pulley / block-and-tackle.** [Exhibit 04](https://web-production-03e60.up.railway.app/pulley.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/pulley.html
 
 Repo: https://github.com/virgilrenfroe/how-machines-work
 
-Three lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view.
+Four lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view. The exhibit index is a plate: 01 Gear, 02 Four-bar, 03 Levers, 04 Pulley.
 
 ## Exhibit 01 — Simple gear train
 
@@ -43,7 +44,17 @@ Shop / engineering: levers (classes 1–3).
 - First, second, and third class stay on the bench together. Fulcrum, effort, and load are labeled.
 - Live mechanical advantage is effort arm / load arm. A 10 lb load shows the effort force as the arms move.
 - Class 2 stays above 1 : 1. Class 3 stays below 1 : 1. Class 1 can go either way.
-- Same night chrome. The exhibit nav on every lesson reaches gear, four-bar, and levers.
+- Same night chrome. The exhibit index on every lesson reaches gear, four-bar, levers, and pulley.
+
+## Exhibit 04 — Pulley and block-and-tackle
+
+Shop / engineering: pulley / block-and-tackle.
+
+- Fixed, movable, and block-and-tackle on one bench. The load stays 10 lb, the same shop weight as the lever lesson.
+- Ideal mechanical advantage equals the number of rope parts holding the load. Effort is load divided by that count.
+- Fixed: 1 part, 10 lb effort, pull down. Movable: 2 parts, 5 lb effort, pull up. Block and tackle: 2, 3, or 4 parts, pull down.
+- Brass rope is a supporting part. The pale rope is the haul. The load rises 1 inch for every MA inches of rope.
+- The model is ideal. It does not simulate friction or rope stiffness.
 
 ## Local
 

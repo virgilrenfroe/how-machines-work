@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#140818" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23140818'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23f0a05a' stroke-width='2'/%3E%3Cpath d='M16 6.5 l1.2 2.2 -1.2.6 -1.2-.6z M16 25.5 l-1.2-2.2 1.2-.6 1.2.6z M6.5 16 l2.2-1.2.6 1.2-.6 1.2z M25.5 16 l-2.2 1.2-.6-1.2.6-1.2z' fill='%23f0a05a'/%3E%3C/svg%3E" />
-  <meta name="description" content="Shop / engineering: pulley / block-and-tackle. A teaching exhibit of fixed and movable pulleys and a simple block-and-tackle from How Machines Work by Virgil Renfroe." />
+  <meta name="description" content="A pulley is a grooved wheel with a rope over it. Ideal mechanical advantage is the number of rope parts that hold the load. A fixed pulley only changes the direction of the pull." />
   <title>Shop / engineering: pulley / block-and-tackle · How Machines Work</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -305,6 +305,7 @@
     .shop-row ul, .shop-row ol { margin: 0; padding-left: 1.15rem; }
     .shop-row li { margin: 0 0 0.4rem; }
     .shop-row p { margin: 0; max-width: 52ch; }
+    .shop-row p + p { margin-top: 0.75rem; }
     footer {
       display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
       margin: 0 var(--pad); padding: 1rem 0 1.6rem; border-top: 1px solid var(--line);
@@ -378,7 +379,7 @@
         <h1 id="hub-title"><span>Pulley</span><span>block &amp; tackle.</span></h1>
       </div>
       <div class="hub-lead">
-        <p class="lede">One load, three ways to hang it. Count the rope parts that hold the weight. That count is the ideal mechanical advantage.</p>
+        <p class="lede">A pulley is a grooved wheel with a rope over it. Ideal mechanical advantage is the number of rope parts that hold the load. A fixed pulley is one part, and it only changes the direction of the pull.</p>
         <p class="formula">
           <b>Load<span>Effort</span></b>
           <small>Ideal advantage. It matches the rope parts holding the 10 lb load.</small>
@@ -507,6 +508,24 @@
         <p class="idx">03.3</p>
         <h3>Shop examples</h3>
         <p>Fixed: a flag halyard, a clothesline, a window sash. Movable: a hay hoist, a bosun’s chair. Block and tackle: a barn beam, a sail halyard, an engine lift. A real rope adds friction, so the shop effort is a little higher than the ideal.</p>
+      </div>
+      <div class="shop-row" id="on-the-job">
+        <p class="idx">03.4</p>
+        <h3>On the job</h3>
+        <div>
+          <p>A rigger reeves a block and tackle to lift a motor or a steel beam. They count the rope parts that hold the load. Four parts means an ideal pull of one quarter of the weight, and four feet of rope for each foot the load rises.</p>
+          <p>An elevator technician works the sheaves above the car. Those pulleys turn the cables and share the car’s weight across the ropes. A fixed sheave by itself does not multiply force. Friction in a real sheave makes the haul a little heavier than the ideal part count.</p>
+        </div>
+      </div>
+      <div class="shop-row" id="common-mistakes">
+        <p class="idx">03.5</p>
+        <h3>Common mistakes</h3>
+        <ul>
+          <li>A fixed pulley multiplies force. A fixed pulley changes direction. One rope part holds the load, so the ideal effort matches the load.</li>
+          <li>Mechanical advantage is the number of wheels. It is the number of rope parts holding the load. A wheel that only turns the rope may not be a supporting part.</li>
+          <li>The ideal count already includes friction. Friction makes the real pull heavier than the load divided by the part count.</li>
+          <li>The load rises as far as you pull the rope. The load rises 1 inch for every mechanical-advantage inches of rope you haul.</li>
+        </ul>
       </div>
     </section>
 

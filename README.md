@@ -19,6 +19,8 @@ Repo: https://github.com/virgilrenfroe/how-machines-work
 
 Six lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view. The exhibit index is a plate: 01 Gear, 02 Four-bar, 03 Levers, 04 Pulley, 05 Wheel & axle, 06 Inclined plane.
 
+Each lesson states what the machine is before the model. On the shop floor, **On the job** names a shop or engineering job that uses it, and **Common mistakes** lists the mix-ups students make on that topic.
+
 ## Exhibit 01 — Simple gear train
 
 Shop / engineering: gear ratio & meshing.

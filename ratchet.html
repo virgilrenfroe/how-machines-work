@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#140818" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23140818'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23f0a05a' stroke-width='2'/%3E%3Cpath d='M16 6.5 l1.2 2.2 -1.2.6 -1.2-.6z M16 25.5 l-1.2-2.2 1.2-.6 1.2.6z M6.5 16 l2.2-1.2.6 1.2-.6 1.2z M25.5 16 l-2.2 1.2-.6-1.2.6-1.2z' fill='%23f0a05a'/%3E%3C/svg%3E" />
-  <meta name="description" content="An inclined plane is a ramp. Ideal mechanical advantage is the slope length divided by the vertical height. A longer slope for the same rise takes less effort and a longer push." />
-  <title>Shop / engineering: inclined plane (length ÷ height) · How Machines Work</title>
+  <meta name="description" content="Shop / engineering: ratchet and pawl (one-way motion). A teaching exhibit of a ratchet wheel and pawl — drive allowed, reverse blocked — from How Machines Work by Virgil Renfroe." />
+  <title>Shop / engineering: ratchet and pawl (one-way motion) · How Machines Work</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -101,7 +101,7 @@
       padding: clamp(0.75rem, 1.6vh, 1.2rem) var(--pad) clamp(0.45rem, 1vh, 0.75rem);
     }
     .lede {
-      margin: 0; max-width: 36ch;
+      margin: 0; max-width: 38ch;
       font-size: clamp(1.12rem, 1.55vw, 1.4rem); font-weight: 500; line-height: 1.35; color: var(--mute);
     }
     .formula { margin: 0; justify-self: end; text-align: right; max-width: 32ch; }
@@ -135,7 +135,7 @@
     .view.is-ready .view-fallback { display: none; }
     .hud-use {
       position: absolute; top: 1.1rem; left: var(--pad); z-index: 3; margin: 0;
-      max-width: min(42ch, calc(100% - 2rem));
+      max-width: min(46ch, calc(100% - 2rem));
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--paper); pointer-events: none;
       text-shadow: 0 0 18px #140818, 0 1px 0 #140818;
@@ -152,7 +152,7 @@
     .gear-label.below { transform: translate(-50%, 8%); }
     .view-note {
       position: absolute; left: var(--pad); bottom: 1rem; z-index: 3; margin: 0;
-      max-width: 38ch;
+      max-width: 42ch;
       font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--dim); pointer-events: none; text-shadow: 0 0 12px #140818;
     }
@@ -164,7 +164,7 @@
     }
     .instrument .chips { margin-bottom: 0.15rem; }
     .instrument .ctrls { margin-bottom: 0.15rem; }
-    .instrument .ctrl { grid-template-columns: 6.4rem minmax(0, 1fr) 4.6rem; }
+    .instrument .ctrl { grid-template-columns: 6.2rem minmax(0, 1fr) 4.2rem; }
     .watermark {
       position: absolute; right: -0.12em; bottom: -0.18em; margin: 0; z-index: 0;
       font-family: var(--display); font-weight: 800;
@@ -192,7 +192,7 @@
     }
     .rocker-line {
       margin: 0; font-family: var(--display); font-weight: 700;
-      font-size: clamp(1.15rem, 1.8vw, 1.4rem); letter-spacing: -0.03em; line-height: 1.25;
+      font-size: clamp(1.05rem, 1.6vw, 1.25rem); letter-spacing: -0.03em; line-height: 1.25;
       color: var(--cream);
     }
     .meters {
@@ -205,7 +205,7 @@
     }
     .meter .val { margin: 0; font-family: var(--mono); font-size: 12px; line-height: 1.45; color: var(--paper); }
     .meter .val b { color: var(--accent); font-weight: 700; }
-    .live-line { margin: 0; max-width: 42ch; font-size: 1.02rem; color: var(--cream); }
+    .live-line { margin: 0; max-width: 46ch; font-size: 1.02rem; color: var(--cream); }
     .status {
       margin: 0; min-height: 1.2em; font-family: var(--mono); font-size: 11px;
       letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
@@ -247,8 +247,8 @@
     }
     .ctrl input[type="range"] { width: 100%; accent-color: var(--accent); }
     .ctrl output { text-align: right; color: var(--paper); }
-    .lesson p { margin: 0 0 0.85rem; max-width: 48ch; }
-    .try { margin-top: 1.2rem; padding-top: 0.85rem; border-top: 1px solid var(--line); max-width: 48ch; }
+    .lesson p { margin: 0 0 0.85rem; max-width: 52ch; }
+    .try { margin-top: 1.2rem; padding-top: 0.85rem; border-top: 1px solid var(--line); max-width: 52ch; }
     .try strong {
       display: block; margin-bottom: 0.35rem;
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
@@ -256,7 +256,7 @@
     .try p { margin: 0; color: var(--paper); }
     .shop h2 { font-size: clamp(4rem, 8.6vw, 8.4rem); max-width: 10ch; margin-bottom: clamp(1.2rem, 3vh, 2rem); }
     .shop h2 span { display: block; padding-left: 12vw; }
-    .shop-lede { margin: -0.2rem 0 1.5rem 12vw; max-width: 38ch; color: var(--mute); font-size: clamp(1.05rem, 1.45vw, 1.28rem); }
+    .shop-lede { margin: -0.2rem 0 1.5rem 12vw; max-width: 42ch; color: var(--mute); font-size: clamp(1.05rem, 1.45vw, 1.28rem); }
     .shop-row {
       display: grid; grid-template-columns: 7.5rem minmax(0, 0.8fr) minmax(0, 1.2fr);
       gap: 1rem 2rem; align-items: start; padding: 1.15rem 0; border-top: 1px solid var(--line);
@@ -270,8 +270,8 @@
     }
     .shop-row ul, .shop-row ol { margin: 0; padding-left: 1.15rem; }
     .shop-row li { margin: 0 0 0.4rem; }
-    .shop-row p { margin: 0; max-width: 52ch; }
-    .shop-row p + p { margin-top: 0.75rem; }
+    .shop-row p { margin: 0; max-width: 56ch; }
+    .shop-row div p + p { margin-top: 0.85rem; }
     footer {
       display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
       margin: 0 var(--pad); padding: 1rem 0 1.6rem; border-top: 1px solid var(--line);
@@ -296,7 +296,7 @@
       .lesson { padding-top: 0.4rem; }
       .watermark { font-size: 6.2rem; right: 0.15rem; }
       .view-note { display: none; }
-      .ctrl { grid-template-columns: 6.6rem 1fr 4.6rem; }
+      .ctrl, .instrument .ctrl { grid-template-columns: 6.2rem 1fr 4.2rem; }
     }
   </style>
   <script type="importmap">
@@ -325,10 +325,10 @@
 <body>
   <canvas id="c" aria-hidden="true"></canvas>
   <div class="content">
-    <a class="skip" href="#inclined-plane">Skip to the ramp</a>
+    <a class="skip" href="#ratchet">Skip to the ratchet</a>
     <header class="nav">
       <a href="./">How Machines Work</a>
-      <p class="nav-use">Shop / engineering: <em>inclined plane (length ÷ height)</em></p>
+      <p class="nav-use">Shop / engineering: <em>ratchet and pawl (one-way motion)</em></p>
     </header>
     <nav class="exhibit-nav" aria-label="Exhibits">
       <span class="datum" aria-hidden="true"></span>
@@ -337,172 +337,156 @@
       <a href="./lever.html"><b>03</b> Levers</a>
       <a href="./pulley.html"><b>04</b> Pulley</a>
       <a href="./wheel-axle.html"><b>05</b> Wheel &amp; axle</a>
-      <a href="./inclined-plane.html" aria-current="page"><b>06</b> Inclined plane</a>
-      <a href="./ratchet.html"><b>11</b> Ratchet</a>
+      <a href="./inclined-plane.html"><b>06</b> Inclined plane</a>
+      <a href="./ratchet.html" aria-current="page"><b>11</b> Ratchet</a>
     </nav>
 
     <section class="hub" aria-labelledby="hub-title">
       <div class="hub-head">
-        <p class="kicker">Shop / engineering: inclined plane (length ÷ height)</p>
-        <h1 id="hub-title"><span>Inclined</span><span>plane.</span></h1>
+        <p class="kicker">Shop / engineering: ratchet and pawl (one-way motion)</p>
+        <h1 id="hub-title"><span>Ratchet</span><span>&amp; pawl.</span></h1>
       </div>
       <div class="hub-lead">
-        <p class="lede">An inclined plane is a ramp. Ideal mechanical advantage is the slope length divided by the vertical height. A longer slope for the same rise takes less effort and a longer push.</p>
+        <p class="lede">A ratchet wheel turns under a drive. A pawl drops into the teeth so the wheel cannot reverse. Drive one step and the pawl clicks. Lift the pawl and the wheel freewheels.</p>
         <p class="formula">
-          <b>Slope length<span>Height</span></b>
-          <small>Ideal mechanical advantage. The same number is 1 / sin θ. A longer ramp for the same rise needs less push.</small>
+          <b>360°<span>teeth</span></b>
+          <small>Step angle. One click advances the wheel by that angle. More teeth, more steps per turn.</small>
         </p>
       </div>
 
-      <div class="hub-stage" id="inclined-plane">
+      <div class="hub-stage" id="ratchet">
         <div class="view-wrap">
-          <div class="view" id="view" data-scene="inclined-plane">
-            <p class="view-fallback">Setting the ramp on the bench…</p>
+          <div class="view" id="view" data-scene="ratchet">
+            <p class="view-fallback">Setting the ratchet on the bench…</p>
           </div>
-          <p class="hud-use"><span>Lesson</span> Shop / engineering: inclined plane (length ÷ height)</p>
-          <p class="gear-label" id="label-load" hidden><b>Load</b><span>10 lb</span></p>
-          <p class="gear-label" id="label-effort" hidden><b>Effort</b><span>—</span></p>
-          <p class="gear-label" id="label-angle" hidden><b>Angle</b><span>—</span></p>
-          <p class="gear-label" id="label-slope" hidden><b>Slope</b><span>—</span></p>
-          <p class="gear-label" id="label-height" hidden><b>Height</b><span>—</span></p>
-          <p class="gear-label below" id="label-run" hidden><b>Run</b><span>—</span></p>
-          <p class="view-note">Drag to look around the ramp. The arrow along the slope is the effort. The arrow straight down is the 10 lb load.</p>
+          <p class="hud-use"><span>Lesson</span> Shop / engineering: ratchet and pawl (one-way motion)</p>
+          <p class="gear-label" id="label-wheel" hidden><b>Wheel</b><span>—</span></p>
+          <p class="gear-label" id="label-pawl" hidden><b>Pawl</b><span>Holding</span></p>
+          <p class="gear-label below" id="label-drive" hidden><b>Drive</b><span>Clockwise</span></p>
+          <p class="view-note">Drag to look around the wheel. The pale mark is one tooth. The pawl drops into the next tooth on each click.</p>
         </div>
-        <aside class="instrument" aria-label="Live inclined plane readout">
-          <p class="watermark" aria-hidden="true">06</p>
-          <h2>Shop / engineering: inclined plane (length ÷ height)</h2>
-          <p class="ratio-readout" id="ma-readout"><em>—</em> : 1</p>
-          <p class="force-line" id="force-line"><b>—</b> <span>effort</span> · 10 lb <span>load</span></p>
-          <p class="rocker-line"><span id="ma-sub">slope length / height</span></p>
+        <aside class="instrument" aria-label="Live ratchet readout">
+          <p class="watermark" aria-hidden="true">11</p>
+          <h2>Shop / engineering: ratchet and pawl (one-way motion)</h2>
+          <p class="ratio-readout" id="step-readout"><em>—</em></p>
+          <p class="force-line" id="dir-line"><b>—</b> <span>drive</span></p>
+          <p class="rocker-line" id="pawl-line">steps per turn</p>
           <div class="meters">
             <div class="meter">
-              <p class="name">Slope length</p>
-              <p class="val" id="meter-slope">—</p>
+              <p class="name">Tooth count</p>
+              <p class="val" id="meter-teeth">—</p>
             </div>
             <div class="meter">
-              <p class="name">Height</p>
-              <p class="val" id="meter-height">—</p>
+              <p class="name">Step angle</p>
+              <p class="val" id="meter-step">—</p>
             </div>
             <div class="meter">
-              <p class="name">Angle</p>
-              <p class="val" id="meter-angle">—</p>
+              <p class="name">Allowed direction</p>
+              <p class="val" id="meter-dir">—</p>
             </div>
             <div class="meter">
-              <p class="name">Effort for 10 lb</p>
-              <p class="val" id="meter-effort">—</p>
+              <p class="name">Pawl</p>
+              <p class="val" id="meter-pawl">—</p>
             </div>
           </div>
-          <div class="chips" role="group" aria-label="Presets">
-            <button class="chip" type="button" data-preset="gentle" aria-pressed="false">Gentle 10°</button>
-            <button class="chip" type="button" data-preset="dock" aria-pressed="true">Dock 8 ft</button>
-            <button class="chip" type="button" data-preset="thirty" aria-pressed="false">30°</button>
-            <button class="chip" type="button" data-preset="fortyfive" aria-pressed="false">45°</button>
+          <div class="chips" role="group" aria-label="Tooth presets">
+            <button class="chip" type="button" data-preset="fine" aria-pressed="true">Fine tooth</button>
+            <button class="chip" type="button" data-preset="coarse" aria-pressed="false">Coarse tooth</button>
+          </div>
+          <div class="chips" role="group" aria-label="Pawl">
+            <button class="chip" type="button" data-pawl="engaged" aria-pressed="true">Pawl engaged</button>
+            <button class="chip" type="button" data-pawl="lifted" aria-pressed="false">Pawl lifted</button>
           </div>
           <div class="ctrls">
-            <label class="ctrl">Angle
-              <input id="angle" type="range" min="8" max="60" step="0.1" value="14.5" />
-              <output id="angle-out" for="angle">14.5°</output>
-            </label>
-            <label class="ctrl">Ramp length
-              <input id="length" type="range" min="2.2" max="14" step="0.01" value="8" />
-              <output id="length-out" for="length">8.00 ft</output>
-            </label>
-            <label class="ctrl">Height
-              <input id="height" type="range" min="1" max="5" step="0.01" value="2" />
-              <output id="height-out" for="height">2.00 ft</output>
+            <label class="ctrl">Teeth
+              <input id="teeth" type="range" min="6" max="48" step="1" value="36" />
+              <output id="teeth-out" for="teeth">36 T</output>
             </label>
           </div>
           <div class="row-actions">
+            <button class="chip" type="button" id="drive-step">Drive one step</button>
+            <button class="chip" type="button" id="try-reverse">Try reverse</button>
             <button class="toggle" type="button" id="play-toggle" aria-pressed="true">Pause</button>
+            <button class="chip" type="button" id="reset-turns">Reset</button>
           </div>
           <p class="live-line" id="live-line"></p>
           <p class="status" id="status" role="status"></p>
+          <div class="meter" hidden>
+            <p class="val" id="meter-clicks">—</p>
+          </div>
         </aside>
       </div>
     </section>
 
-    <section class="district" id="bench" aria-label="Ramp setup and lesson">
+    <section class="district" id="bench" aria-label="Ratchet lesson">
       <div class="district-top">
-        <span><b>06</b> Bench</span>
-        <span>Shop / engineering: inclined plane (length ÷ height)</span>
+        <span><b>11</b> Bench</span>
+        <span>Shop / engineering: ratchet and pawl (one-way motion)</span>
       </div>
       <div class="district-split">
         <div class="controls">
-          <h2>Change the ramp.</h2>
-          <p class="hint">The load stays 10 lb. Move the angle or the slope length beside the ramp. Ideal mechanical advantage is slope length divided by height. The angle stays between 8° and 60°.</p>
+          <h2>One way only.</h2>
+          <p class="hint">Fine tooth takes more clicks to come around. Coarse tooth takes fewer, larger steps. With the pawl engaged, clockwise drive is allowed and reverse is blocked. Lift the pawl and the wheel can turn either way.</p>
         </div>
         <div class="lesson">
-          <p class="kicker">What a ramp is for</p>
-          <h2>Less force, longer push</h2>
-          <p id="lesson-ideal">Ideal mechanical advantage is the length of the slope divided by the height. The same number is 1 / sin θ. Use the slope, not the flat run.</p>
-          <p id="lesson-trade">A gentler ramp needs less effort and a longer push. A steeper ramp needs more effort over a shorter slope.</p>
-          <p id="lesson-work">You push 2.50 lb along 8.00 ft. The load rises 2.00 ft. Ideal work matches either way: 20.0 ft·lb.</p>
+          <p class="kicker">What a ratchet is for</p>
+          <h2>Drive, then hold</h2>
+          <p>A ratchet and pawl gives one-way motion. The drive turns the wheel clockwise. The pawl sits in a tooth and stops the wheel from turning back.</p>
+          <p id="lesson-step">The wheel has 36 teeth, so one turn is 36 clicks and each click is 10°.</p>
+          <p id="lesson-hold">The pawl sits in a tooth. Clockwise drive is allowed, and the pawl rides up the tooth and drops into the next one. That drop is the click. Reverse is blocked, so the wheel cannot give back the step it just took.</p>
+          <p>This bench does not give the pawl a spring, and it does not ask how strong a tooth is. The pawl is either in the teeth, holding, or lifted clear so the wheel freewheels.</p>
           <div class="try">
             <strong>Try this</strong>
-            <p>Set the height to 2 ft and the angle to 30°. Predict the effort before you look: half of 10 lb, because sin 30° is 1/2. Then stretch the slope to 8 ft and leave the height at 2 ft. The advantage should read 4.00 and the effort 2.50 lb. Stretch it again to 12 ft: 12 ÷ 2 = 6, so the effort falls to 1.67 lb.</p>
+            <p>Select Fine tooth with the pawl engaged. Count is 36 and the step is 10°. Drive one step and watch the pawl drop. Then try reverse. The wheel should stop, and the readout should say the pawl is holding. Select Coarse tooth. Count is 8 and the step is 45°. One click moves much farther. Lift the pawl, drive, then reverse. The wheel turns both ways.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="district shop" aria-labelledby="teach-title">
+    <section class="district shop" id="shop-floor" aria-labelledby="teach-title">
       <div class="district-top">
-        <span><b>06</b> Shop floor</span>
-        <span>Ten minutes at the bench</span>
+        <span><b>11</b> Shop floor</span>
+        <span>Shop / engineering: ratchet and pawl (one-way motion)</span>
       </div>
-      <h2 id="teach-title"><span>Length</span><span>over height.</span></h2>
-      <p class="shop-lede">Use this page next to a board, a stack of blocks, and a 10 lb weight. The classroom use is ideal mechanical advantage: slope length divided by height.</p>
+      <h2 id="teach-title"><span>Hold the</span><span>step.</span></h2>
+      <p class="shop-lede">Use this page next to a ratchet wrench, a hoist pawl, or a bicycle freehub. The classroom use is Shop / engineering: ratchet and pawl (one-way motion).</p>
       <div class="shop-row">
-        <p class="idx">06.1</p>
+        <p class="idx">11.1</p>
         <h3>Learning objectives</h3>
         <ul>
-          <li>Compute ideal mechanical advantage as slope length ÷ height.</li>
-          <li>Compute the same advantage as 1 / sin θ.</li>
-          <li>Find the effort for a 10 lb load: effort = load ÷ advantage.</li>
-          <li>State the tradeoff: less effort means a longer push along the slope.</li>
+          <li>State that a pawl in the teeth allows drive in one direction and blocks the reverse.</li>
+          <li>Compute the step angle as 360° divided by the tooth count.</li>
+          <li>Explain that a click is the pawl dropping into the next tooth.</li>
+          <li>Explain that lifting the pawl lets the wheel freewheel in either direction.</li>
         </ul>
       </div>
       <div class="shop-row">
-        <p class="idx">06.2</p>
+        <p class="idx">11.2</p>
         <h3>Classroom loop</h3>
         <ol>
-          <li>Cover the readout. Height 2 ft, slope 4 ft. Students compute 4 ÷ 2 and the effort for 10 lb.</li>
-          <li>Uncover 2.00 : 1 and 5.00 lb. Check that the angle is 30° and that sin 30° is 1/2.</li>
-          <li>Lengthen the slope to 8 ft and keep the height at 2 ft. Students predict 4.00 and 2.50 lb.</li>
-          <li>Raise the angle toward 60°. The effort climbs toward the load. A steep ramp barely helps.</li>
+          <li>Cover the readout. Set Fine tooth, pawl engaged. Students say how many clicks make one full turn, and what 360° ÷ 36 is.</li>
+          <li>Uncover 36 teeth and 10°. Drive one step and name the click as the pawl drops.</li>
+          <li>Try reverse. The wheel stops. Students should say the pawl is holding.</li>
+          <li>Select Coarse tooth and compare 45° with 10°. Then lift the pawl and reverse the wheel. It freewheels.</li>
         </ol>
       </div>
-      <div class="shop-row">
-        <p class="idx">06.3</p>
-        <h3>Shop examples</h3>
-        <p>A loading ramp, a wheelchair ramp, a switchback trail, a screw (an inclined plane wrapped around a cylinder). This model leaves out friction. On a real ramp you also push against friction, so the effort is higher than the ideal.</p>
-      </div>
       <div class="shop-row" id="on-the-job">
-        <p class="idx">06.4</p>
+        <p class="idx">11.3</p>
         <h3>On the job</h3>
         <div>
-          <p>A carpenter builds a ramp to roll a cabinet or a stack of lumber onto a truck. For the same rise, a longer board means a lighter push and a longer walk. The advantage is that board’s length divided by the height of the bed.</p>
-          <p>A millwright skids a machine up a steel plate onto a pad or into a truck the same way. A steeper plate raises the effort toward the weight of the machine. Friction on a real ramp adds to that push, so the crew still feels more than the ideal.</p>
+          <p>A mechanic using a ratchet wrench and a socket set pulls the handle to turn a fastener, then swings the handle back for the next pull. The pawl holds the socket on the return, so the fastener does not turn loose and the mechanic does not lose the turn already taken. That is what the pawl is for: you can pull in the drive direction without giving the position back. Flip the lever and the same pawl holds the other way, which is how the wrench loosens.</p>
+          <p>A millwright on a hoist or a winch uses a holding pawl on the drum. The drive can lift the load. When the lift stops, the pawl drops into a tooth and keeps the drum from running backward, so the load stays at the height the crew just gained. Without that pawl the drum would pay out the moment the drive let go. The pawl lets the crew lift in one direction without losing position. Lifting the pawl on purpose, with the brake set, is how the drum is allowed to lower.</p>
+          <p>A bicycle technician sees the same one-way hold in a freehub or a freewheel. Pedaling drives the pawls into the teeth and turns the wheel. Coasting lets the wheel run ahead while the pawls click over the teeth, so the pedals are not forced around. The moment the rider pedals again, the pawls catch, and the wheel is still where the ride left it. In each of these jobs the pawl lets you pull or lift in one direction without losing the position you just gained.</p>
         </div>
-      </div>
-      <div class="shop-row" id="common-mistakes">
-        <p class="idx">06.5</p>
-        <h3>Common mistakes</h3>
-        <ul>
-          <li>A steeper ramp makes the load easier. A steeper ramp shortens the slope for the same height, so the effort goes up.</li>
-          <li>Mechanical advantage is the angle by itself. The advantage is slope length ÷ height. That equals 1 / sin θ, not the angle in degrees.</li>
-          <li>Less effort means less work. Ideal work matches: effort times slope length equals load times height. You trade force for distance.</li>
-          <li>The ideal effort already includes friction. On a real ramp you also push against friction, so the effort is higher than the ideal.</li>
-        </ul>
       </div>
     </section>
 
     <footer>
-      <div>How Machines Work · Virgil Renfroe · Shop / engineering: inclined plane (length ÷ height)</div>
+      <div>How Machines Work · Virgil Renfroe · Shop / engineering: ratchet and pawl (one-way motion)</div>
       <a href="./">Exhibit 01 · Gear</a>
     </footer>
   </div>
   <div id="err" class="err" role="alert"></div>
-  <script type="module" src="./inclined-plane.js"></script>
+  <script type="module" src="./ratchet.js"></script>
 </body>
 </html>

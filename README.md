@@ -15,9 +15,11 @@ A shop / engineering lab for linkages, gears, and simple machines — by Virgil 
 5. **Shop / engineering: wheel and axle.** [Exhibit 05](https://web-production-03e60.up.railway.app/wheel-axle.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/wheel-axle.html
 6. **Shop / engineering: inclined plane (length ÷ height).** [Exhibit 06](https://web-production-03e60.up.railway.app/inclined-plane.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/inclined-plane.html
 
+**13.** **Shop / engineering: worm gear (big reduction at 90°).** [Exhibit 13](https://web-production-03e60.up.railway.app/worm.html) · Pages: https://virgilrenfroe.github.io/how-machines-work/worm.html
+
 Repo: https://github.com/virgilrenfroe/how-machines-work
 
-Six lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view. The exhibit index is a plate: 01 Gear, 02 Four-bar, 03 Levers, 04 Pulley, 05 Wheel & axle, 06 Inclined plane.
+Seven lesson pages. Each page uses one WebGL context. The model is drawn with a scissor/viewport into the bench view. The exhibit index is a plate: 01 Gear, 02 Four-bar, 03 Levers, 04 Pulley, 05 Wheel & axle, 06 Inclined plane, 13 Worm.
 
 Each lesson states what the machine is before the model. On the shop floor, **On the job** names a shop or engineering job that uses it, and **Common mistakes** lists the mix-ups students make on that topic.
 
@@ -48,7 +50,7 @@ Shop / engineering: levers (classes 1–3).
 - First, second, and third class stay on the bench together. Fulcrum, effort, and load are labeled.
 - Live mechanical advantage is effort arm / load arm. A 10 lb load shows the effort force as the arms move.
 - Class 2 stays above 1 : 1. Class 3 stays below 1 : 1. Class 1 can go either way.
-- Same night chrome. The exhibit index on every lesson reaches gear, four-bar, levers, pulley, wheel and axle, and the inclined plane.
+- Same night chrome. The exhibit index on every lesson reaches gear, four-bar, levers, pulley, wheel and axle, the inclined plane, and the worm gear.
 
 ## Exhibit 04 — Pulley and block-and-tackle
 
@@ -78,22 +80,37 @@ Shop / engineering: inclined plane (length ÷ height).
 - Ideal mechanical advantage is the slope length divided by the height. The same number is 1 / sin θ.
 - The load stays 10 lb. Change the angle or the ramp length and the effort updates. Height stays in the readout because it is the other half of the ratio.
 - Ideal work matches: effort × slope length equals load × height. Friction is left out.
-- Same night chrome. Reach it from the exhibit index with gear, four-bar, levers, pulley, and wheel and axle.
+- Same night chrome. Reach it from the exhibit index with gear, four-bar, levers, pulley, wheel and axle, and the worm gear.
 
 The ramp is one extruded right triangle plus a deck plate, drawn with the page's single WebGL context through a scissor and viewport (three.js 0.170.0). Satin `MeshPhysicalMaterial` uses metalness 0.32, roughness 0.45, clearcoat 0.22, anisotropy off. Bloom is off. On a narrow viewport the pixel ratio is capped at 1.5. The model is kinematic and ideal: no friction, and no normal-force arrow. The image copies every `*.html` and `*.js` into `/srv`, so a new lesson page is not left out of the Caddy root.
 
+## Exhibit 13 — Worm gear
+
+Shop / engineering: worm gear (big reduction at 90°).
+
+- A worm (a screw-like driver) turns a worm wheel. The shafts cross at 90° and do not meet.
+- Ideal speed ratio is N wheel / starts. A one-start worm is about N wheel : 1.
+- Live readout: wheel teeth, worm starts, speed ratio, and a shaft note (90° cross).
+- Presets: fine reduction (1-start × 40), coarse (2-start × 20), and a demo ratio (1-start × 20, one tooth per turn of the worm).
+- Hold vs free reverse is a simplified switch for self-locking. The model does not calculate friction. The worm can always drive the wheel. With Hold on, the wheel cannot drive the worm. With Free reverse, it can.
+- Contrast, in the lesson copy: a bevel pair also turns 90°, but the shafts meet and the ratio is tooth count over tooth count. A worm is a helical incline, the same idea as a screw.
+- On the job, under the bench: a millwright on a worm-gear hoist or winch, an elevator or conveyor technician on a worm reducer, and a tuning-machine or indexing-table technician. When you need a big slowdown and often a hold, use a worm.
+- Same night chrome. The exhibit index on every lesson includes the worm with gear, four-bar, levers, pulley, wheel and axle, and the inclined plane. Open pages that are not on main (screw, wedge, cam, belt, ratchet, bevel) are not linked.
+
+The pair is drawn with the page's single WebGL context through a scissor and viewport (three.js 0.170.0). Satin `MeshPhysicalMaterial` uses metalness 0.32, roughness 0.45, clearcoat 0.22, anisotropy off. Bloom is off. The pixel ratio is capped at 1.5. `COPY *.html *.js README.md .nojekyll /srv/` already picks up `worm.html`, `worm.js`, and `worms.js`.
+
 ## Design notes
 
-The lesson pages speak to students and teachers. They name the machine, the radii, the load, and the effort. They do not describe type, materials, or rendering.
+The lesson pages speak to students and teachers. They name the machine, the radii, the load, and the effort. The worm page names the wheel teeth, the starts, the speed ratio, the 90° cross, and the simplified hold. They do not describe type, materials, or rendering.
 
-The chrome is a shop bench at night, in the same family as the gear, four-bar, lever, pulley, wheel and axle, and inclined plane pages. References for that family are shop and machine pages: Bearplus, tiltoootilt’s weight studies, nexstudio’s type and energy, and rubenmarcus. The lab does not use a SaaS dashboard, a dark-and-cream marketing shell, or penguin and city-shell layouts.
+The chrome is a shop bench at night, in the same family as the gear, four-bar, lever, pulley, wheel and axle, inclined plane, and worm pages. References for that family are shop and machine pages: Bearplus, tiltoootilt’s weight studies, nexstudio’s type and energy, and rubenmarcus. The lab does not use a SaaS dashboard, a dark-and-cream marketing shell, or penguin and city-shell layouts.
 
 - Type: Bricolage Grotesque, Instrument Sans, Space Mono
 - Void `#140818`, brass accent `#f0a05a`, paper `#f4efe6`
 - Satin `MeshPhysicalMaterial`: metalness 0.32, roughness 0.45, clearcoat 0.22
 - Anisotropy off, bloom off
 - One WebGL context per page
-- Device pixel ratio on the wheel-and-axle page capped at 1.5
+- Device pixel ratio on the wheel-and-axle page and the worm page capped at 1.5
 - three.js `0.170.0`
 
 ## Local

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#140818" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23140818'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23f0a05a' stroke-width='2'/%3E%3Cpath d='M16 6.5 l1.2 2.2 -1.2.6 -1.2-.6z M16 25.5 l-1.2-2.2 1.2-.6 1.2.6z M6.5 16 l2.2-1.2.6 1.2-.6 1.2z M25.5 16 l-2.2 1.2-.6-1.2.6-1.2z' fill='%23f0a05a'/%3E%3C/svg%3E" />
-  <meta name="description" content="Shop / engineering: wheel and axle. A teaching exhibit of ideal mechanical advantage, R wheel / R axle, from How Machines Work by Virgil Renfroe." />
+  <meta name="description" content="A wheel and axle is one rigid piece: a large radius and a shaft that turn through the same angle. Ideal mechanical advantage, when the hand turns the wheel, is the wheel radius divided by the axle radius." />
   <title>Shop / engineering: wheel and axle · How Machines Work</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -273,6 +273,7 @@
     .shop-row ul, .shop-row ol { margin: 0; padding-left: 1.15rem; }
     .shop-row li { margin: 0 0 0.4rem; }
     .shop-row p { margin: 0; max-width: 52ch; }
+    .shop-row p + p { margin-top: 0.75rem; }
     footer {
       display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
       margin: 0 var(--pad); padding: 1rem 0 1.6rem; border-top: 1px solid var(--line);
@@ -347,7 +348,7 @@
         <h1 id="hub-title"><span>Wheel</span><span>&amp; axle.</span></h1>
       </div>
       <div class="hub-lead">
-        <p class="lede">One rigid piece. The handwheel and the shaft turn through the same angle. The radii are different, so the force is different.</p>
+        <p class="lede">A wheel and axle is one rigid piece: a large radius and a shaft that turn through the same angle. When the hand turns the wheel and the load is on the axle, ideal mechanical advantage is the wheel radius divided by the axle radius.</p>
         <p class="formula">
           <b>R wheel<span>R axle</span></b>
           <small>Ideal mechanical advantage when you drive the wheel. The load stays 10 lb. Drive the axle and the ratio flips.</small>
@@ -476,6 +477,24 @@
         <p class="idx">04.3</p>
         <h3>Shop examples</h3>
         <p>Drive the wheel: winch, windlass, screwdriver, steering wheel, doorknob. Drive the axle: a fan, or a wheel powered at the hub. This model is ideal. It leaves out friction and the bend of a real shaft.</p>
+      </div>
+      <div class="shop-row" id="on-the-job">
+        <p class="idx">04.4</p>
+        <h3>On the job</h3>
+        <div>
+          <p>A millwright turns the handwheel of a winch. The wheel and the drum are one piece, so they turn through the same angle. The hand travels the long radius. The rope comes in on the short radius, and a light pull lifts a heavier load.</p>
+          <p>A machinist uses the same machine on a lathe or milling-machine handwheel: a large rim, a small shaft, one turn of both. Turn the shaft instead of the rim, the way a hub drives a fan, and the ratio flips. The effort rises above the load.</p>
+        </div>
+      </div>
+      <div class="shop-row" id="common-mistakes">
+        <p class="idx">04.5</p>
+        <h3>Common mistakes</h3>
+        <ul>
+          <li>The wheel and the axle can turn at different speeds. They are one rigid body. One turn of the wheel is one turn of the axle.</li>
+          <li>Mechanical advantage is always the wheel radius divided by the axle radius. That is the advantage when you drive the wheel. Driving the axle flips the ratio.</li>
+          <li>A bigger wheel makes the load travel farther each turn. The hand travels farther. The load on the axle still moves with the short radius.</li>
+          <li>The readout already includes friction. This bench is ideal. A real winch asks for a little more pull than the radii predict.</li>
+        </ul>
       </div>
     </section>
 

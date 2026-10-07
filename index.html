@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#140818" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23140818'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23f0a05a' stroke-width='2'/%3E%3Cpath d='M16 6.5 l1.2 2.2 -1.2.6 -1.2-.6z M16 25.5 l-1.2-2.2 1.2-.6 1.2.6z M6.5 16 l2.2-1.2.6 1.2-.6 1.2z M25.5 16 l-2.2 1.2-.6-1.2.6-1.2z' fill='%23f0a05a'/%3E%3C/svg%3E" />
-  <meta name="description" content="A simple gear train for shop and engineering class. Name the driver and the driven, count teeth, and watch one tooth take the next space." />
+  <meta name="description" content="A gear train passes rotation from one tooth to the next. Gear ratio is the driven tooth count divided by the driver tooth count. An idler changes direction and does not change the ratio." />
   <title>Shop / engineering: gear ratio &amp; meshing · How Machines Work</title>
   <meta property="og:title" content="Shop / engineering: gear ratio &amp; meshing · How Machines Work" />
   <meta property="og:description" content="A simple gear train for shop and engineering class. Name the driver and the driven, count teeth, and watch one tooth take the next space." />
@@ -556,6 +556,7 @@
     .shop-row ul, .shop-row ol { margin: 0; padding-left: 1.15rem; }
     .shop-row li { margin: 0 0 0.4rem; }
     .shop-row p { margin: 0; max-width: 52ch; }
+    .shop-row p + p { margin-top: 0.75rem; }
 
     footer {
       display: flex;
@@ -651,7 +652,7 @@
         <h1 id="hub-title"><span>Gear ratio</span><span>&amp; meshing.</span></h1>
       </div>
       <div class="hub-lead">
-        <p class="lede">A simple gear train for shop and engineering class. Name the driver and the driven, count teeth, and watch one tooth take the next space.</p>
+        <p class="lede">A gear train passes rotation from one tooth to the next. Gear ratio is the driven tooth count divided by the driver tooth count. A larger driven gear turns slower and with more torque. An idler changes direction and does not change the ratio.</p>
         <p class="formula">
           <b>N driven<span>N driver</span></b>
           <small>Bigger driven gear, slower output, more torque. The idler changes direction and drops out of the ratio.</small>
@@ -783,6 +784,24 @@
         <p class="idx">04.3</p>
         <h3>Shop examples</h3>
         <p>Lathe change gears, a drill-press reduction, a clock train. This exhibit is spur gears in external mesh. It leaves out friction, shaft windup, and chain drives such as a bicycle.</p>
+      </div>
+      <div class="shop-row" id="on-the-job">
+        <p class="idx">04.4</p>
+        <h3>On the job</h3>
+        <div>
+          <p>A machinist sets the change gears on a lathe so the lead screw moves the tool the right distance for each turn of the spindle. The ratio is still the driven tooth count divided by the driver tooth count. A millwright bolts a gear reducer onto a conveyor: a small pinion drives a larger gear, the output shaft turns slower, and the torque at the belt goes up.</p>
+          <p>An idler in that train only flips the direction of the next shaft. It does not change how many times the output turns for one turn of the motor. Count the two end gears. Leave the idler out of the ratio.</p>
+        </div>
+      </div>
+      <div class="shop-row" id="common-mistakes">
+        <p class="idx">04.5</p>
+        <h3>Common mistakes</h3>
+        <ul>
+          <li>An idler changes the gear ratio. It changes direction. The ratio still uses only the driver and the driven.</li>
+          <li>Gear ratio is driver teeth divided by driven teeth. On this bench the ratio is N driven ÷ N driver. Reducer 40 ÷ 16 is 2.50 : 1.</li>
+          <li>Gears must be the same size to mesh. They need the same tooth size. The tooth counts can differ.</li>
+          <li>More teeth on the driver always means more torque out. A larger driver lowers the ratio and speeds the output up.</li>
+        </ul>
       </div>
     </section>
 

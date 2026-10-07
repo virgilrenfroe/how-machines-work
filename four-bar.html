@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#140818" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23140818'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23f0a05a' stroke-width='2'/%3E%3Cpath d='M16 6.5 l1.2 2.2 -1.2.6 -1.2-.6z M16 25.5 l-1.2-2.2 1.2-.6 1.2.6z M6.5 16 l2.2-1.2.6 1.2-.6 1.2z M25.5 16 l-2.2 1.2-.6-1.2.6-1.2z' fill='%23f0a05a'/%3E%3C/svg%3E" />
-  <meta name="description" content="Shop / engineering: four-bar linkage (crank–rocker). A teaching exhibit of a crank, coupler, and rocker from How Machines Work by Virgil Renfroe." />
+  <meta name="description" content="A four-bar linkage is four rigid links joined by four pins. In a crank–rocker, the crank spins all the way around and the rocker only swings." />
   <title>Shop / engineering: four-bar linkage (crank–rocker) · How Machines Work</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -250,6 +250,7 @@
     .shop-row ul, .shop-row ol { margin: 0; padding-left: 1.15rem; }
     .shop-row li { margin: 0 0 0.4rem; }
     .shop-row p { margin: 0; max-width: 52ch; }
+    .shop-row p + p { margin-top: 0.75rem; }
     footer {
       display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
       margin: 0 var(--pad); padding: 1rem 0 1.6rem; border-top: 1px solid var(--line);
@@ -322,7 +323,7 @@
         <h1 id="hub-title"><span>Four-bar</span><span>crank–rocker.</span></h1>
       </div>
       <div class="hub-lead">
-        <p class="lede">Four links. Four pins. The crank spins all the way around. The rocker only swings. That is the shop use of a crank–rocker.</p>
+        <p class="lede">A four-bar linkage is four rigid links joined by four pins. In a crank–rocker, the crank spins all the way around and the rocker only swings.</p>
         <p class="formula">
           <b>A–B–C–D</b>
           <small>A and D are fixed. B is the crank pin. C joins the coupler to the rocker.</small>
@@ -440,6 +441,24 @@
         <p class="idx">03.3</p>
         <h3>Shop examples</h3>
         <p>Windshield wipers, a beam pump, a treadle, a folding bench latch. This model is a planar crank–rocker. It leaves out friction, joint play, and links that lock.</p>
+      </div>
+      <div class="shop-row" id="on-the-job">
+        <p class="idx">03.4</p>
+        <h3>On the job</h3>
+        <div>
+          <p>An automotive technician works a windshield-wiper linkage. The motor spins a short crank all the way around. The wiper arm is the rocker, and it only swings across the glass. A worn pin lets that arm stop short or park off the glass.</p>
+          <p>A millwright sees the same crank–rocker on a beam pump and on a small press. The crank keeps turning. The walking beam or the ram only rocks. The link lengths are set so the rocker reaches the swing the job needs and does not lock at the end.</p>
+        </div>
+      </div>
+      <div class="shop-row" id="common-mistakes">
+        <p class="idx">03.5</p>
+        <h3>Common mistakes</h3>
+        <ul>
+          <li>All four links spin. Only the crank rotates all the way around. The rocker swings. Ground does not move.</li>
+          <li>The coupler is the fixed frame. Ground, between the two fixed pins, is the frame. The coupler floats between the crank and the rocker.</li>
+          <li>The coupler curve is the path of a pin. It is the path of a point fixed on the coupler, not on joint B or C.</li>
+          <li>Any four lengths make a crank–rocker. The crank has to be short enough to clear. If it is not, the linkage locks or the driven link spins.</li>
+        </ul>
       </div>
     </section>
 
